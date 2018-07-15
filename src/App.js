@@ -11,10 +11,12 @@ class App extends Component {
     return (
       <div className="App">
         <Preferences />
-        <h4>POMODORO TIMER</h4>
-        <Timer />
-        <Controls />
-        <SessionCounter />
+        <div className="container text-center">
+          <h4>POMODORO TIMER</h4>
+          <Timer />
+          <Controls />
+          <SessionCounter />
+        </div>
         <Footer />
       </div>
     );

@@ -4,9 +4,11 @@ class SessionCounter extends React.Component {
 
 	render() {
 		return (
-			<h4>sessions finished today: 
-				<span className="badge badge-primary" id="sessionsCompleted">0</span>
-			</h4>
+			<div className='top-buffer'>
+				<h4>sessions finished today: 
+					<span className="badge badge-primary" id="sessionsCompleted">0</span>
+				</h4>
+			</div>
 		);
 	}
 }
