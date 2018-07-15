@@ -9,7 +9,7 @@ import SessionCounter from './SessionCounter.js';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
         <Preferences />
         <div className="container text-center">
           <h4>POMODORO TIMER</h4>
