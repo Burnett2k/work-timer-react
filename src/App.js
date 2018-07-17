@@ -10,6 +10,20 @@ import PreferencesModal from './PreferencesModal.js';
 
 ReactModal.setAppElement('#root');
 
+const customStyles = {
+  content : {
+    top                   : '30%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+    padding               : '10px',
+    width                 : '350px'
+  }
+};
+
+
 class App extends Component {
 
   constructor () {
@@ -41,7 +55,13 @@ class App extends Component {
           <SessionCounter />
         </div>
         <Footer />
-        <PreferencesModal />
+        <ReactModal
+            isOpen={this.state.showModal}
+            onRequestClose={this.handleCloseModal}
+            style={customStyles}  
+        >
+            <PreferencesModal />
+        </ReactModal>
       </div>
     );
   }
