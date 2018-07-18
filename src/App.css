@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+.q-top-buffer {
+	margin-top: 20px;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

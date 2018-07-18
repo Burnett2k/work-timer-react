@@ -46,9 +46,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container q-top-buffer'>
         <Preferences onClick={this.handleOpenModal}/>
-        <div className="container text-center">
+        <div className="container text-center q-top-buffer">
           <h4>POMODORO TIMER</h4>
           <Timer />
           <Controls />
