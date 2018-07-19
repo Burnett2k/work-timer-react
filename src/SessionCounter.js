@@ -4,7 +4,7 @@ class SessionCounter extends React.Component {
 
 	render() {
 		return (
-			<div className='top-buffer'>
+			<div className='q-top-buffer'>
 				<h4>sessions finished today: 
 					<span className="badge badge-primary" id="sessionsCompleted">0</span>
 				</h4>
