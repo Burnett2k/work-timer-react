@@ -13,4 +13,4 @@ class SessionCounter extends React.Component {
 	}
 }
 
-module.exports = SessionCounter;	
+export default SessionCounter;	

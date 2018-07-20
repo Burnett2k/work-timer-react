@@ -39,4 +39,4 @@ class PreferencesModal extends React.Component {
 	}
 }
 
-module.exports = PreferencesModal;	
+export default PreferencesModal;	

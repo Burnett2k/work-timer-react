@@ -9,4 +9,4 @@ class Timer extends React.Component {
 	}
 }
 
-module.exports = Timer;	
+export default Timer;	
