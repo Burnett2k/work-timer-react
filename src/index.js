@@ -5,7 +5,7 @@ import { createStore } from 'redux';
 import rootReducer from './reducers';
 
 import './index.css';
-import App from './App';
+import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
