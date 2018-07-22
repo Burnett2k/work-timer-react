@@ -17,17 +17,14 @@ class PreferencesModal extends React.Component {
                     <div className="col-6">
                       <label htmlFor="minutes" className="col-form-label">minutes (1-30)</label>
                     </div>
-                    <div className="col-4">
-                      <input id='minutes' type="number" className="form-control" name="minutes" min="1" max="30" defaultValue="25"></input>
-                    </div>
+                      <div className="col-4">
+                        <input id='minutes' type="number" className="form-control" name="minutes" min="1" max="30" defaultValue="25"></input>
+                      </div>
                   </div>
-                  <div className="form-row q-top-buffer">
-                    <div className="col-6">
-                      <label htmlFor="mute">mute?</label>
-                    </div>
-                    <div className="col-4">
-                      <input id="mute" type="checkbox"></input>
-                    </div>  
+                  <div>
+                    <label className="form-check-label" htmlFor="mute">Mute?</label>
+                    <input id="mute" type="checkbox"></input>
+                    
                   </div>
               </div>      
               <div className="d-none d-sm-block d-md-block">
