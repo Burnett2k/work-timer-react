@@ -4,15 +4,13 @@ const preferences = (state = [], action) => {
       return [
         ...state,
         {
-          id: action.id,
-          numMinutes: action.numMinutes
+          minutes: action.minutes
         }
       ]
     case 'SAVE_MUTE':
       return [
         ...state,
         {
-          id: action.id,
           isMuted: action.isMuted
         }
       ]
