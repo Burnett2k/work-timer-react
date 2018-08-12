@@ -2,8 +2,6 @@ import ReactModal from 'react-modal';
 import PreferencesModal from './PreferencesModal.js';
 
 const React = require('react');
-
-
 ReactModal.setAppElement('#root');
 
 const customStyles = {
@@ -22,8 +20,8 @@ const customStyles = {
 class Preferences extends React.Component {
 
 
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.state = {
       showModal: false
     }
@@ -40,9 +38,6 @@ class Preferences extends React.Component {
     this.setState( {showModal: false });
   }
 
-
-
-
 	render() {
 		return (
 	        <div className="Container d-flex flex-row-reverse">
@@ -56,7 +51,7 @@ class Preferences extends React.Component {
                 onRequestClose={this.handleCloseModal}
                 style={customStyles}  
               >
-                <PreferencesModal />
+                <PreferencesModal onPreferencesSaved={this.props.onPreferencesSaved}/>
               </ReactModal>
         	</div>
 		);
