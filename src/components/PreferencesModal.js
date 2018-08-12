@@ -21,17 +21,36 @@ class PreferencesModal extends React.Component {
     this.handleMinutesChange = this.handleMinutesChange.bind(this);
     this.handleMutedChange = this.handleMutedChange.bind(this);
 
+  }
 
+  componentDidMount() {
+    this.getPreferences();
+  }
+
+  getPreferences() {
+    var muted, minutes;
+
+    minutes = localStorage.getItem("minutes") || 25;
+    muted = localStorage.getItem("isMuted") || true;
+
+    this.setState({isMuted: muted });
+    this.setState({minutes: minutes });
+
+
+  }
+
+  setPreferences() {
+    localStorage.setItem("isMuted", this.state.isMuted);
+    localStorage.setItem("minutes", this.state.minutes);
   }
 
   handleMinutesChange(numMinutes) {
-      this.setState({minutes: numMinutes.target.value})
+      this.setState({minutes: numMinutes.target.value});
   }
 
   handleMutedChange(muted) {
-      const target = muted.target;
-      const value = target.type === 'checkbox' ? target.checked : target.value;
-      this.setState({isMuted: value});
+      this.setState({isMuted: muted.target.value});
+      console.log(this.state.isMuted);
   }
 
 	render() {
@@ -49,7 +68,7 @@ class PreferencesModal extends React.Component {
                       <label htmlFor="minutes" className="col-form-label">minutes (1-30)</label>
                     </div>
                     <div className="col-4">
-                      <input id='minutes' type="text" className="form-control" name="minutes" min="1" max="30" value={this.state.minutes} onChange={this.handleMinutesChange}></input>
+                      <input type="text" className="form-control" name="minutes" min="1" max="30" value={this.state.minutes} onChange={this.handleMinutesChange}></input>
                     </div>
                   </div>
                   <div className="form-row q-top-buffer">
@@ -57,7 +76,23 @@ class PreferencesModal extends React.Component {
                       <label htmlFor="mute">mute?</label>
                     </div>
                     <div className="col-4">
-                      <input id="mute" type="checkbox" checked={this.state.isMuted} onChange={this.handleMutedChange}></input>
+                      <label>
+                        <input type="radio" 
+                          value="true"
+                          checked={this.state.isMuted === "true"}
+                          onChange={this.handleMutedChange}
+                          /> 
+                        Yes
+                      </label>
+                      <span>     </span>
+                      <label>
+                        <input type="radio" value="false"
+                        value="false"
+                          checked={this.state.isMuted === "false"}
+                          onChange={this.handleMutedChange}
+                          /> 
+                        No
+                      </label>
                     </div>  
                   </div>
               </div>      
@@ -70,7 +105,11 @@ class PreferencesModal extends React.Component {
                 <p> Preferences   = P</p>
               </div>
               <div className="modal-footer">
-                <button id="save" type="button" className="btn btn-primary" onClick={() => { this.props.onPreferencesSaved({minutes: this.state.minutes, isMuted: this.state.isMuted})} }>Save</button>
+                <button id="save" type="button" className="btn btn-primary" onClick={() => { 
+                  this.setPreferences();
+                  this.props.onPreferencesSaved({minutes: this.state.minutes, isMuted: this.state.isMuted});
+                  this.props.onRequestClose();
+                } }>Save</button>
               </div>
         	</div>
 		);

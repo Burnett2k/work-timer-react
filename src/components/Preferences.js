@@ -51,7 +51,9 @@ class Preferences extends React.Component {
                 onRequestClose={this.handleCloseModal}
                 style={customStyles}  
               >
-                <PreferencesModal onPreferencesSaved={this.props.onPreferencesSaved}/>
+                <PreferencesModal 
+                  onPreferencesSaved={this.props.onPreferencesSaved}
+                  onRequestClose={this.handleCloseModal}/>
               </ReactModal>
         	</div>
 		);
