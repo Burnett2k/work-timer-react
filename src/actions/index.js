@@ -1,9 +1,9 @@
-export const saveMinutes = minutes => ({
+export const saveMinutes = (minutes) => ({
   type: 'SAVE_MINUTES',
-  minutes
+  payload: minutes
 })
 
-export const saveMute = isMuted => ({
+export const saveMute = (isMuted) => ({
   type: 'SAVE_MUTE',
-  isMuted
+  payload: isMuted
 })
