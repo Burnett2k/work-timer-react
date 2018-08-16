@@ -95,15 +95,16 @@ class PreferencesModal extends React.Component {
                       </label>
                     </div>  
                   </div>
+                 <div className="d-none d-sm-block d-md-block">
+                  <hr/>
+                  <h4>Keyboard Shortcuts</h4>
+                  <p> Start / Pause = F</p>
+                  <p> Stop          = S</p>
+                  <p> Reset         = R</p>
+                  <p> Preferences   = P</p>
+                </div>
               </div>      
-              <div className="d-none d-sm-block d-md-block">
-                <hr/>
-                <h4>Keyboard Shortcuts</h4>
-                <p> Start / Pause = F</p>
-                <p> Stop          = S</p>
-                <p> Reset         = R</p>
-                <p> Preferences   = P</p>
-              </div>
+             
               <div className="modal-footer">
                 <button id="save" type="button" className="btn btn-primary" onClick={() => { 
                   this.setPreferences();
