@@ -4,8 +4,8 @@ class Footer extends React.Component {
 
 	render() {
 		return (
-			<footer className="fixed-bottom text-center bg-dark text-light">
-				<div className="containter"> Created by Sawyer Burnett
+			<footer className="footer text-center bg-dark text-light">
+				<div className="container"> Created by Sawyer Burnett
 					<br/>
 					<a href="http://github.com/burnett2k" target="_blank" rel="noopener noreferrer">GitHub</a>
 					<br/>

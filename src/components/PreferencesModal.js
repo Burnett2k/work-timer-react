@@ -77,21 +77,10 @@ class PreferencesModal extends React.Component {
                     </div>
                     <div className="col-4">
                       <label>
-                        <input type="radio" 
-                          value="true"
-                          checked={this.state.isMuted === "true"}
-                          onChange={this.handleMutedChange}
-                          /> 
-                        Yes
+                        <input type="radio" value="true" checked={this.state.isMuted === "true"} onChange={this.handleMutedChange}/> Yes
                       </label>
-                      <span>     </span>
                       <label>
-                        <input type="radio" value="false"
-                        value="false"
-                          checked={this.state.isMuted === "false"}
-                          onChange={this.handleMutedChange}
-                          /> 
-                        No
+                        <input type="radio" value="false" checked={this.state.isMuted === "false"} onChange={this.handleMutedChange}/> No
                       </label>
                     </div>  
                   </div>
@@ -104,7 +93,6 @@ class PreferencesModal extends React.Component {
                   <p> Preferences   = P</p>
                 </div>
               </div>      
-             
               <div className="modal-footer">
                 <button id="save" type="button" className="btn btn-primary" onClick={() => { 
                   this.setPreferences();
