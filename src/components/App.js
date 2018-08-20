@@ -6,8 +6,26 @@ import Controls from './Controls.js';
 import SessionCounter from './SessionCounter.js';
 import SavePreferences  from '../containers/SavePreferences.js';
 
-class App extends Component {
+const handleKeyUp = event => {
+  switch(event.key) {
+    case 'f':
+      console.log("pressed f");
+      break;
+    case 'p':
+      console.log("pressed p");
+      break;
+    case 'r':
+      console.log("pressed r");
+      break;
+    case 's':
+      console.log("pressed s");
+      break;
+  }
+}
 
+document.addEventListener('keyup', handleKeyUp);
+
+class App extends Component {
 
   render() {
     return (
