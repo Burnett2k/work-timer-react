@@ -3,7 +3,6 @@ import './App.css';
 import CountdownTimer from '../containers/CountdownTimer.js';
 import Footer from './Footer.js';
 import SavePreferences  from '../containers/SavePreferences.js';
-import SessionCounter from './SessionCounter.js';
 
 const handleKeyUp = event => {
   switch(event.key) {
@@ -18,6 +17,8 @@ const handleKeyUp = event => {
       break;
     case 's':
       console.log("pressed s");
+      break;
+    default:
       break;
   }
 }
