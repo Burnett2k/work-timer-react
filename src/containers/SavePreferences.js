@@ -11,14 +11,13 @@ class SavePreferences extends React.Component {
 		this.props.dispatch(saveMute(payload.isMuted));
 	}
 
-  //let minutes, isMuted;
-  render() {
-  	return (
-	    <div>
-	      <Preferences 
-	      	onPreferencesSaved={this.onPreferencesSaved}
-      		/>
-	    </div>);
+render() {
+	return (
+		<div>
+			<Preferences 
+				onPreferencesSaved={this.onPreferencesSaved}
+			/>
+		</div>);
 	}
 }
 
