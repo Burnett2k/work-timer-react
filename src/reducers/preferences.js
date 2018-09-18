@@ -1,19 +1,15 @@
-const preferences = (state = [], action) => {
+const preferences = (state = {minutes: 25, isMuted: true }, action) => {
   switch (action.type) {
     case 'SAVE_MINUTES':
-      return [
-        ...state,
-        {
-          minutes: action.minutes
-        }
-      ]
+      return { 
+        ...state, 
+        minutes: action.minutes 
+      }
     case 'SAVE_MUTE':
-      return [
+      return {
         ...state,
-        {
-          isMuted: action.isMuted
-        }
-      ]
+        isMuted: action.isMuted
+      }
     default:
       return state
   }

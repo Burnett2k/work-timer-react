@@ -1,19 +1,15 @@
-const timer = (state = [], action) => {
+const timer = (state = {secondsRemaining: 0, status: 'paused'}, action) => {
   switch (action.type) {
     case 'SAVE_TIME_REMAINING':
-      return [
-        ...state,
-        {
+      return {
+        ...state,        
           secondsRemaining: action.secondsRemaining
         }
-      ]
     case 'SAVE_STATUS':
-      return [
+      return {
         ...state,
-        {
           status: action.status
         }
-      ]
     default:
       return state
   }
