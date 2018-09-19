@@ -28,7 +28,7 @@ class Preferences extends React.Component {
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
-  }
+  }               
 
   handleOpenModal () {
     this.setState({ showModal: true });
@@ -53,7 +53,10 @@ class Preferences extends React.Component {
               >
                 <PreferencesModal 
                   onPreferencesSaved={this.props.onPreferencesSaved}
-                  onRequestClose={this.handleCloseModal}/>
+                  onRequestClose={this.handleCloseModal}
+                  minutes={this.props.minutes}
+                  isMuted={this.props.isMuted}/>
+
               </ReactModal>
         	</div>
 		);

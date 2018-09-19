@@ -14,28 +14,13 @@ class PreferencesModal extends React.Component {
     super(props);
 
     this.state = {
-      minutes: '25',
-      isMuted: true
+      minutes: this.props.minutes,
+      isMuted: this.props.isMuted
     }
 
     this.handleMinutesChange = this.handleMinutesChange.bind(this);
     this.handleMutedChange = this.handleMutedChange.bind(this);
-
-  }
-
-  componentDidMount() {
-    this.getPreferences();
-  }
-
-  getPreferences() {
-    var muted, minutes;
-
-    minutes = localStorage.getItem("minutes") || 25;
-    muted = localStorage.getItem("isMuted") || true;
-
-    this.setState({isMuted: muted });
-    this.setState({minutes: minutes });
-
+    this.onClick = this.onClick.bind(this);
 
   }
 
@@ -45,12 +30,18 @@ class PreferencesModal extends React.Component {
   }
 
   handleMinutesChange(numMinutes) {
-      this.setState({minutes: numMinutes.target.value});
+      this.setState({minutes: parseInt(numMinutes.target.value)});
   }
 
   handleMutedChange(muted) {
       this.setState({isMuted: muted.target.value});
       console.log(this.state.isMuted);
+  }
+
+  onClick() {
+    this.setPreferences();
+    this.props.onPreferencesSaved({minutes: this.state.minutes, isMuted: this.state.isMuted});
+    this.props.onRequestClose();
   }
 
 	render() {
@@ -94,11 +85,7 @@ class PreferencesModal extends React.Component {
                 </div>
               </div>      
               <div className="modal-footer">
-                <button id="save" type="button" className="btn btn-primary" onClick={() => { 
-                  this.setPreferences();
-                  this.props.onPreferencesSaved({minutes: this.state.minutes, isMuted: this.state.isMuted});
-                  this.props.onRequestClose();
-                } }>Save</button>
+                <button id="save" type="button" className="btn btn-primary" onClick={ this.onClick }>Save</button>
               </div>
         	</div>
 		);

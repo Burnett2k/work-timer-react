@@ -6,9 +6,23 @@ import { saveMute } from'../actions';
 
 class SavePreferences extends React.Component {
 
+	constructor(props) {
+		super(props);
+		this.getPreferences();
+	}
+
 	onPreferencesSaved = (payload) => {
 		this.props.dispatch(saveMinutes(payload.minutes));
 		this.props.dispatch(saveMute(payload.isMuted));
+	}
+
+	getPreferences() {
+		var muted, minutes;
+
+		minutes = localStorage.getItem("minutes") || 25;
+		muted = localStorage.getItem("isMuted") || true;
+
+		//this.onPreferencesSaved({minutes: minutes, isMuted: muted});
 	}
 
 render() {
@@ -16,6 +30,8 @@ render() {
 		<div>
 			<Preferences 
 				onPreferencesSaved={this.onPreferencesSaved}
+				minutes={this.props.minutes}
+				isMuted={this.props.isMuted}
 			/>
 		</div>);
 	}
@@ -24,7 +40,8 @@ render() {
 //only passing in data needed by the children
 function mapStateToProps(state) {
 	return {
-		preferences: state.preferences
+		minutes: state.preferences.minutes,
+		isMuted: state.preferences.isMuted
 	};
 }
 

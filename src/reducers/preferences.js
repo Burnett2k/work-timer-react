@@ -3,12 +3,12 @@ const preferences = (state = {minutes: 25, isMuted: true }, action) => {
     case 'SAVE_MINUTES':
       return { 
         ...state, 
-        minutes: action.minutes 
+        minutes: action.payload 
       }
     case 'SAVE_MUTE':
       return {
         ...state,
-        isMuted: action.isMuted
+        isMuted: action.payload
       }
     default:
       return state
