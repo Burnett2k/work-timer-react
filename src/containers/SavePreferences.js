@@ -17,12 +17,10 @@ class SavePreferences extends React.Component {
 	}
 
 	getPreferences() {
-		var muted, minutes;
-
-		minutes = localStorage.getItem("minutes") || 25;
-		muted = localStorage.getItem("isMuted") || true;
-
-		//this.onPreferencesSaved({minutes: minutes, isMuted: muted});
+		let muted, minutes;
+		minutes = (localStorage.getItem("minutes") != null) ? localStorage.getItem("minutes") : 25;
+		muted = (localStorage.getItem("isMuted") != null) ? localStorage.getItem("isMuted") : "true";
+		this.onPreferencesSaved({minutes: minutes, isMuted: muted});
 	}
 
 render() {
