@@ -23,25 +23,26 @@ class SavePreferences extends React.Component {
 		this.onPreferencesSaved({minutes: minutes, isMuted: muted});
 	}
 
-render() {
-	return (
-		<div>
-			<Preferences 
-				onPreferencesSaved={this.onPreferencesSaved}
-				minutes={this.props.minutes}
-				isMuted={this.props.isMuted}
-			/>
-		</div>);
+	render() {
+		return (
+			<div>
+				<Preferences 
+					onPreferencesSaved={this.onPreferencesSaved}
+					minutes={this.props.minutes}
+					isMuted={this.props.isMuted}
+					showModal={this.props.showModal}
+				/>
+			</div>);
+		}
 	}
-}
 
-//only passing in data needed by the children
-function mapStateToProps(state) {
-	return {
-		minutes: state.preferences.minutes,
-		isMuted: state.preferences.isMuted
-	};
-}
+	//only passing in data needed by the children
+	function mapStateToProps(state) {
+		return {
+			minutes: state.preferences.minutes,
+			isMuted: state.preferences.isMuted
+		};
+	}
 
 
 //use connect method to make application aware of the redux store

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 const React = require('react');
 const pomodoroLink = "https://en.wikipedia.org/wiki/Pomodoro_Technique";
 
-
 class PreferencesModal extends React.Component {
 
   static propTypes = {
@@ -21,7 +20,6 @@ class PreferencesModal extends React.Component {
     this.handleMinutesChange = this.handleMinutesChange.bind(this);
     this.handleMutedChange = this.handleMutedChange.bind(this);
     this.onClick = this.onClick.bind(this);
-
   }
 
   setPreferences() {
