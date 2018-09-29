@@ -32,7 +32,7 @@ class Preferences extends React.Component {
 
   componentDidUpdate(prevProps) {
 
-    if (prevProps.showModal != this.props.showModal) {
+    if (prevProps.showModal !== this.props.showModal) {
       this.setState({ showModal: this.props.showModal });
     }
   }               

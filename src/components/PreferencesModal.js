@@ -28,7 +28,7 @@ class PreferencesModal extends React.Component {
   }
 
   handleMinutesChange(numMinutes) {
-      this.setState({minutes: parseInt(numMinutes.target.value)});
+      this.setState({minutes: parseInt(numMinutes.target.value, 10)});
   }
 
   handleMutedChange(muted) {
