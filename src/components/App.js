@@ -4,10 +4,6 @@ import CountdownTimer from '../containers/CountdownTimer.js';
 import Footer from './Footer.js';
 import SavePreferences  from '../containers/SavePreferences.js';
 
-
-
-
-
 class App extends Component {
 
   componentDidMount() {
