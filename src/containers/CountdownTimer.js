@@ -20,15 +20,20 @@ class CountdownTimer extends React.Component {
 		this.onReset = this.onReset.bind(this);
 		this.onTick = this.onTick.bind(this);
 		this.onCompletion = this.onCompletion.bind(this);
+
+		this.interval = '';
+
+		this.state = {
+			formattedTime: '00:00'
+		}
 	}
 
 	onStart() {
-		
-
 		if (this.props.status === STARTED) {
 			this.props.dispatch(saveStatus(PAUSED));
 		} else {
 			this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
+			this.interval = setInterval(() => this.onTick(), 1000);
 			this.props.dispatch(saveStatus(STARTED));
 		}
 	}
@@ -36,34 +41,47 @@ class CountdownTimer extends React.Component {
 	onStop() {
 		this.props.dispatch(saveStatus(STOPPED));
 		this.props.dispatch(saveSecondsRemaining(0));
-		console.log("stop");
+		clearInterval(this.interval);
+		this.convertSecondsToTimer();
 	}
 
 	onReset() {
 		this.props.dispatch(saveStatus(STOPPED));
-		console.log("reset");
+		clearInterval(this.interval);
+		this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
+		this.convertSecondsToTimer();
 	}
 
 	onTick() {
-
+		this.props.dispatch(saveSecondsRemaining(this.props.secondsRemaining - 1));
+		this.convertSecondsToTimer();
 	}
 
 	onCompletion() {
+		//todo save sessions completed
+	}
 
+	convertSecondsToTimer() {
+		let hours = (this.props.secondsRemaining / 60)>>0;
+		let minutes = (this.props.secondsRemaining % 60);
+		this.setState({formattedTime: `${hours}:${minutes}`});
 	}
 
 	render() {
 	  	return (
 			<div className="container text-center q-top-buffer">
       			<h4>POMODORO TIMER</h4>
-				<Timer />
+				<Timer 
+					formattedTime={this.state.formattedTime}/>
 				<Controls 
 					onStart = {this.onStart}
 					onStop = {this.onStop}
 					onReset = {this.onReset}
 				/>
-				<SessionCounter />
-		    </div>);
+				<SessionCounter 
+				//todo add sessions completed
+				/>
+			</div>);
 	}
 }
 

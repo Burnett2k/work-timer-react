@@ -4,7 +4,7 @@ class Timer extends React.Component {
 
 	render() {
 		return (
-			<h2 id="timer" className='display-1'>00:00</h2>
+			<h2 id="timer" className='display-1'>{this.props.formattedTime}</h2>
 		);	
 	}
 }
