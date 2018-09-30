@@ -19,48 +19,32 @@ const customStyles = {
 
 class Preferences extends React.Component {
 
-
   constructor (props) {
     super(props);
-    this.state = {
-      showModal: false
-    }
 
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-
-    if (prevProps.showModal !== this.props.showModal) {
-      this.setState({ showModal: this.props.showModal });
-    }
-  }               
-
-  handleOpenModal () {
-    this.setState({ showModal: true });
-  }
-
-  handleCloseModal () {
-    this.setState( {showModal: false });
+  toggleModal() {
+    this.props.toggleModalShown();
   }
 
 	render() {
 		return (
 	        <div className="Container d-flex flex-row-reverse">
           		<button type='button' className="btn btn-outline-primary" 
-          		data-toggle="modal" data-target="#settingsModal" id="preferences" onClick={this.handleOpenModal}>
+          		data-toggle="modal" data-target="#settingsModal" id="preferences" onClick={this.toggleModal}>
           			<i className="fa fa-wrench d-block d-md-none" aria-hidden="true"></i>
           			<span className="d-none d-md-block d-lg-block d-xl-block">Settings</span>
           		</button>
               <ReactModal
-                isOpen={this.state.showModal}
-                onRequestClose={this.handleCloseModal}
+                isOpen={this.props.showModal}
+                onRequestClose={this.toggleModal}
                 style={customStyles}  
               >
                 <PreferencesModal 
                   onPreferencesSaved={this.props.onPreferencesSaved}
-                  onRequestClose={this.handleCloseModal}
+                  onRequestClose={this.toggleModal}
                   minutes={this.props.minutes}
                   isMuted={this.props.isMuted}/>
               </ReactModal>

@@ -15,6 +15,14 @@ class App extends Component {
     this.state = {
       showModal: false
     }
+
+    this.toggleModalShown = this.toggleModalShown.bind(this);
+  }
+
+  toggleModalShown() {
+    this.setState(prevState => ({
+      showModal: !prevState.showModal
+    }));
   }
 
   handleKeyUp(event) {
@@ -24,9 +32,7 @@ class App extends Component {
         break;
       case 'p':
         console.log("pressed p");
-        this.setState(prevState => ({
-          showModal: !prevState.showModal
-        }));
+        this.toggleModalShown();
         break;
       case 'r':
         console.log("pressed r");
@@ -44,6 +50,7 @@ render() {
     <div className='container q-top-buffer'>
       <SavePreferences 
         showModal={this.state.showModal}
+        toggleModalShown={this.toggleModalShown}
       />
       <CountdownTimer />
       <Footer />

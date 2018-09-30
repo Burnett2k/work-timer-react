@@ -31,6 +31,7 @@ class SavePreferences extends React.Component {
 					minutes={this.props.minutes}
 					isMuted={this.props.isMuted}
 					showModal={this.props.showModal}
+					toggleModalShown={this.props.toggleModalShown}
 				/>
 			</div>);
 		}
