@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 import { saveSecondsRemaining } from '../actions';
 import { saveStatus } from'../actions';
 
+const STARTED = 'running';
+const PAUSED = 'paused';
+const STOPPED = 'stopped';
+
 class CountdownTimer extends React.Component {
 
 	constructor(props) {
@@ -20,14 +24,20 @@ class CountdownTimer extends React.Component {
 
 	onStart() {
 		this.props.dispatch(saveSecondsRemaining(100));
-		this.props.dispatch(saveStatus(true));
 
-		console.log("start");
+		if (this.props.status !== STARTED) {
+			this.props.dispatch(saveStatus(PAUSED));
+		} else {
+			this.props.dispatch(saveStatus(STARTED));
+		}
+
 	}
 	onStop() {
+		this.props.dispatch(saveStatus(STOPPED));
 		console.log("stop");
 	}
 	onReset() {
+		this.props.dispatch(saveStatus(STOPPED));
 		console.log("reset");
 	}
 	onTick() {
@@ -58,7 +68,8 @@ class CountdownTimer extends React.Component {
 //only passing in data needed by the children
 function mapStateToProps(state) {
 	return {
-		timer: state.timer
+		secondsRemaining: state.timer.secondsRemaining,
+		status: state.timer.status
 	};
 }
 
