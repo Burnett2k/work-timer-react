@@ -9,7 +9,7 @@ export const saveMute = (isMuted) => ({
 })
 
 export const saveSecondsRemaining = (secondsRemaining) => ({
-  type: 'SAVE_TIME_REMAINING',
+  type: 'SAVE_SECONDS_REMAINING',
   payload: secondsRemaining
 })
 

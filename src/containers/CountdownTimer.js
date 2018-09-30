@@ -23,31 +23,34 @@ class CountdownTimer extends React.Component {
 	}
 
 	onStart() {
-		this.props.dispatch(saveSecondsRemaining(100));
+		
 
-		if (this.props.status !== STARTED) {
+		if (this.props.status === STARTED) {
 			this.props.dispatch(saveStatus(PAUSED));
 		} else {
+			this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
 			this.props.dispatch(saveStatus(STARTED));
 		}
-
 	}
+
 	onStop() {
 		this.props.dispatch(saveStatus(STOPPED));
+		this.props.dispatch(saveSecondsRemaining(0));
 		console.log("stop");
 	}
+
 	onReset() {
 		this.props.dispatch(saveStatus(STOPPED));
 		console.log("reset");
 	}
+
 	onTick() {
 
 	}
+
 	onCompletion() {
 
 	}
-
-
 
 	render() {
 	  	return (
@@ -62,14 +65,14 @@ class CountdownTimer extends React.Component {
 				<SessionCounter />
 		    </div>);
 	}
-
 }
 
 //only passing in data needed by the children
 function mapStateToProps(state) {
 	return {
 		secondsRemaining: state.timer.secondsRemaining,
-		status: state.timer.status
+		status: state.timer.status,
+		minutes: state.preferences.minutes
 	};
 }
 
