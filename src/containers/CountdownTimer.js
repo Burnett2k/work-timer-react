@@ -34,8 +34,13 @@ class CountdownTimer extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (prevProps.secondsRemaining != this.props.secondsRemaining) {
+		if (prevProps.secondsRemaining !== this.props.secondsRemaining) {
 			this.convertSecondsToTimer();
+		}
+		if (prevProps.minutes !== this.props.minutes) {
+			this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
+			this.props.dispatch(saveStatus(STOPPED));
+			clearInterval(this.interval);
 		}
 	}
 
@@ -72,7 +77,8 @@ class CountdownTimer extends React.Component {
 	convertSecondsToTimer() {
 		let hours = (this.props.secondsRemaining / 60)>>0;
 		let minutes = (this.props.secondsRemaining % 60);
-		this.setState({formattedTime: `${hours}:${minutes}`});
+
+		this.setState({formattedTime: `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`});
 	}
 
 	render() {
