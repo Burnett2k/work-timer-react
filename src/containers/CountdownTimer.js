@@ -42,6 +42,15 @@ class CountdownTimer extends React.Component {
 			this.props.dispatch(saveStatus(STOPPED));
 			clearInterval(this.interval);
 		}
+		if (prevProps.playPause !== this.props.playPause) {
+			this.onStart();
+		}
+		if (prevProps.reset !== this.props.reset) {
+			this.onReset();
+		}
+		if (prevProps.stop !== this.props.stop) {
+			this.onStop();
+		}
 	}
 
 	onStart() {

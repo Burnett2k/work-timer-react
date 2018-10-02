@@ -13,7 +13,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showModal: false,
+      playPause: false,
+      stop: false,
+      reset: false
     }
 
     this.toggleModalShown = this.toggleModalShown.bind(this);
@@ -25,20 +28,35 @@ class App extends Component {
     }));
   }
 
+  togglePlayPause() {
+    this.setState(prevState => ({
+      playPause: !prevState.playPause
+    }));
+  }
+  toggleStop() {
+    this.setState(prevState => ({
+      stop: !prevState.stop
+    }));
+  }
+  toggleReset() {
+    this.setState(prevState => ({
+      reset: !prevState.reset
+    }));
+  }
+
   handleKeyUp(event) {
     switch(event.key) {
       case 'f':
-        console.log("pressed f");
+        this.togglePlayPause();
         break;
       case 'p':
-        console.log("pressed p");
         this.toggleModalShown();
         break;
       case 'r':
-        console.log("pressed r");
+        this.toggleReset();
         break;
       case 's':
-        console.log("pressed s");
+        this.toggleStop();
         break;
       default:
         break;
@@ -50,9 +68,11 @@ render() {
     <div className='container q-top-buffer'>
       <SavePreferences 
         showModal={this.state.showModal}
-        toggleModalShown={this.toggleModalShown}
       />
-      <CountdownTimer />
+      <CountdownTimer 
+        playPause={this.state.playPause}
+        stop={this.state.stop}
+        reset={this.state.reset}/>
       <Footer />
     </div>
     );
