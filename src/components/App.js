@@ -33,11 +33,13 @@ class App extends Component {
       playPause: !prevState.playPause
     }));
   }
+
   toggleStop() {
     this.setState(prevState => ({
       stop: !prevState.stop
     }));
   }
+
   toggleReset() {
     this.setState(prevState => ({
       reset: !prevState.reset

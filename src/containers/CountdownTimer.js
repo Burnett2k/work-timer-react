@@ -10,6 +10,10 @@ const STARTED = 'running';
 const PAUSED = 'paused';
 const STOPPED = 'stopped';
 
+const START = 'start';
+const PAUSE = 'pause';
+const RESUME = 'resume';
+
 class CountdownTimer extends React.Component {
 
 	constructor(props) {
@@ -24,9 +28,9 @@ class CountdownTimer extends React.Component {
 		this.interval = '';
 
 		this.state = {
-			formattedTime: '00:00'
+			formattedTime: '00:00',
+			playPauseText: 'start'
 		}
-
 	}
 
 	componentDidMount() {
@@ -54,23 +58,38 @@ class CountdownTimer extends React.Component {
 	}
 
 	onStart() {
-		if (this.props.status === STARTED) {
-			this.props.dispatch(saveStatus(PAUSED));
-		} else {
-			this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
-			this.interval = setInterval(() => this.onTick(), 1000);
-			this.props.dispatch(saveStatus(STARTED));
+		switch(this.props.status) {
+			case STARTED:
+				this.props.dispatch(saveStatus(PAUSED));
+				this.setState({playPauseText: RESUME});
+				clearInterval(this.interval);
+				break;
+			case PAUSED:
+				this.interval = setInterval(() => this.onTick(), 1000);
+				this.props.dispatch(saveStatus(STARTED));
+				this.setState({playPauseText: PAUSE});	
+				break;
+			case STOPPED:
+				this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
+				this.interval = setInterval(() => this.onTick(), 1000);
+				this.props.dispatch(saveStatus(STARTED));
+				this.setState({playPauseText: PAUSE});
+				break;
+			default:
+				break;
 		}
 	}
 
 	onStop() {
 		this.props.dispatch(saveStatus(STOPPED));
+		this.setState({playPauseText: START});
 		this.props.dispatch(saveSecondsRemaining(0));
 		clearInterval(this.interval);
 	}
 
 	onReset() {
 		this.props.dispatch(saveStatus(STOPPED));
+		this.setState({playPauseText: START});
 		this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
 		clearInterval(this.interval);
 	}
@@ -97,9 +116,10 @@ class CountdownTimer extends React.Component {
 				<Timer 
 					formattedTime={this.state.formattedTime}/>
 				<Controls 
-					onStart = {this.onStart}
-					onStop = {this.onStop}
-					onReset = {this.onReset}
+					onStart={this.onStart}
+					onStop={this.onStop}
+					onReset={this.onReset}
+					playPauseText={this.state.playPauseText}
 				/>
 				<SessionCounter 
 				//todo add sessions completed
