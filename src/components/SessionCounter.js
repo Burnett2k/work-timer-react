@@ -6,7 +6,7 @@ class SessionCounter extends React.Component {
 		return (
 			<div className='q-top-buffer'>
 				<h4>sessions finished today: 
-					<span className="badge badge-primary" id="sessionsCompleted">0</span>
+					<span className="badge badge-primary" id="sessionsCompleted">{this.props.completed}</span>
 				</h4>
 			</div>
 		);

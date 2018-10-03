@@ -17,3 +17,8 @@ export const saveStatus = (status) => ({
   type: 'SAVE_STATUS',
   payload: status
 })
+
+export const saveSessionsCompleted = (completed) => ({
+  type: 'SAVE_SESSION',
+  payload: completed
+})
