@@ -69,6 +69,7 @@ render() {
   return (
     <div className='container q-top-buffer'>
       <SavePreferences 
+        toggleModalShown={this.toggleModalShown}
         showModal={this.state.showModal}
       />
       <CountdownTimer 
