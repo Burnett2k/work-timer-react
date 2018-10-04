@@ -5,19 +5,36 @@ import SessionCounter from '../components/SessionCounter';
 
 class SaveSessions extends React.Component {
 
-	constructor(props) {
-        super(props);
-        this.getSessionsCompleted();
-    }
-    
+	componentDidUpdate(prevProps) {
+		if (prevProps.sessionComplete !== this.props.sessionComplete) {
+			this.saveSessionsCompleted(true)
+		}
+	}
+
+	componentDidMount() {
+		this.saveSessionsCompleted(false);
+	}
+
+	saveSessionsCompleted(increment) {
+		const today = this.getFormattedDate();
+		let completed = (localStorage.getItem(today) != null) ? parseInt(localStorage.getItem(today), 10) : 0;
+		completed = increment ? completed + 1 : completed; 
+		this.props.dispatch(saveSessionsCompleted(completed));
+		localStorage.setItem(today, completed);
+	}
+	
     getSessionsCompleted() {
-        let completed = (localStorage.getItem("10/2/2018") != null) ? localStorage.getItem("10/2/2018") : 0;
-        this.props.dispatch(saveSessionsCompleted(completed));
+		const today = this.getFormattedDate();
+        return (localStorage.getItem(today) != null) ? parseInt(localStorage.getItem(today), 10) : 0;
     }
-
-    incrementSessionsCompleted() {
-
-    }
+	
+	getFormattedDate() {
+		let todayTime = new Date();
+		let month = todayTime.getMonth() + 1;
+		let day = todayTime.getDate();
+		let year = todayTime.getFullYear();
+		return `${month}/${day}/${year}`;
+	}
 
 	render() {
 		return (

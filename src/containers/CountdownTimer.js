@@ -1,6 +1,5 @@
 import React from 'react';
 import Controls from '../components/Controls.js';
-import SessionCounter from '../components/SessionCounter.js';
 import Timer from '../components/Timer.js';
 import { connect } from 'react-redux';
 import { saveSecondsRemaining } from '../actions';
@@ -30,7 +29,8 @@ class CountdownTimer extends React.Component {
 
 		this.state = {
 			formattedTime: '00:00',
-			playPauseText: 'start'
+			playPauseText: 'start',
+			sessionComplete: false
 		}
 	}
 
@@ -98,13 +98,16 @@ class CountdownTimer extends React.Component {
 	onTick() {
 		if (this.props.secondsRemaining === 0) {
 			this.onStop();
+			this.onCompletion();
 		} else {
 			this.props.dispatch(saveSecondsRemaining(this.props.secondsRemaining - 1));
 		}
 	}
 
 	onCompletion() {
-		//todo save sessions completed
+		this.setState(prevState => ({
+			sessionComplete: !prevState.sessionComplete
+		}));
 	}
 
 	convertSecondsToTimer() {
@@ -126,7 +129,9 @@ class CountdownTimer extends React.Component {
 					onReset={this.onReset}
 					playPauseText={this.state.playPauseText}
 				/>
-				<SaveSessions />
+				<SaveSessions 
+					sessionComplete={this.state.sessionComplete}
+				/>
 			</div>);
 	}
 }
