@@ -6,10 +6,6 @@ import SavePreferences  from '../containers/SavePreferences.js';
 
 class App extends Component {
 
-  componentDidMount() {
-    document.addEventListener('keyup', this.handleKeyUp.bind(this));
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +16,10 @@ class App extends Component {
     }
 
     this.toggleModalShown = this.toggleModalShown.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('keyup', this.handleKeyUp.bind(this));
   }
 
   toggleModalShown() {
