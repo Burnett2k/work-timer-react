@@ -17,9 +17,18 @@ class PreferencesModal extends React.Component {
       isMuted: this.props.isMuted
     }
 
+    this.enterPressed = this.enterPressed.bind(this);
     this.handleMinutesChange = this.handleMinutesChange.bind(this);
     this.handleMutedChange = this.handleMutedChange.bind(this);
     this.onClick = this.onClick.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener("keyup", this.enterPressed, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keyup", this.enterPressed, false);
   }
 
   setPreferences() {
@@ -40,6 +49,11 @@ class PreferencesModal extends React.Component {
     this.setPreferences();
     this.props.onPreferencesSaved({minutes: this.state.minutes, isMuted: this.state.isMuted});
     this.props.onRequestClose();
+  }
+
+  enterPressed(event) {
+    let key = event.keyCode || event.which;
+    if (key === 13) { this.onClick() };
   }
 
 	render() {
