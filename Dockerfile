@@ -7,7 +7,7 @@ MAINTAINER Sawyer Blue Burnett
 # Copy files needed for Node app to install / run
 COPY package.json package.json
 COPY package-lock.json package-lock.json
-COPY yarn.lock yarn.lockls
+COPY yarn.lock yarn.lock
 COPY src/ ./src
 COPY public/ ./public
 
