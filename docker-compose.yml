@@ -1,7 +1,7 @@
 version: '3'
 services:
   server:
-    container_name: work-timer
-    image: work-timer
+    container_name: work-timer-react
+    image: work-timer-react
     ports:
       - 80:5000
