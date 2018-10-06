@@ -20,6 +20,7 @@ class SavePreferences extends React.Component {
 		let muted, minutes;
 		minutes = (localStorage.getItem("minutes") != null) ? localStorage.getItem("minutes") : 25;
 		muted = (localStorage.getItem("isMuted") != null) ? localStorage.getItem("isMuted") : "true";
+		muted = muted === "true";
 		this.onPreferencesSaved({minutes: parseInt(minutes, 10), isMuted: muted});
 	}
 

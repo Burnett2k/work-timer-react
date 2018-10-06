@@ -41,7 +41,7 @@ class PreferencesModal extends React.Component {
   }
 
   handleMutedChange(muted) {
-      this.setState({isMuted: muted.target.value});
+      this.setState({isMuted: muted.target.value === "true"});
       console.log(this.state.isMuted);
   }
 
@@ -80,10 +80,10 @@ class PreferencesModal extends React.Component {
                     </div>
                     <div className="col-4">
                       <label>
-                        <input type="radio" value="true" checked={this.state.isMuted === "true"} onChange={this.handleMutedChange}/> Yes
+                        <input type="radio" value="true" checked={this.state.isMuted} onChange={this.handleMutedChange}/> Yes
                       </label>
                       <label>
-                        <input type="radio" value="false" checked={this.state.isMuted === "false"} onChange={this.handleMutedChange}/> No
+                        <input type="radio" value="false" checked={!this.state.isMuted} onChange={this.handleMutedChange}/> No
                       </label>
                     </div>  
                   </div>

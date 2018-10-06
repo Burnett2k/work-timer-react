@@ -120,7 +120,10 @@ class CountdownTimer extends React.Component {
 	}
 
 	playSound() {
-		this.sound.play();
+		if (!this.props.isMuted) {
+			this.sound.currentTime = 0;
+			this.sound.play();
+		}
 	}
 
 	convertSecondsToTimer() {
@@ -175,7 +178,8 @@ function mapStateToProps(state) {
 	return {
 		secondsRemaining: state.timer.secondsRemaining,
 		status: state.timer.status,
-		minutes: state.preferences.minutes
+		minutes: state.preferences.minutes,
+		isMuted: state.preferences.isMuted
 	};
 }
 
