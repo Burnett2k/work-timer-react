@@ -37,7 +37,8 @@ class PreferencesModal extends React.Component {
   }
 
   handleMinutesChange(numMinutes) {
-      this.setState({minutes: parseInt(numMinutes.target.value, 10)});
+      let value = parseInt(numMinutes.target.value) || 0;
+      this.setState({minutes: parseInt(value, 10)});
   }
 
   handleMutedChange(muted) {
@@ -79,12 +80,14 @@ class PreferencesModal extends React.Component {
                       <label htmlFor="mute">mute?</label>
                     </div>
                     <div className="col-4">
-                      <label>
-                        <input type="radio" value="true" checked={this.state.isMuted} onChange={this.handleMutedChange}/> Yes
-                      </label>
-                      <label>
-                        <input type="radio" value="false" checked={!this.state.isMuted} onChange={this.handleMutedChange}/> No
-                      </label>
+                      <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" value="true" checked={this.state.isMuted} onChange={this.handleMutedChange}/>
+                        <label class="form-check-label">Yes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" value="false" checked={!this.state.isMuted} onChange={this.handleMutedChange}/>
+                        <label class="form-check-label">No</label>
+                      </div>
                     </div>  
                   </div>
                  <div className="d-none d-sm-block d-md-block">
