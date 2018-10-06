@@ -14,7 +14,7 @@ COPY public/ ./public
 # Install NPM packages
 RUN npm install
 RUN npm install -g serve
-RUN npm build
+RUN npm run build
 
 EXPOSE 80
 
