@@ -67,7 +67,6 @@ class CountdownTimer extends React.Component {
 				this.setState({playPauseText: RESUME});
 				clearInterval(this.interval);
 				clearInterval(this.flashInterval);
-
 				break;
 			case PAUSED:
 				this.interval = setInterval(() => this.onTick(), 1000);
@@ -143,6 +142,7 @@ class CountdownTimer extends React.Component {
 	}
 
 	flashTimesUp() {
+		this.props.dispatch(saveSecondsRemaining(-1));
 		this.setState({formattedTime: 'TIMES UP!'});
 		
 		this.flashInterval = setInterval(() => {
