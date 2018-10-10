@@ -37,7 +37,7 @@ class PreferencesModal extends React.Component {
   }
 
   handleMinutesChange(numMinutes) {
-      let value = parseInt(numMinutes.target.value) || 0;
+      let value = parseInt(numMinutes.target.value, 10) || 0;
       this.setState({minutes: parseInt(value, 10)});
   }
 
