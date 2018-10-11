@@ -14,12 +14,14 @@ class PreferencesModal extends React.Component {
 
     this.state = {
       minutes: this.props.minutes,
-      isMuted: this.props.isMuted
+      isMuted: this.props.isMuted,
+      isNotesPrompt: this.props.isNotesPrompt
     }
 
     this.enterPressed = this.enterPressed.bind(this);
     this.handleMinutesChange = this.handleMinutesChange.bind(this);
     this.handleMutedChange = this.handleMutedChange.bind(this);
+    this.handleNotesPromptChange = this.handleNotesPromptChange.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
@@ -34,6 +36,7 @@ class PreferencesModal extends React.Component {
   setPreferences() {
     localStorage.setItem("isMuted", this.state.isMuted);
     localStorage.setItem("minutes", this.state.minutes);
+    localStorage.setItem("isNotesPrompt", this.state.isNotesPrompt);
   }
 
   handleMinutesChange(numMinutes) {
@@ -43,13 +46,17 @@ class PreferencesModal extends React.Component {
 
   handleMutedChange(muted) {
       this.setState({isMuted: muted.target.value === "true"});
-      console.log(this.state.isMuted);
   }
+
+  handleNotesPromptChange(notesPrompt) {
+    this.setState({isNotesPrompt: notesPrompt.target.value === "true"});
+    console.log(this.state.isNotesPrompt);
+}
 
   onClick() {
     this.setPreferences();
-    this.props.onPreferencesSaved({minutes: this.state.minutes, isMuted: this.state.isMuted});
-    this.props.onRequestClose();
+    this.props.onPreferencesSaved({minutes: this.state.minutes, isMuted: this.state.isMuted, isNotesPrompt: this.state.isNotesPrompt});
+    this.props.onRequestClose();  
   }
 
   enterPressed(event) {
@@ -79,14 +86,29 @@ class PreferencesModal extends React.Component {
                     <div className="col-6">
                       <label htmlFor="mute">mute?</label>
                     </div>
-                    <div className="col-4">
-                      <div class="form-check form-check-inline">
-                        <input type="radio" class="form-check-input" value="true" checked={this.state.isMuted} onChange={this.handleMutedChange}/>
-                        <label class="form-check-label">Yes</label>
+                    <div className="col-6">
+                      <div className="form-check form-check-inline">
+                        <input type="radio" className="form-check-input" value="true" checked={this.state.isMuted} onChange={this.handleMutedChange}/>
+                        <label className="form-check-label">Yes</label>
                       </div>
-                      <div class="form-check form-check-inline">
-                        <input type="radio" class="form-check-input" value="false" checked={!this.state.isMuted} onChange={this.handleMutedChange}/>
-                        <label class="form-check-label">No</label>
+                      <div className="form-check form-check-inline">
+                        <input type="radio" className="form-check-input" value="false" checked={!this.state.isMuted} onChange={this.handleMutedChange}/>
+                        <label className="form-check-label">No</label>
+                      </div>
+                    </div>  
+                  </div>
+                  <div className="form-row">
+                    <div className="col-6">
+                      <label htmlFor="mute">Prompt for Notes?</label>
+                    </div>
+                    <div className="col-6">
+                      <div className="form-check form-check-inline">
+                        <input type="radio" className="form-check-input" value="true" checked={this.state.isNotesPrompt} onChange={this.handleNotesPromptChange}/>
+                        <label className="form-check-label">Yes</label>
+                      </div>
+                      <div className="form-check form-check-inline">
+                        <input type="radio" className="form-check-input" value="false" checked={!this.state.isNotesPrompt} onChange={this.handleNotesPromptChange}/>
+                        <label className="form-check-label">No</label>
                       </div>
                     </div>  
                   </div>
