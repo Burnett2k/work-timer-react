@@ -46,7 +46,8 @@ class Preferences extends React.Component {
                   onPreferencesSaved={this.props.onPreferencesSaved}
                   onRequestClose={this.toggleModal}
                   minutes={this.props.minutes}
-                  isMuted={this.props.isMuted}/>
+                  isMuted={this.props.isMuted}
+                  isNotesPrompt={this.props.isNotesPrompt}/>
               </ReactModal>
         	</div>
 		);

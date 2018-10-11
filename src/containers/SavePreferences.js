@@ -2,7 +2,8 @@ import React from 'react';
 import Preferences from '../components/Preferences.js';
 import { connect } from 'react-redux';
 import { saveMinutes } from '../actions';
-import { saveMute } from'../actions';
+import { saveMute } from '../actions';
+import { saveIsNotesPrompt } from '../actions';
 
 class SavePreferences extends React.Component {
 
@@ -14,14 +15,17 @@ class SavePreferences extends React.Component {
 	onPreferencesSaved = (payload) => {
 		this.props.dispatch(saveMinutes(payload.minutes));
 		this.props.dispatch(saveMute(payload.isMuted));
+		this.props.dispatch(saveIsNotesPrompt(payload.isNotesPrompt));
 	}
 
 	getPreferences() {
-		let muted, minutes;
+		let muted, minutes, notesPrompt;
 		minutes = (localStorage.getItem("minutes") != null) ? localStorage.getItem("minutes") : 25;
 		muted = (localStorage.getItem("isMuted") != null) ? localStorage.getItem("isMuted") : "true";
 		muted = muted === "true";
-		this.onPreferencesSaved({minutes: parseInt(minutes, 10), isMuted: muted});
+		notesPrompt = (localStorage.getItem("isNotesPrompt") != null) ? localStorage.getItem("isNotesPrompt") : "true";
+		notesPrompt = notesPrompt === "true";
+		this.onPreferencesSaved({minutes: parseInt(minutes, 10), isMuted: muted, isNotesPrompt: notesPrompt});
 	}
 
 	render() {
@@ -31,6 +35,7 @@ class SavePreferences extends React.Component {
 					onPreferencesSaved={this.onPreferencesSaved}
 					minutes={this.props.minutes}
 					isMuted={this.props.isMuted}
+					isNotesPrompt={this.props.isNotesPrompt}
 					showModal={this.props.showModal}
 					toggleModalShown={this.props.toggleModalShown}
 				/>
@@ -42,7 +47,8 @@ class SavePreferences extends React.Component {
 	function mapStateToProps(state) {
 		return {
 			minutes: state.preferences.minutes,
-			isMuted: state.preferences.isMuted
+			isMuted: state.preferences.isMuted,
+			isNotesPrompt: state.preferences.isNotesPrompt
 		};
 	}
 
