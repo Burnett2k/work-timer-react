@@ -50,7 +50,6 @@ class PreferencesModal extends React.Component {
 
   handleNotesPromptChange(notesPrompt) {
     this.setState({isNotesPrompt: notesPrompt.target.value === "true"});
-    console.log(this.state.isNotesPrompt);
 }
 
   onClick() {
