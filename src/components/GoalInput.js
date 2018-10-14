@@ -4,12 +4,13 @@ class GoalInput extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <label className="col-form-label">Enter your goal:</label>
         <input
           type="text"
           className="form-control"
           onChange={this.props.onGoalTyping}
           value={this.props.goalText}
+          autoFocus
+          placeholder="Enter your goal..."
         />
         <button
           type="submit"
