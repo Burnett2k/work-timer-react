@@ -1,8 +1,12 @@
 const React = require("react");
 
-const styles = {
+const goalStyles = {
   display: "inline-block",
   verticalAlign: "baseline"
+};
+
+const pointerStyle = {
+  cursor: "pointer"
 };
 
 class GoalLink extends React.Component {
@@ -10,12 +14,11 @@ class GoalLink extends React.Component {
     return (
       <React.Fragment>
         {this.props.goalText && this.props.goalText.length > 0 ? (
-          <span>
-            <h4 style={styles}>Goal: {this.props.goalText}</h4>{" "}
-            <a style={styles} href="# " onClick={this.props.toggleEditMode}>
-              {" "}
-              edit
-            </a>
+          <span style={pointerStyle} onClick={this.props.toggleEditMode}>
+            <h1 className="display-2" style={goalStyles}>
+              Goal: {this.props.goalText}
+            </h1>{" "}
+            <i class="fa fa-pencil" aria-hidden="true" />
           </span>
         ) : (
           <a href="# " onClick={this.props.toggleEditMode}>

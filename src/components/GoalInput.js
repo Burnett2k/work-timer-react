@@ -3,7 +3,7 @@ const React = require("react");
 class GoalInput extends React.Component {
   render() {
     return (
-      <React.Fragment>
+      <div className="input-group mb-3">
         <input
           type="text"
           className="form-control"
@@ -12,14 +12,16 @@ class GoalInput extends React.Component {
           autoFocus
           placeholder="Enter your goal..."
         />
-        <button
-          type="submit"
-          className="btn btn-success"
-          onClick={this.props.toggleEditMode}
-        >
-          Save
-        </button>
-      </React.Fragment>
+        <div className="input-group-append">
+          <button
+            type="button"
+            className="btn btn-outline-success "
+            onClick={this.props.toggleEditMode}
+          >
+            Save
+          </button>
+        </div>
+      </div>
     );
   }
 }

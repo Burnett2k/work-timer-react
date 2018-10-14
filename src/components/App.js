@@ -56,6 +56,12 @@ class App extends Component {
     }
   }
 
+  turnOnEditMode() {
+    if (!this.state.isEditMode) {
+      this.setState({ isEditMode: true });
+    }
+  }
+
   toggleEditMode() {
     this.setState(prevState => ({
       isEditMode: !prevState.isEditMode
@@ -77,7 +83,7 @@ class App extends Component {
         this.toggleStop();
         break;
       case "e":
-        this.toggleEditMode();
+        this.turnOnEditMode();
         break;
       default:
         break;
