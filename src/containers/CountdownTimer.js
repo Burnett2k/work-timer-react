@@ -1,10 +1,11 @@
 import React from 'react';
 import Controls from '../components/Controls.js';
 import Timer from '../components/Timer.js';
+import SaveSessions from './SaveSessions.js';
 import { connect } from 'react-redux';
 import { saveSecondsRemaining } from '../actions';
 import { saveStatus } from'../actions';
-import SaveSessions from './SaveSessions.js';
+
 import timesUp from '../sounds/timesup.mp3';
 
 const STARTED = 'running';
