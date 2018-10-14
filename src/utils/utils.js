@@ -1,3 +1,5 @@
+//todo rename this file
+
 function getFormattedDate(date) {
   let todayTime = new Date();
   if (date) {

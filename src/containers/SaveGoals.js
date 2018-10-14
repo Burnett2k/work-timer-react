@@ -10,7 +10,7 @@ import {
   Tooltip,
   Legend
 } from "recharts";
-import utils from "../utils/formattedDate";
+import utils from "../utils/utils";
 
 const data = [];
 

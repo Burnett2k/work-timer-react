@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { saveSessionsCompleted } from "../actions";
 import SessionCounter from "../components/SessionCounter";
-import utils from "../utils/formattedDate";
+import utils from "../utils/utils";
 
 class SaveSessions extends React.Component {
   componentDidUpdate(prevProps) {
