@@ -18,7 +18,7 @@ class GoalLink extends React.Component {
             <h1 className="display-2" style={goalStyles}>
               Goal: {this.props.goalText}
             </h1>{" "}
-            <i class="fa fa-pencil" aria-hidden="true" />
+            <i className="fa fa-pencil" aria-hidden="true" />
           </span>
         ) : (
           <a href="# " onClick={this.props.toggleEditMode}>

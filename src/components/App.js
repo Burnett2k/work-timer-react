@@ -14,11 +14,13 @@ class App extends Component {
       playPause: false,
       stop: false,
       reset: false,
-      isEditMode: false
+      isEditMode: false,
+      isChartVisible: false
     };
 
     this.toggleModalShown = this.toggleModalShown.bind(this);
     this.toggleEditMode = this.toggleEditMode.bind(this);
+    this.toggleChartVisible = this.toggleChartVisible.bind(this);
   }
 
   componentDidMount() {
@@ -69,6 +71,12 @@ class App extends Component {
     }));
   }
 
+  toggleChartVisible() {
+    this.setState(prevState => ({
+      isChartVisible: !prevState.isChartVisible
+    }));
+  }
+
   handleKeyUp(event) {
     switch (event.key) {
       case "f":
@@ -102,12 +110,13 @@ class App extends Component {
           playPause={this.state.playPause}
           stop={this.state.stop}
           reset={this.state.reset}
+          toggleChartVisible={this.toggleChartVisible}
         />
         <SaveGoals
           isEditMode={this.state.isEditMode}
           toggleEditMode={this.toggleEditMode}
         />
-        <ProgressChart />
+        <ProgressChart isChartVisible={this.state.isChartVisible} />
         <Footer />
       </div>
     );

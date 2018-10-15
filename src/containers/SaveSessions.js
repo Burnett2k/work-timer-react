@@ -36,7 +36,10 @@ class SaveSessions extends React.Component {
   render() {
     return (
       <div>
-        <SessionCounter completed={this.props.completed} />
+        <SessionCounter
+          completed={this.props.completed}
+          toggleChartVisible={this.props.toggleChartVisible}
+        />
       </div>
     );
   }

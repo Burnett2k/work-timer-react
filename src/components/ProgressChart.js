@@ -42,26 +42,30 @@ class ProgressChart extends React.Component {
 
   render() {
     return (
-      <div style={styles}>
-        <ResponsiveContainer height="90%">
-          <BarChart
-            height={400}
-            data={data}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis legendType="square" dataKey="date" />
-            <YAxis type="number" interval={0} />
-            <Tooltip />
-            <Legend />
-            <Bar
-              dataKey="sessionsCompleted"
-              name="Sessions Completed"
-              fill="#007bff"
-            />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+      <React.Fragment>
+        {this.props.isChartVisible ? (
+          <div style={styles}>
+            <ResponsiveContainer height="90%">
+              <BarChart
+                height={400}
+                data={data}
+                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis legendType="square" dataKey="date" />
+                <YAxis type="number" interval={0} />
+                <Tooltip />
+                <Legend />
+                <Bar
+                  dataKey="sessionsCompleted"
+                  name="Sessions Completed"
+                  fill="#007bff"
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        ) : null}
+      </React.Fragment>
     );
   }
 }
