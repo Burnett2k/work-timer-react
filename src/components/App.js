@@ -4,6 +4,7 @@ import CountdownTimer from "../containers/CountdownTimer.js";
 import Footer from "./Footer.js";
 import SavePreferences from "../containers/SavePreferences.js";
 import SaveGoals from "../containers/SaveGoals";
+import ProgressChart from "../components/ProgressChart";
 
 class App extends Component {
   constructor(props) {
@@ -106,6 +107,7 @@ class App extends Component {
           isEditMode={this.state.isEditMode}
           toggleEditMode={this.toggleEditMode}
         />
+        <ProgressChart />
         <Footer />
       </div>
     );

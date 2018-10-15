@@ -1,4 +1,3 @@
-const React = require("react");
 import utils from "../utils/utils";
 import {
   BarChart,
@@ -7,9 +6,14 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
+  Legend,
+  ResponsiveContainer
 } from "recharts";
-
+const React = require("react");
+const styles = {
+  width: "90%",
+  height: 400
+};
 const data = [];
 
 class ProgressChart extends React.Component {
@@ -38,22 +42,26 @@ class ProgressChart extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <p>progress chart!</p>
-        <BarChart
-          width={600}
-          height={300}
-          data={data}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="sessionsCompleted" fill="#007bff" />
-        </BarChart>
-      </React.Fragment>
+      <div style={styles}>
+        <ResponsiveContainer height="90%">
+          <BarChart
+            height={400}
+            data={data}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis legendType="square" dataKey="date" />
+            <YAxis type="number" interval={0} />
+            <Tooltip />
+            <Legend />
+            <Bar
+              dataKey="sessionsCompleted"
+              name="Sessions Completed"
+              fill="#007bff"
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     );
   }
 }
