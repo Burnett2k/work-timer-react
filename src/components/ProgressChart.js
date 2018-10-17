@@ -6,13 +6,15 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
+  Line,
   ResponsiveContainer
 } from "recharts";
+
 const React = require("react");
 const styles = {
-  width: "90%",
-  height: 400
+  width: "50%",
+  height: 250,
+  margin: "0 auto"
 };
 const data = [];
 
@@ -44,18 +46,23 @@ class ProgressChart extends React.Component {
     return (
       <React.Fragment>
         {this.props.isChartVisible ? (
-          <div style={styles}>
-            <ResponsiveContainer height="90%">
+          <div
+            style={styles}
+            className="d-none d-md-block d-lg-block d-xl-block"
+          >
+            <ResponsiveContainer width="100%" height="100%">
               <BarChart
-                height={400}
                 data={data}
-                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                margin={{ top: 5, right: 10, left: 10, bottom: 5 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis legendType="square" dataKey="date" />
-                <YAxis type="number" interval={0} />
+                <YAxis
+                  label={{ value: "# completed", angle: -90 }}
+                  type="number"
+                  interval={0}
+                />
                 <Tooltip />
-                <Legend />
                 <Bar
                   dataKey="sessionsCompleted"
                   name="Sessions Completed"
