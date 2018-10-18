@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactGA from "react-ga";
 import "./App.css";
 import CountdownTimer from "../containers/CountdownTimer.js";
 import Footer from "./Footer.js";
@@ -25,6 +26,8 @@ class App extends Component {
 
   componentDidMount() {
     document.addEventListener("keyup", this.handleKeyUp.bind(this));
+    ReactGA.initialize("UA-116653106-1");
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   toggleModalShown() {
