@@ -6,7 +6,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Line,
   ResponsiveContainer
 } from "recharts";
 
@@ -37,6 +36,7 @@ class ProgressChart extends React.Component {
       let date = utils.getFormattedDate(d);
       //get localstorage # of sessions completed for that day
       let sessionsCompleted = utils.getSessionsCompleted(date);
+      date = date.substring(0, date.length - 5);
       data.push({ date, sessionsCompleted });
       d.setDate(d.getDate() + 1);
     }
