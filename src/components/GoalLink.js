@@ -2,7 +2,8 @@ const React = require("react");
 
 const goalStyles = {
   display: "inline-block",
-  verticalAlign: "baseline"
+  verticalAlign: "baseline",
+  textAlign: "center"
 };
 
 const pointerStyle = {
@@ -17,8 +18,7 @@ class GoalLink extends React.Component {
           <span style={pointerStyle} onClick={this.props.toggleEditMode}>
             <h1 className="display-2" style={goalStyles}>
               Goal: {this.props.goalText}
-            </h1>{" "}
-            <i className="fa fa-pencil" aria-hidden="true" />
+            </h1>
           </span>
         ) : (
           <a href="# " onClick={this.props.toggleEditMode}>
