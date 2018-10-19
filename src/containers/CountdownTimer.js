@@ -169,10 +169,7 @@ class CountdownTimer extends React.Component {
           onReset={this.onReset}
           playPauseText={this.state.playPauseText}
         />
-        <SaveSessions
-          sessionComplete={this.state.sessionComplete}
-          toggleChartVisible={this.props.toggleChartVisible}
-        />
+        <SaveSessions sessionComplete={this.state.sessionComplete} />
       </div>
     );
   }

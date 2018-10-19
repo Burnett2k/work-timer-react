@@ -3,11 +3,6 @@ const React = require("react");
 class SessionCounter extends React.Component {
   constructor(props) {
     super(props);
-    this.toggleChart = this.toggleChart.bind(this);
-  }
-
-  toggleChart() {
-    this.props.toggleChartVisible();
   }
 
   render() {
