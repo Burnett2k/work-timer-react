@@ -8,20 +8,24 @@ import {
   Tooltip,
   ResponsiveContainer
 } from "recharts";
+import "./App.css";
 
 const React = require("react");
 const styles = {
-  width: "50%",
-  height: 250,
-  margin: "0 auto"
+  width: "80%",
+  height: 400,
+  margin: "0 auto",
+  marginTop: "20px"
 };
-const data = [];
+let data = [];
 
 class ProgressChart extends React.Component {
-  constructor(props) {
-    super(props);
-
+  componentDidMount() {
     this.popSessionsIntoArray();
+  }
+
+  componentWillUnmount() {
+    data = [];
   }
 
   popSessionsIntoArray() {

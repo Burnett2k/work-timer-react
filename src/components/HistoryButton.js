@@ -1,10 +1,6 @@
 const React = require("react");
 
 class HistoryButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <button
