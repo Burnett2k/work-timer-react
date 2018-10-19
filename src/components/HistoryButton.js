@@ -10,7 +10,7 @@ class HistoryButton extends React.Component {
       >
         <i className="fa fa-history d-block d-md-none" aria-hidden="true" />
         <span className="d-none d-md-block d-lg-block d-xl-block">
-          {this.props.isChartVisible ? "History" : "Timer"}
+          {this.props.isChartVisible ? "Timer" : "History"}
         </span>
       </button>
     );

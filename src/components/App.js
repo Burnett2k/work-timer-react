@@ -111,6 +111,7 @@ class App extends Component {
             toggleModalShown={this.toggleModalShown}
             showModal={this.state.showModal}
           />
+          &nbsp;
           <HistoryButton
             toggleChartVisible={this.toggleChartVisible}
             isChartVisible={this.state.isChartVisible}
@@ -125,7 +126,6 @@ class App extends Component {
               playPause={this.state.playPause}
               stop={this.state.stop}
               reset={this.state.reset}
-              toggleChartVisible={this.toggleChartVisible}
             />
             <SaveGoals
               isEditMode={this.state.isEditMode}
