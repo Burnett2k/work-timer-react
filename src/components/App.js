@@ -6,6 +6,7 @@ import Footer from "./Footer.js";
 import SavePreferences from "../containers/SavePreferences.js";
 import SaveGoals from "../containers/SaveGoals";
 import ProgressChart from "../components/ProgressChart";
+import HistoryButton from "./HistoryButton";
 
 class App extends Component {
   constructor(props) {
@@ -105,21 +106,34 @@ class App extends Component {
   render() {
     return (
       <div className="container q-top-buffer">
-        <SavePreferences
-          toggleModalShown={this.toggleModalShown}
-          showModal={this.state.showModal}
-        />
-        <CountdownTimer
-          playPause={this.state.playPause}
-          stop={this.state.stop}
-          reset={this.state.reset}
-          toggleChartVisible={this.toggleChartVisible}
-        />
-        <SaveGoals
-          isEditMode={this.state.isEditMode}
-          toggleEditMode={this.toggleEditMode}
-        />
-        <ProgressChart isChartVisible={this.state.isChartVisible} />
+        <div className="container d-flex flex-row-reverse">
+          <SavePreferences
+            toggleModalShown={this.toggleModalShown}
+            showModal={this.state.showModal}
+          />
+          <HistoryButton
+            toggleChartVisible={this.toggleChartVisible}
+            isChartVisible={this.state.isChartVisible}
+          />
+        </div>
+
+        {this.state.isChartVisible ? (
+          <ProgressChart />
+        ) : (
+          <React.Fragment>
+            <CountdownTimer
+              playPause={this.state.playPause}
+              stop={this.state.stop}
+              reset={this.state.reset}
+              toggleChartVisible={this.toggleChartVisible}
+            />
+            <SaveGoals
+              isEditMode={this.state.isEditMode}
+              toggleEditMode={this.toggleEditMode}
+            />
+          </React.Fragment>
+        )}
+
         <Footer />
       </div>
     );
