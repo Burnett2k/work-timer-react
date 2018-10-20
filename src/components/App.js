@@ -86,6 +86,9 @@ class App extends Component {
       case "f":
         this.togglePlayPause();
         break;
+      case "h":
+        this.toggleChartVisible();
+        break;
       case "p":
         this.toggleModalShown();
         break;
