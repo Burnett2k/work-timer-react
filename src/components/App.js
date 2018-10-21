@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ReactGA from "react-ga";
 import "./App.css";
 import CountdownTimer from "../containers/CountdownTimer.js";
-import Footer from "./Footer.js";
 import SavePreferences from "../containers/SavePreferences.js";
 import SaveGoals from "../containers/SaveGoals";
 import ProgressChart from "../components/ProgressChart";
@@ -108,37 +107,37 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container q-top-buffer">
-        <div className="container d-flex flex-row-reverse">
-          <SavePreferences
-            toggleModalShown={this.toggleModalShown}
-            showModal={this.state.showModal}
-          />
-          &nbsp;
-          <HistoryButton
-            toggleChartVisible={this.toggleChartVisible}
-            isChartVisible={this.state.isChartVisible}
-          />
+      <React.Fragment>
+        <div className="container q-top-buffer">
+          <div className="container d-flex flex-row-reverse">
+            <SavePreferences
+              toggleModalShown={this.toggleModalShown}
+              showModal={this.state.showModal}
+            />
+            &nbsp;
+            <HistoryButton
+              toggleChartVisible={this.toggleChartVisible}
+              isChartVisible={this.state.isChartVisible}
+            />
+          </div>
+
+          {this.state.isChartVisible ? (
+            <ProgressChart />
+          ) : (
+            <React.Fragment>
+              <CountdownTimer
+                playPause={this.state.playPause}
+                stop={this.state.stop}
+                reset={this.state.reset}
+              />
+              <SaveGoals
+                isEditMode={this.state.isEditMode}
+                toggleEditMode={this.toggleEditMode}
+              />
+            </React.Fragment>
+          )}
         </div>
-
-        {this.state.isChartVisible ? (
-          <ProgressChart />
-        ) : (
-          <React.Fragment>
-            <CountdownTimer
-              playPause={this.state.playPause}
-              stop={this.state.stop}
-              reset={this.state.reset}
-            />
-            <SaveGoals
-              isEditMode={this.state.isEditMode}
-              toggleEditMode={this.toggleEditMode}
-            />
-          </React.Fragment>
-        )}
-
-        <Footer />
-      </div>
+      </React.Fragment>
     );
   }
 }

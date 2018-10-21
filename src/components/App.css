@@ -2,11 +2,25 @@
   text-align: center;
 }
 .q-top-buffer {
-	margin-top: 20px;
+  margin-top: 20px;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1 0 auto;
 }
 .footer {
+  flex-shrink: 0;
+}
+/* .footer {
 	position: fixed;
 	right: 0;
 	bottom: 0;
 	left: 0;
-}
+} */
