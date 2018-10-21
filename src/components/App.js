@@ -75,9 +75,11 @@ class App extends Component {
   }
 
   toggleChartVisible() {
-    this.setState(prevState => ({
-      isChartVisible: !prevState.isChartVisible
-    }));
+    if (!this.state.isEditMode) {
+      this.setState(prevState => ({
+        isChartVisible: !prevState.isChartVisible
+      }));
+    }
   }
 
   handleKeyUp(event) {
