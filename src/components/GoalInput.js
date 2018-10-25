@@ -1,6 +1,26 @@
 const React = require("react");
 
 class GoalInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.keyPressed = this.keyPressed.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener("keyup", this.keyPressed, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keyup", this.keyPressed, false);
+  }
+
+  keyPressed(event) {
+    let key = event.keyCode || event.which;
+    if (key === 13) {
+      this.props.toggleEditMode();
+    }
+  }
+
   render() {
     return (
       <div className="input-group mb-3">
