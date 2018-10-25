@@ -1,23 +1,26 @@
-const preferences = (state = { minutes: 25, isMuted: true, isNotesPrompt: false }, action) => {
+const preferences = (
+  state = { minutes: 25, isMuted: true, isNotesPrompt: false },
+  action
+) => {
   switch (action.type) {
-    case 'SAVE_MINUTES':
-      return { 
-        ...state, 
-        minutes: action.payload 
-      }
-    case 'SAVE_MUTE':
+    case "SAVE_MINUTES":
+      return {
+        ...state,
+        minutes: action.payload
+      };
+    case "SAVE_MUTE":
       return {
         ...state,
         isMuted: action.payload
-      }
-    case 'SAVE_NOTES_PROMPT':
+      };
+    case "SAVE_NOTES_PROMPT":
       return {
         ...state,
         isNotesPrompt: action.payload
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default preferences
+export default preferences;
