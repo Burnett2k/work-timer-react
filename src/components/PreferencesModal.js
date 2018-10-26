@@ -143,10 +143,11 @@ class PreferencesModal extends React.Component {
           <div className="d-none d-sm-block d-md-block">
             <hr />
             <h4>Keyboard Shortcuts</h4>
-            <p> Start / Pause = F</p>
-            <p> Stop = S</p>
-            <p> Reset = R</p>
-            <p> Preferences = P</p>
+            <p>Edit Goal = E </p>
+            <p>Start / Pause = F</p>
+            <p>Stop = S</p>
+            <p>Reset = R</p>
+            <p>Preferences = P</p>
           </div>
         </div>
         <div className="modal-footer">
