@@ -1,9 +1,14 @@
 const React = require("react");
+import PropTypes from "prop-types";
 
 class GoalInput extends React.Component {
   constructor(props) {
     super(props);
     this.keyPressed = this.keyPressed.bind(this);
+  }
+
+  static propTypes = {
+    onGoalTyping: PropTypes.func
   }
 
   componentDidMount() {

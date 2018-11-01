@@ -1,6 +1,15 @@
 const React = require("react");
+import PropTypes from "prop-types";
 
 class Controls extends React.Component {
+
+  static propTypes = {
+    onStart: PropTypes.func,
+    playPauseText: PropTypes.func,
+    onReset: PropTypes.func,
+    onStop: PropTypes.func
+  }
+
   render() {
     return (
       <div>
