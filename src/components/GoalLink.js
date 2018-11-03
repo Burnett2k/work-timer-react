@@ -18,6 +18,17 @@ class GoalLink extends React.Component {
         toggleEditMode: PropTypes.func
     };
 
+    componentDidMount() {
+        this.keyPressed = this.keyPressed.bind(this);
+    }
+
+    keyPressed(event) {
+        let key = event.keyCode || event.which;
+        if (key === 13 || key === 32) {
+            this.props.toggleEditMode();
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -31,7 +42,7 @@ class GoalLink extends React.Component {
                             className="fa fa-lg fa-pencil-square-o"
                             title="edit"
                             onClick={this.props.toggleEditMode}
-                            onKeyDown={this.props.toggleEditMode}
+                            onKeyDown={e => this.keyPressed(e)}
                             style={pointerStyle}
                             role="button"
                             tabIndex={0}
