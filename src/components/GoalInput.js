@@ -36,7 +36,6 @@ class GoalInput extends React.Component {
                     className="form-control"
                     onChange={this.props.onGoalTyping}
                     value={this.props.goalText}
-                    autoFocus
                     placeholder="Enter your goal..."
                 />
                 <div className="input-group-append">
