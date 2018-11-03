@@ -31,7 +31,10 @@ class GoalLink extends React.Component {
                             className="fa fa-lg fa-pencil-square-o"
                             title="edit"
                             onClick={this.props.toggleEditMode}
+                            onKeyDown={this.props.toggleEditMode}
                             style={pointerStyle}
+                            role="button"
+                            tabIndex={0}
                         />
                     </span>
                 ) : (

@@ -113,23 +113,35 @@ class PreferencesModal extends React.Component {
                         <div className="col-6">
                             <div className="form-check form-check-inline">
                                 <input
+                                    id="yes"
                                     type="radio"
                                     className="form-check-input"
                                     value="true"
                                     checked={this.state.isMuted}
                                     onChange={this.handleMutedChange}
                                 />
-                                <label className="form-check-label">Yes</label>
+                                <label
+                                    className="form-check-label"
+                                    htmlFor="yes"
+                                >
+                                    Yes
+                                </label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input
+                                    id="no"
                                     type="radio"
                                     className="form-check-input"
                                     value="false"
                                     checked={!this.state.isMuted}
                                     onChange={this.handleMutedChange}
                                 />
-                                <label className="form-check-label">No</label>
+                                <label
+                                    className="form-check-label"
+                                    htmlFor="no"
+                                >
+                                    No
+                                </label>
                             </div>
                         </div>
                     </div>
