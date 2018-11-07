@@ -21,4 +21,4 @@ RUN npm run build
 EXPOSE 80
 
 # Start the node server
-CMD ["serve", "-s", "./build"]
+#CMD ["serve", "-s", "./build"]
