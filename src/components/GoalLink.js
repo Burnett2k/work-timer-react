@@ -9,7 +9,8 @@ const goalStyles = {
 };
 
 const pointerStyle = {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    fontSize: '20px'
 };
 
 class GoalLink extends React.Component {
@@ -36,17 +37,16 @@ class GoalLink extends React.Component {
                     <span>
                         <h1 className="display-2" style={goalStyles}>
                             Goal: {this.props.goalText}
+                            <i
+                                className="fa fa-lg fa-pencil-square-o"
+                                title="edit"
+                                onClick={this.props.toggleEditMode}
+                                onKeyDown={e => this.keyPressed(e)}
+                                style={pointerStyle}
+                                role="button"
+                                tabIndex={0}
+                            />
                         </h1>
-
-                        <i
-                            className="fa fa-lg fa-pencil-square-o"
-                            title="edit"
-                            onClick={this.props.toggleEditMode}
-                            onKeyDown={e => this.keyPressed(e)}
-                            style={pointerStyle}
-                            role="button"
-                            tabIndex={0}
-                        />
                     </span>
                 ) : (
                     <a href="# " onClick={this.props.toggleEditMode}>
