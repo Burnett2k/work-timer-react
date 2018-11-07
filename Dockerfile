@@ -10,6 +10,8 @@ COPY package-lock.json package-lock.json
 COPY yarn.lock yarn.lock
 COPY src/ ./src
 COPY public/ ./public
+COPY scripts/ ./scripts
+COPY config/ ./config
 
 # Install NPM packages
 RUN npm install
