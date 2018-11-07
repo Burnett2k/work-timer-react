@@ -1,5 +1,5 @@
-const React = require('react');
 import PropTypes from 'prop-types';
+const React = require('react');
 
 const goalStyles = {
     display: 'inline-block',

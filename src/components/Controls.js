@@ -1,5 +1,5 @@
-const React = require('react');
 import PropTypes from 'prop-types';
+const React = require('react');
 
 class Controls extends React.Component {
     static propTypes = {
