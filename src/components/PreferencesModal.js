@@ -92,15 +92,21 @@ class PreferencesModal extends React.Component {
                         <div className="col-6">
                             <label htmlFor="minutes" className="col-form-label">
                                 minutes (1-30)
+                                {'  '}
+                                <i
+                                    className="fa fa-clock-o"
+                                    aria-hidden="true"
+                                />
                             </label>
                         </div>
-                        <div className="col-4">
+                        <div className="col-3">
                             <input
                                 type="text"
                                 className="form-control"
                                 name="minutes"
                                 min="1"
                                 max="30"
+                                maxLength="2"
                                 value={this.state.minutes}
                                 onChange={this.handleMinutesChange}
                             />
@@ -124,6 +130,10 @@ class PreferencesModal extends React.Component {
                                     className="form-check-label"
                                     htmlFor="yes"
                                 >
+                                    <i
+                                        className="fa fa-volume-up"
+                                        aria-hidden="true"
+                                    />
                                     Yes
                                 </label>
                             </div>
@@ -140,6 +150,10 @@ class PreferencesModal extends React.Component {
                                     className="form-check-label"
                                     htmlFor="no"
                                 >
+                                    <i
+                                        className="fa fa-volume-off"
+                                        aria-hidden="true"
+                                    />
                                     No
                                 </label>
                             </div>
