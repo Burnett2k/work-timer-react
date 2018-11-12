@@ -19,6 +19,3 @@ RUN npm install -g serve
 RUN npm run build
 
 EXPOSE 80
-
-# Start the node server
-#CMD ["serve", "-s", "./build"]
