@@ -37,6 +37,9 @@ class GoalInput extends React.Component {
                     onChange={this.props.onGoalTyping}
                     value={this.props.goalText}
                     placeholder="Enter your goal..."
+                    ref={input => {
+                        input && input.focus();
+                    }}
                 />
                 <div className="input-group-append">
                     <button
