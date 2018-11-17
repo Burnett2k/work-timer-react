@@ -8,6 +8,7 @@ import { saveStatus } from '../actions';
 import PropTypes from 'prop-types';
 
 import timesUp from '../sounds/timesup.mp3';
+import ProgressBar from '../components/ProgressBar.js';
 
 const STARTED = 'running';
 const PAUSED = 'paused';
@@ -35,7 +36,8 @@ class CountdownTimer extends React.Component {
         this.state = {
             formattedTime: '00:00',
             playPauseText: 'start',
-            sessionComplete: false
+            sessionComplete: false,
+            percentComplete: 0
         };
     }
 
@@ -119,11 +121,21 @@ class CountdownTimer extends React.Component {
         if (this.props.secondsRemaining === 0) {
             this.onStop();
             this.onCompletion();
+            this.setPercentComplete();
         } else {
+            this.setPercentComplete();
             this.props.dispatch(
                 saveSecondsRemaining(this.props.secondsRemaining - 1)
             );
         }
+    }
+
+    setPercentComplete() {
+        let percent = Math.round(
+            (1 - this.props.secondsRemaining / (this.props.minutes * 60)) * 100
+        );
+
+        this.setState({ percentComplete: percent });
     }
 
     onCompletion() {
@@ -183,6 +195,7 @@ class CountdownTimer extends React.Component {
                     onReset={this.onReset}
                     playPauseText={this.state.playPauseText}
                 />
+                <ProgressBar percent={this.state.percentComplete} />
                 <SaveSessions sessionComplete={this.state.sessionComplete} />
             </div>
         );
