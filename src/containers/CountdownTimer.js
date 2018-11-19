@@ -172,7 +172,7 @@ class CountdownTimer extends React.Component {
     }
 
     flashTimesUp() {
-        this.props.dispatch(saveSecondsRemaining(-1));
+        this.props.dispatch(saveSecondsRemaining(0));
         this.setState({ formattedTime: 'TIMES UP!' });
 
         this.flashInterval = setInterval(() => {
