@@ -105,6 +105,7 @@ class CountdownTimer extends React.Component {
         this.props.dispatch(saveStatus(STOPPED));
         this.setState({ playPauseText: START });
         this.props.dispatch(saveSecondsRemaining(0));
+        this.setPercentComplete(0);
         clearInterval(this.interval);
         clearInterval(this.flashInterval);
     }
@@ -113,6 +114,7 @@ class CountdownTimer extends React.Component {
         this.props.dispatch(saveStatus(STOPPED));
         this.setState({ playPauseText: START });
         this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
+        this.setPercentComplete(0);
         clearInterval(this.interval);
         clearInterval(this.flashInterval);
     }
@@ -130,12 +132,16 @@ class CountdownTimer extends React.Component {
         }
     }
 
-    setPercentComplete() {
-        let percent = Math.round(
-            (1 - this.props.secondsRemaining / (this.props.minutes * 60)) * 100
-        );
-
-        this.setState({ percentComplete: percent });
+    setPercentComplete(percentComplete) {
+        if ((percentComplete > -1) & (percentComplete < 100)) {
+            this.setState({ percentComplete: percentComplete });
+        } else {
+            let percent = Math.round(
+                (1 - this.props.secondsRemaining / (this.props.minutes * 60)) *
+                    100
+            );
+            this.setState({ percentComplete: percent });
+        }
     }
 
     onCompletion() {
