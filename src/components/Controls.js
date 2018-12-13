@@ -13,7 +13,7 @@ class Controls extends React.Component {
         return (
             <div>
                 <button
-                    className="btn btn-lg btn-outline-primary col-md-2"
+                    className="btn btn-lg btn-success"
                     type="button"
                     onClick={this.props.onStart}
                 >
@@ -21,7 +21,7 @@ class Controls extends React.Component {
                 </button>
                 &nbsp;
                 <button
-                    className="btn btn-lg btn-outline-danger col-md-2"
+                    className="btn btn-lg btn-danger"
                     type="button"
                     onClick={this.props.onStop}
                 >
@@ -29,7 +29,7 @@ class Controls extends React.Component {
                 </button>
                 &nbsp;
                 <button
-                    className="btn btn-lg btn-outline-primary col-md-2"
+                    className="btn btn-lg btn-primary"
                     type="button"
                     onClick={this.props.onReset}
                 >
