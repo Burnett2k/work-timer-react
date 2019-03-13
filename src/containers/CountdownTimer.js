@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import { saveSecondsRemaining } from '../actions';
 import { saveStatus } from '../actions';
 import PropTypes from 'prop-types';
-
 import timesUp from '../sounds/timesup.mp3';
 import ProgressBar from '../components/ProgressBar.js';
+import Worker from '../utils/timer.worker.js';
 
 const STARTED = 'running';
 const PAUSED = 'paused';
@@ -54,6 +54,20 @@ class CountdownTimer extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
+        if (window.Worker) {
+            console.log('we have a web worker');
+            this.worker = new Worker();
+            console.log(this.worker);
+            this.worker.postMessage('start');
+            this.worker.addEventListener(
+                'message',
+                this.onMessageReceived.bind(this)
+            );
+        }
+    }
+
+    onMessageReceived(e) {
+        console.log(`message received! ${e.data}`);
     }
 
     componentDidUpdate(prevProps) {
