@@ -127,6 +127,11 @@ module.exports = {
                 include: paths.appSrc
             },
             {
+                //add worker-loader so web workers can be utilized
+                test: /\.worker\.js$/,
+                use: { loader: 'worker-loader' }
+            },
+            {
                 // "oneOf" will traverse all following loaders until one will
                 // match the requirements. When no loader matches it will fall
                 // back to the "file" loader at the end of the loader list.
