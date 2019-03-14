@@ -1,16 +1,16 @@
 let interval = '';
 let flashInterval = '';
 
-self.addEventListener('message', function(e) {
+addEventListener('message', function(e) {
     switch (e.data) {
         case 'start':
             interval = setInterval(() => {
-                self.postMessage('tick');
+                postMessage('tick');
             }, 1000);
             break;
         case 'flash':
             flashInterval = setInterval(() => {
-                self.postMessage('flash');
+                postMessage('flash');
             }, 1000);
             break;
         case 'clearTimer':

@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 ssh root@167.99.106.189 << 'EOSSH'
 
     # move to work timer app directory
