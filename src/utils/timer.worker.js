@@ -1,6 +1,7 @@
 let interval = '';
 let flashInterval = '';
 
+//eslint-disable-next-line
 addEventListener('message', function(e) {
     switch (e.data) {
         case 'start':
