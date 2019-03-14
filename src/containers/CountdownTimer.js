@@ -27,11 +27,7 @@ class CountdownTimer extends React.Component {
         this.onReset = this.onReset.bind(this);
         this.onTick = this.onTick.bind(this);
         this.onCompletion = this.onCompletion.bind(this);
-
         this.sound = new Audio(timesUp);
-
-        this.interval = '';
-        this.flashInterval = '';
 
         this.state = {
             formattedTime: '00:00',
@@ -55,10 +51,7 @@ class CountdownTimer extends React.Component {
     componentDidMount() {
         this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
         if (window.Worker) {
-            console.log('we have a web worker');
             this.worker = new Worker();
-            console.log(this.worker);
-            this.worker.postMessage('start');
             this.worker.addEventListener(
                 'message',
                 this.onMessageReceived.bind(this)
@@ -67,7 +60,16 @@ class CountdownTimer extends React.Component {
     }
 
     onMessageReceived(e) {
-        console.log(`message received! ${e.data}`);
+        switch (e.data) {
+            case 'tick':
+                this.onTick();
+                break;
+            case 'flash':
+                this.updateTabText();
+                break;
+            default:
+                break;
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -93,11 +95,10 @@ class CountdownTimer extends React.Component {
             case STARTED:
                 this.props.dispatch(saveStatus(PAUSED));
                 this.setState({ playPauseText: RESUME });
-                clearInterval(this.interval);
-                clearInterval(this.flashInterval);
+                this.worker.postMessage('clearAll');
                 break;
             case PAUSED:
-                this.interval = setInterval(() => this.onTick(), 1000);
+                this.worker.postMessage('start');
                 this.props.dispatch(saveStatus(STARTED));
                 this.setState({ playPauseText: PAUSE });
                 break;
@@ -105,10 +106,10 @@ class CountdownTimer extends React.Component {
                 this.props.dispatch(
                     saveSecondsRemaining(this.props.minutes * 60)
                 );
-                this.interval = setInterval(() => this.onTick(), 1000);
+                this.worker.postMessage('start');
                 this.props.dispatch(saveStatus(STARTED));
                 this.setState({ playPauseText: PAUSE });
-                clearInterval(this.flashInterval);
+                this.worker.postMessage('clearFlash');
                 break;
             default:
                 break;
@@ -120,8 +121,7 @@ class CountdownTimer extends React.Component {
         this.setState({ playPauseText: START });
         this.props.dispatch(saveSecondsRemaining(0));
         this.setPercentComplete(0);
-        clearInterval(this.interval);
-        clearInterval(this.flashInterval);
+        this.worker.postMessage('clearAll');
     }
 
     onReset() {
@@ -129,8 +129,7 @@ class CountdownTimer extends React.Component {
         this.setState({ playPauseText: START });
         this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
         this.setPercentComplete(0);
-        clearInterval(this.interval);
-        clearInterval(this.flashInterval);
+        this.worker.postMessage('clearAll');
     }
 
     onTick() {
@@ -194,14 +193,15 @@ class CountdownTimer extends React.Component {
     flashTimesUp() {
         this.props.dispatch(saveSecondsRemaining(0));
         this.setState({ formattedTime: 'TIMES UP!' });
+        this.worker.postMessage('flash');
+    }
 
-        this.flashInterval = setInterval(() => {
-            if (document.title === TAB_TEXT) {
-                document.title = 'Times Up!';
-            } else {
-                document.title = TAB_TEXT;
-            }
-        }, 1000);
+    updateTabText() {
+        if (document.title === TAB_TEXT) {
+            document.title = 'Times Up!';
+        } else {
+            document.title = TAB_TEXT;
+        }
     }
 
     render() {
