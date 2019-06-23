@@ -16,5 +16,6 @@ COPY scripts/ ./scripts
 COPY config/ ./config
 
 RUN yarn build
+RUN yarn global add serve
 
 EXPOSE 80
