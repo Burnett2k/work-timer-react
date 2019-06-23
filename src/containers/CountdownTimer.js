@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { saveSecondsRemaining } from '../actions';
 import { saveStatus } from '../actions';
 import PropTypes from 'prop-types';
-import timesUp from '../sounds/timesup.mp3';
+import timesUp from '../sounds/harp-strumming.mp3';
 import ProgressBar from '../components/ProgressBar.js';
 import Worker from '../utils/timer.worker.js';
 
@@ -122,6 +122,7 @@ class CountdownTimer extends React.Component {
         this.props.dispatch(saveSecondsRemaining(0));
         this.setPercentComplete(0);
         this.worker.postMessage('clearAll');
+        this.stopSound();
     }
 
     onReset() {
@@ -130,6 +131,7 @@ class CountdownTimer extends React.Component {
         this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
         this.setPercentComplete(0);
         this.worker.postMessage('clearAll');
+        this.stopSound();
     }
 
     onTick() {
@@ -168,7 +170,15 @@ class CountdownTimer extends React.Component {
     playSound() {
         if (!this.props.isMuted) {
             this.sound.currentTime = 0;
+            this.sound.volume = 0.3;
             this.sound.play();
+        }
+    }
+
+    stopSound() {
+        if (!this.props.isMuted) {
+            this.sound.currentTime = 0;
+            this.sound.pause();
         }
     }
 
