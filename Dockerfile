@@ -7,7 +7,7 @@ MAINTAINER Sawyer Blue Burnett
 # Copy dependencies
 COPY package.json yarn.lock ./
 # Install dependencies
-RUN yarn install
+RUN yarn
 
 # Copy rest of files
 COPY src/ ./src
