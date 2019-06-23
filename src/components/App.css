@@ -13,9 +13,14 @@ body {
     flex-direction: column;
 }
 .content {
-    background: #73c2e0;
     flex: 1 0 auto;
 }
 .footer {
     flex-shrink: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.container {
+    display: grid;
+    max-width: 425px !important;
 }
