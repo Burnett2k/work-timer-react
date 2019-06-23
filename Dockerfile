@@ -1,21 +1,20 @@
 # Set the base image to Node 8.7
-FROM node:8.9.4
+FROM node:10-alpine
 
 # File Author / Maintainer
 MAINTAINER Sawyer Blue Burnett
 
-# Copy files needed for Node app to install / run
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-COPY yarn.lock yarn.lock
+# Copy dependencies
+COPY package.json yarn.lock ./
+# Install dependencies
+RUN yarn install
+
+# Copy rest of files
 COPY src/ ./src
 COPY public/ ./public
 COPY scripts/ ./scripts
 COPY config/ ./config
 
-# Install NPM packages
-RUN npm install
-RUN npm install -g serve
-RUN npm run build
+RUN yarn build
 
 EXPOSE 80
