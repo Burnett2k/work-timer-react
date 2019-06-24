@@ -65,6 +65,45 @@ class PreferencesModal extends React.Component {
             theme: this.state.theme
         });
         this.props.onRequestClose();
+        this.setTheme();
+    }
+
+    setTheme() {
+        if (this.state.theme === 'light') {
+            document.documentElement.style.setProperty(
+                '--main-bg-color',
+                '#ffffff'
+            );
+            document.documentElement.style.setProperty(
+                '--main-text-color',
+                '#212529'
+            );
+            document.documentElement.style.setProperty(
+                '--footer-bg-color',
+                '#343a40'
+            );
+            document.documentElement.style.setProperty(
+                '--footer-text-color',
+                '#ffffff'
+            );
+        } else {
+            document.documentElement.style.setProperty(
+                '--main-bg-color',
+                '#343a40'
+            );
+            document.documentElement.style.setProperty(
+                '--main-text-color',
+                '#ffffff'
+            );
+            document.documentElement.style.setProperty(
+                '--footer-bg-color',
+                '#212529'
+            );
+            document.documentElement.style.setProperty(
+                '--footer-text-color',
+                '#ffffff'
+            );
+        }
     }
 
     enterPressed(event) {
