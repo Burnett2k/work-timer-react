@@ -115,7 +115,7 @@ class PreferencesModal extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="modal-theme">
                 <div className="modal-header">
                     <h5 className="modal-title">Settings</h5>
                     <h5 className="modal-title">
@@ -247,9 +247,8 @@ class PreferencesModal extends React.Component {
                             </div>
                         </div>
                     </div>
-
                     <div className="d-none d-sm-block d-md-block">
-                        <hr />
+                        <hr className="separator" />
                         <h4>Keyboard Shortcuts</h4>
                         <p>Edit Goal = E </p>
                         <p>Start / Pause = F</p>

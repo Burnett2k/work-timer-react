@@ -13,7 +13,7 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        padding: '10px',
+        padding: '0px',
         width: '350px'
     }
 };

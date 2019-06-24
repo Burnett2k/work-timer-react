@@ -37,3 +37,12 @@ body {
     display: grid;
     max-width: 425px !important;
 }
+.modal-theme {
+    color: var(--main-text-color);
+    background: var(--main-bg-color);
+}
+hr {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: var(--main-text-color) !important;
+}
