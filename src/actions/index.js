@@ -8,6 +8,11 @@ export const saveMute = isMuted => ({
     payload: isMuted
 });
 
+export const saveTheme = theme => ({
+    type: 'SAVE_THEME',
+    payload: theme
+});
+
 export const saveSecondsRemaining = secondsRemaining => ({
     type: 'SAVE_SECONDS_REMAINING',
     payload: secondsRemaining

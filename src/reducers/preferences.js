@@ -18,6 +18,11 @@ const preferences = (
                 ...state,
                 isNotesPrompt: action.payload
             };
+        case 'SAVE_THEME':
+            return {
+                ...state,
+                theme: action.payload
+            };
         default:
             return state;
     }
