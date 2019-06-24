@@ -31,7 +31,6 @@ class Preferences extends React.Component {
         onPreferencesSaved: PropTypes.func,
         minutes: PropTypes.string,
         isMuted: PropTypes.string,
-        isNotesPrompt: PropTypes.string,
         theme: PropTypes.string
     };
 

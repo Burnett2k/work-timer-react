@@ -27,8 +27,3 @@ export const saveSessionsCompleted = completed => ({
     type: 'SAVE_SESSION',
     payload: completed
 });
-
-export const saveIsNotesPrompt = isNotesPrompt => ({
-    type: 'SAVE_NOTES_PROMPT',
-    payload: isNotesPrompt
-});

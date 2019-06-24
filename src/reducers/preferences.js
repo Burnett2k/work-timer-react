@@ -1,5 +1,5 @@
 const preferences = (
-    state = { minutes: 25, isMuted: true, isNotesPrompt: false },
+    state = { minutes: 25, isMuted: true, theme: 'light' },
     action
 ) => {
     switch (action.type) {
@@ -12,11 +12,6 @@ const preferences = (
             return {
                 ...state,
                 isMuted: action.payload
-            };
-        case 'SAVE_NOTES_PROMPT':
-            return {
-                ...state,
-                isNotesPrompt: action.payload
             };
         case 'SAVE_THEME':
             return {

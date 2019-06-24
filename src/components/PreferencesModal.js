@@ -25,7 +25,6 @@ class PreferencesModal extends React.Component {
         this.handleMinutesChange = this.handleMinutesChange.bind(this);
         this.handleMutedChange = this.handleMutedChange.bind(this);
         this.handleThemeChange = this.handleThemeChange.bind(this);
-        this.handleNotesPromptChange = this.handleNotesPromptChange.bind(this);
         this.onClick = this.onClick.bind(this);
     }
 
@@ -40,7 +39,6 @@ class PreferencesModal extends React.Component {
     setPreferences() {
         localStorage.setItem('isMuted', this.state.isMuted);
         localStorage.setItem('minutes', this.state.minutes);
-        localStorage.setItem('isNotesPrompt', this.state.isNotesPrompt);
         localStorage.setItem('theme', this.state.theme);
     }
 
@@ -57,10 +55,6 @@ class PreferencesModal extends React.Component {
         this.setState({
             theme: theme.target.value === 'true' ? 'dark' : 'light'
         });
-    }
-
-    handleNotesPromptChange(notesPrompt) {
-        this.setState({ isNotesPrompt: notesPrompt.target.value === 'true' });
     }
 
     onClick() {

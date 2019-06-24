@@ -1,12 +1,7 @@
 import React from 'react';
 import Preferences from '../components/Preferences.js';
 import { connect } from 'react-redux';
-import {
-    saveMinutes,
-    saveMute,
-    saveIsNotesPrompt,
-    saveTheme
-} from '../actions';
+import { saveMinutes, saveMute, saveTheme } from '../actions';
 import PropTypes from 'prop-types';
 
 class SavePreferences extends React.Component {
@@ -18,7 +13,6 @@ class SavePreferences extends React.Component {
         dispatch: PropTypes.func,
         minutes: PropTypes.string,
         isMuted: PropTypes.string,
-        isNotesPrompt: PropTypes.string,
         theme: PropTypes.string,
         onPreferencesSaved: PropTypes.func,
         onRequestClose: PropTypes.func,
@@ -29,12 +23,11 @@ class SavePreferences extends React.Component {
     onPreferencesSaved = payload => {
         this.props.dispatch(saveMinutes(payload.minutes));
         this.props.dispatch(saveMute(payload.isMuted));
-        this.props.dispatch(saveIsNotesPrompt(payload.isNotesPrompt));
         this.props.dispatch(saveTheme(payload.theme));
     };
 
     getPreferences() {
-        let muted, minutes, notesPrompt, theme;
+        let muted, minutes, theme;
         minutes =
             localStorage.getItem('minutes') != null
                 ? localStorage.getItem('minutes')
@@ -48,15 +41,9 @@ class SavePreferences extends React.Component {
             localStorage.getItem('theme') != null
                 ? localStorage.getItem('theme')
                 : 'light';
-        notesPrompt =
-            localStorage.getItem('isNotesPrompt') != null
-                ? localStorage.getItem('isNotesPrompt')
-                : 'true';
-        notesPrompt = notesPrompt === 'true';
         this.onPreferencesSaved({
             minutes: parseInt(minutes, 10),
             isMuted: muted,
-            isNotesPrompt: notesPrompt,
             theme: theme
         });
     }
@@ -69,7 +56,6 @@ class SavePreferences extends React.Component {
                     minutes={this.props.minutes}
                     isMuted={this.props.isMuted}
                     theme={this.props.theme}
-                    isNotesPrompt={this.props.isNotesPrompt}
                     showModal={this.props.showModal}
                     toggleModalShown={this.props.toggleModalShown}
                 />
@@ -83,7 +69,6 @@ function mapStateToProps(state) {
     return {
         minutes: state.preferences.minutes,
         isMuted: state.preferences.isMuted,
-        isNotesPrompt: state.preferences.isNotesPrompt,
         theme: state.preferences.theme
     };
 }
