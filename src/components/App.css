@@ -1,8 +1,16 @@
+:root {
+    --main-bg-color: #ffffff;
+    --footer-bg-color: #343a40;
+    --footer-text-color: #ffffff;
+    --main-text-color: #212529;
+}
+
 .App {
     text-align: center;
 }
 .q-top-buffer {
     margin-top: 20px;
+    color: var(--main-text-color);
 }
 html,
 body {
@@ -14,11 +22,14 @@ body {
 }
 .content {
     flex: 1 0 auto;
+    background: var(--main-bg-color);
 }
 .footer {
     flex-shrink: 0;
     padding-top: 10px;
     padding-bottom: 10px;
+    background: var(--footer-bg-color);
+    color: var(--footer-text-color);
 }
 .container {
     display: grid;
