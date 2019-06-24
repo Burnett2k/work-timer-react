@@ -31,7 +31,8 @@ class Preferences extends React.Component {
         onPreferencesSaved: PropTypes.func,
         minutes: PropTypes.string,
         isMuted: PropTypes.string,
-        isNotesPrompt: PropTypes.string
+        isNotesPrompt: PropTypes.string,
+        theme: PropTypes.string
     };
 
     toggleModal() {
@@ -64,7 +65,7 @@ class Preferences extends React.Component {
                         onRequestClose={this.toggleModal}
                         minutes={this.props.minutes}
                         isMuted={this.props.isMuted}
-                        isNotesPrompt={this.props.isNotesPrompt}
+                        theme={this.props.theme}
                     />
                 </ReactModal>
             </React.Fragment>

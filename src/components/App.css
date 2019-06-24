@@ -1,10 +1,12 @@
+/* document.documentElement.style.setProperty('--footer-bg-color', "green") */
+/* getComputedStyle(document.documentElement).getPropertyValue('--footer-bg-color'); */
+
 :root {
     --main-bg-color: #ffffff;
     --footer-bg-color: #343a40;
     --footer-text-color: #ffffff;
     --main-text-color: #212529;
 }
-
 .App {
     text-align: center;
 }

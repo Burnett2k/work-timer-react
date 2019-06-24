@@ -7,7 +7,7 @@ class PreferencesModal extends React.Component {
     static propTypes = {
         minutes: PropTypes.string,
         isMuted: PropTypes.string,
-        isNotesPrompt: PropTypes.string,
+        theme: PropTypes.string,
         onPreferencesSaved: PropTypes.func,
         onRequestClose: PropTypes.func
     };
@@ -18,12 +18,13 @@ class PreferencesModal extends React.Component {
         this.state = {
             minutes: this.props.minutes,
             isMuted: this.props.isMuted,
-            isNotesPrompt: this.props.isNotesPrompt
+            theme: this.props.theme
         };
 
         this.enterPressed = this.enterPressed.bind(this);
         this.handleMinutesChange = this.handleMinutesChange.bind(this);
         this.handleMutedChange = this.handleMutedChange.bind(this);
+        this.handleThemeChange = this.handleThemeChange.bind(this);
         this.handleNotesPromptChange = this.handleNotesPromptChange.bind(this);
         this.onClick = this.onClick.bind(this);
     }
@@ -40,6 +41,7 @@ class PreferencesModal extends React.Component {
         localStorage.setItem('isMuted', this.state.isMuted);
         localStorage.setItem('minutes', this.state.minutes);
         localStorage.setItem('isNotesPrompt', this.state.isNotesPrompt);
+        localStorage.setItem('theme', this.state.theme);
     }
 
     handleMinutesChange(numMinutes) {
@@ -51,6 +53,12 @@ class PreferencesModal extends React.Component {
         this.setState({ isMuted: muted.target.value === 'true' });
     }
 
+    handleThemeChange(theme) {
+        this.setState({
+            theme: theme.target.value === 'true' ? 'dark' : 'light'
+        });
+    }
+
     handleNotesPromptChange(notesPrompt) {
         this.setState({ isNotesPrompt: notesPrompt.target.value === 'true' });
     }
@@ -60,7 +68,7 @@ class PreferencesModal extends React.Component {
         this.props.onPreferencesSaved({
             minutes: this.state.minutes,
             isMuted: this.state.isMuted,
-            isNotesPrompt: this.state.isNotesPrompt
+            theme: this.state.theme
         });
         this.props.onRequestClose();
     }
@@ -114,12 +122,59 @@ class PreferencesModal extends React.Component {
                     </div>
                     <div className="form-row q-top-buffer">
                         <div className="col-6">
+                            <label htmlFor="dark">dark mode?</label>
+                        </div>
+                        <div className="col-6">
+                            <div className="form-check form-check-inline">
+                                <input
+                                    id="dark"
+                                    type="radio"
+                                    className="form-check-input"
+                                    value="true"
+                                    checked={this.state.theme === 'dark'}
+                                    onChange={this.handleThemeChange}
+                                />
+                                <label
+                                    className="form-check-label"
+                                    htmlFor="dark"
+                                >
+                                    <i
+                                        className="fa fa-moon-o"
+                                        aria-hidden="true"
+                                    />
+                                    Yes
+                                </label>
+                            </div>
+                            <div className="form-check form-check-inline">
+                                <input
+                                    id="light"
+                                    type="radio"
+                                    className="form-check-input"
+                                    value="false"
+                                    checked={this.state.theme !== 'dark'}
+                                    onChange={this.handleThemeChange}
+                                />
+                                <label
+                                    className="form-check-label"
+                                    htmlFor="light"
+                                >
+                                    <i
+                                        className="fa fa-sun-o"
+                                        aria-hidden="true"
+                                    />
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="form-row q-top-buffer">
+                        <div className="col-6">
                             <label htmlFor="mute">mute?</label>
                         </div>
                         <div className="col-6">
                             <div className="form-check form-check-inline">
                                 <input
-                                    id="yes"
+                                    id="mute"
                                     type="radio"
                                     className="form-check-input"
                                     value="true"
@@ -128,7 +183,7 @@ class PreferencesModal extends React.Component {
                                 />
                                 <label
                                     className="form-check-label"
-                                    htmlFor="yes"
+                                    htmlFor="mute"
                                 >
                                     <i
                                         className="fa fa-volume-up"
@@ -139,7 +194,7 @@ class PreferencesModal extends React.Component {
                             </div>
                             <div className="form-check form-check-inline">
                                 <input
-                                    id="no"
+                                    id="unmute"
                                     type="radio"
                                     className="form-check-input"
                                     value="false"
@@ -148,7 +203,7 @@ class PreferencesModal extends React.Component {
                                 />
                                 <label
                                     className="form-check-label"
-                                    htmlFor="no"
+                                    htmlFor="unmute"
                                 >
                                     <i
                                         className="fa fa-volume-off"
@@ -159,21 +214,7 @@ class PreferencesModal extends React.Component {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="form-row">
-                    <div className="col-6">
-                      <label htmlFor="mute">Prompt for Notes?</label>
-                    </div>
-                    <div className="col-6">
-                      <div className="form-check form-check-inline">
-                        <input type="radio" className="form-check-input" value="true" checked={this.state.isNotesPrompt} onChange={this.handleNotesPromptChange}/>
-                        <label className="form-check-label">Yes</label>
-                      </div>
-                      <div className="form-check form-check-inline">
-                        <input type="radio" className="form-check-input" value="false" checked={!this.state.isNotesPrompt} onChange={this.handleNotesPromptChange}/>
-                        <label className="form-check-label">No</label>
-                      </div>
-                    </div>  
-                  </div> */}
+
                     <div className="d-none d-sm-block d-md-block">
                         <hr />
                         <h4>Keyboard Shortcuts</h4>
