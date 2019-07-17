@@ -135,6 +135,7 @@ class App extends Component {
                             <SaveGoals
                                 isEditMode={this.state.isEditMode}
                                 toggleEditMode={this.toggleEditMode}
+                                reset={this.state.reset}
                             />
                         </React.Fragment>
                     )}

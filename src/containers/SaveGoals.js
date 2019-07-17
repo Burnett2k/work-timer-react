@@ -7,7 +7,8 @@ class SaveGoals extends React.Component {
     static propTypes = {
         isEditMode: PropTypes.string,
         toggleEditMode: PropTypes.func,
-        onGoalEdit: PropTypes.func
+        onGoalEdit: PropTypes.func,
+        reset: PropTypes.bool
     };
 
     constructor(props) {
@@ -18,6 +19,17 @@ class SaveGoals extends React.Component {
         };
 
         this.onGoalTyping = this.onGoalTyping.bind(this);
+        this.onReset = this.onReset.bind(this);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.reset !== this.props.reset) {
+            this.onReset();
+        }
+    }
+
+    onReset() {
+        this.setState({ goalText: '' });
     }
 
     onGoalTyping(e) {
