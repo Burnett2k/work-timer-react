@@ -11,12 +11,12 @@ class SavePreferences extends React.Component {
     }
     static propTypes = {
         dispatch: PropTypes.func,
-        minutes: PropTypes.string,
-        isMuted: PropTypes.string,
+        minutes: PropTypes.number,
+        isMuted: PropTypes.bool,
         theme: PropTypes.string,
         onPreferencesSaved: PropTypes.func,
         onRequestClose: PropTypes.func,
-        showModal: PropTypes.string,
+        showModal: PropTypes.bool,
         toggleModalShown: PropTypes.func
     };
 

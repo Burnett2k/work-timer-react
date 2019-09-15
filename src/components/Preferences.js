@@ -27,10 +27,10 @@ class Preferences extends React.Component {
 
     static propTypes = {
         toggleModalShown: PropTypes.func,
-        showModal: PropTypes.string,
+        showModal: PropTypes.bool,
         onPreferencesSaved: PropTypes.func,
-        minutes: PropTypes.string,
-        isMuted: PropTypes.string,
+        minutes: PropTypes.number,
+        isMuted: PropTypes.bool,
         theme: PropTypes.string
     };
 

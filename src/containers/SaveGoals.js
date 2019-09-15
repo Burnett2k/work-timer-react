@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 class SaveGoals extends React.Component {
     static propTypes = {
-        isEditMode: PropTypes.string,
+        isEditMode: PropTypes.bool,
         toggleEditMode: PropTypes.func,
         onGoalEdit: PropTypes.func,
         reset: PropTypes.bool

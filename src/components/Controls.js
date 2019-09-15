@@ -4,7 +4,7 @@ const React = require('react');
 class Controls extends React.Component {
     static propTypes = {
         onStart: PropTypes.func,
-        playPauseText: PropTypes.func,
+        playPauseText: PropTypes.string,
         onReset: PropTypes.func,
         onStop: PropTypes.func
     };
