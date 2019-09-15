@@ -1,5 +1,5 @@
 import './App.css';
-import SignInImage from '../sounds/google_sign_in.png';
+import SignInImage from '../images/google_sign_in.png';
 
 const React = require('react');
 
