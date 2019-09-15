@@ -6,6 +6,8 @@ import SavePreferences from '../containers/SavePreferences.js';
 import SaveGoals from '../containers/SaveGoals';
 import ProgressChart from '../components/ProgressChart';
 import HistoryButton from './HistoryButton';
+import SignInButton from './SignInButton';
+import SignInPage from './SignInPage';
 
 class App extends Component {
     constructor(props) {
@@ -16,12 +18,14 @@ class App extends Component {
             stop: false,
             reset: false,
             isEditMode: false,
-            isChartVisible: false
+            isChartVisible: false,
+            isSignInVisible: false
         };
 
         this.toggleModalShown = this.toggleModalShown.bind(this);
         this.toggleEditMode = this.toggleEditMode.bind(this);
         this.toggleChartVisible = this.toggleChartVisible.bind(this);
+        this.toggleSignInPage = this.toggleSignInPage.bind(this);
     }
 
     componentDidMount() {
@@ -82,6 +86,14 @@ class App extends Component {
         }
     }
 
+    toggleSignInPage() {
+        if (!this.state.isEditMode) {
+            this.setState(prevState => ({
+                isSignInVisible: !prevState.isSignInVisible
+            }));
+        }
+    }
+
     handleKeyUp(event) {
         switch (event.key) {
             case 'f':
@@ -107,6 +119,29 @@ class App extends Component {
         }
     }
 
+    displayComponent(state) {
+        if (state.isChartVisible) {
+            return <ProgressChart />;
+        } else if (state.isSignInVisible) {
+            return <SignInPage />;
+        } else {
+            return (
+                <React.Fragment>
+                    <CountdownTimer
+                        playPause={this.state.playPause}
+                        stop={this.state.stop}
+                        reset={this.state.reset}
+                    />
+                    <SaveGoals
+                        isEditMode={this.state.isEditMode}
+                        toggleEditMode={this.toggleEditMode}
+                        reset={this.state.reset}
+                    />
+                </React.Fragment>
+            );
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -121,24 +156,12 @@ class App extends Component {
                             toggleChartVisible={this.toggleChartVisible}
                             isChartVisible={this.state.isChartVisible}
                         />
+                        <SignInButton
+                            toggleSignInPage={this.toggleSignInPage}
+                            isSignInVisible={this.state.isSignInVisible}
+                        ></SignInButton>
                     </div>
-
-                    {this.state.isChartVisible ? (
-                        <ProgressChart />
-                    ) : (
-                        <React.Fragment>
-                            <CountdownTimer
-                                playPause={this.state.playPause}
-                                stop={this.state.stop}
-                                reset={this.state.reset}
-                            />
-                            <SaveGoals
-                                isEditMode={this.state.isEditMode}
-                                toggleEditMode={this.toggleEditMode}
-                                reset={this.state.reset}
-                            />
-                        </React.Fragment>
-                    )}
+                    {this.displayComponent(this.state)}
                 </div>
             </React.Fragment>
         );
