@@ -4,7 +4,7 @@ const React = require('react');
 class HistoryButton extends React.Component {
     static propTypes = {
         toggleChartVisible: PropTypes.func,
-        isChartVisible: PropTypes.string
+        isChartVisible: PropTypes.bool
     };
 
     render() {

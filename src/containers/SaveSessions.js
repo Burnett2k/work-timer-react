@@ -13,9 +13,9 @@ class SaveSessions extends React.Component {
     }
 
     static propTypes = {
-        sessionComplete: PropTypes.func,
+        sessionComplete: PropTypes.bool,
         dispatch: PropTypes.func,
-        completed: PropTypes.string
+        completed: PropTypes.number
     };
 
     componentDidMount() {

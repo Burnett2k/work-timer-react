@@ -39,13 +39,13 @@ class CountdownTimer extends React.Component {
 
     static propTypes = {
         dispatch: PropTypes.func,
-        minutes: PropTypes.string,
-        secondsRemaining: PropTypes.string,
+        minutes: PropTypes.number,
+        secondsRemaining: PropTypes.number,
         playPause: PropTypes.bool,
         reset: PropTypes.bool,
         stop: PropTypes.bool,
         status: PropTypes.string,
-        isMuted: PropTypes.string
+        isMuted: PropTypes.bool
     };
 
     componentDidMount() {

@@ -5,8 +5,8 @@ const pomodoroLink = 'https://en.wikipedia.org/wiki/Pomodoro_Technique';
 
 class PreferencesModal extends React.Component {
     static propTypes = {
-        minutes: PropTypes.string,
-        isMuted: PropTypes.string,
+        minutes: PropTypes.number,
+        isMuted: PropTypes.bool,
         theme: PropTypes.string,
         onPreferencesSaved: PropTypes.func,
         onRequestClose: PropTypes.func
