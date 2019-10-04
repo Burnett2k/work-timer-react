@@ -10,7 +10,7 @@ class GoalInput extends React.Component {
     static propTypes = {
         onGoalTyping: PropTypes.func,
         toggleEditMode: PropTypes.func,
-        goalText: PropTypes.string
+        goalText: PropTypes.string,
     };
 
     componentDidMount() {
@@ -37,7 +37,7 @@ class GoalInput extends React.Component {
                     onChange={this.props.onGoalTyping}
                     value={this.props.goalText}
                     placeholder="Enter your goal..."
-                    ref={input => {
+                    ref={(input) => {
                         input && input.focus();
                     }}
                 />

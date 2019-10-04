@@ -6,17 +6,17 @@ const preferences = (
         case 'SAVE_MINUTES':
             return {
                 ...state,
-                minutes: action.payload
+                minutes: action.payload,
             };
         case 'SAVE_MUTE':
             return {
                 ...state,
-                isMuted: action.payload
+                isMuted: action.payload,
             };
         case 'SAVE_THEME':
             return {
                 ...state,
-                theme: action.payload
+                theme: action.payload,
             };
         default:
             return state;

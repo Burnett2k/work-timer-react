@@ -9,7 +9,7 @@ class PreferencesModal extends React.Component {
         isMuted: PropTypes.bool,
         theme: PropTypes.string,
         onPreferencesSaved: PropTypes.func,
-        onRequestClose: PropTypes.func
+        onRequestClose: PropTypes.func,
     };
 
     constructor(props) {
@@ -18,7 +18,7 @@ class PreferencesModal extends React.Component {
         this.state = {
             minutes: this.props.minutes,
             isMuted: this.props.isMuted,
-            theme: this.props.theme
+            theme: this.props.theme,
         };
 
         this.enterPressed = this.enterPressed.bind(this);
@@ -53,7 +53,7 @@ class PreferencesModal extends React.Component {
 
     handleThemeChange(theme) {
         this.setState({
-            theme: theme.target.value === 'true' ? 'dark' : 'light'
+            theme: theme.target.value === 'true' ? 'dark' : 'light',
         });
     }
 
@@ -62,7 +62,7 @@ class PreferencesModal extends React.Component {
         this.props.onPreferencesSaved({
             minutes: this.state.minutes,
             isMuted: this.state.isMuted,
-            theme: this.state.theme
+            theme: this.state.theme,
         });
         this.props.onRequestClose();
     }

@@ -6,7 +6,7 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    ResponsiveContainer
+    ResponsiveContainer,
 } from 'recharts';
 import './App.css';
 
@@ -15,7 +15,7 @@ const styles = {
     width: '80%',
     height: 400,
     margin: '0 auto',
-    marginTop: '20px'
+    marginTop: '20px',
 };
 let data = [];
 

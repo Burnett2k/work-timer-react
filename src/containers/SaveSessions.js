@@ -15,7 +15,7 @@ class SaveSessions extends React.Component {
     static propTypes = {
         sessionComplete: PropTypes.bool,
         dispatch: PropTypes.func,
-        completed: PropTypes.number
+        completed: PropTypes.number,
     };
 
     componentDidMount() {
@@ -52,7 +52,7 @@ class SaveSessions extends React.Component {
 //only passing in data needed by the children
 function mapStateToProps(state) {
     return {
-        completed: state.sessions.completed
+        completed: state.sessions.completed,
     };
 }
 

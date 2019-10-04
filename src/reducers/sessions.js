@@ -3,7 +3,7 @@ const sessions = (state = { completed: 0 }, action) => {
         case 'SAVE_SESSION':
             return {
                 ...state,
-                completed: action.payload
+                completed: action.payload,
             };
         default:
             return state;

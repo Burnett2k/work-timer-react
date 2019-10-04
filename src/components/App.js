@@ -19,7 +19,7 @@ class App extends Component {
             reset: false,
             isEditMode: false,
             isChartVisible: false,
-            isSignInVisible: false
+            isSignInVisible: false,
         };
 
         this.toggleModalShown = this.toggleModalShown.bind(this);
@@ -36,32 +36,32 @@ class App extends Component {
 
     toggleModalShown() {
         if (!this.state.isEditMode) {
-            this.setState(prevState => ({
-                showModal: !prevState.showModal
+            this.setState((prevState) => ({
+                showModal: !prevState.showModal,
             }));
         }
     }
 
     togglePlayPause() {
         if (!this.state.isEditMode) {
-            this.setState(prevState => ({
-                playPause: !prevState.playPause
+            this.setState((prevState) => ({
+                playPause: !prevState.playPause,
             }));
         }
     }
 
     toggleStop() {
         if (!this.state.isEditMode) {
-            this.setState(prevState => ({
-                stop: !prevState.stop
+            this.setState((prevState) => ({
+                stop: !prevState.stop,
             }));
         }
     }
 
     toggleReset() {
         if (!this.state.isEditMode) {
-            this.setState(prevState => ({
-                reset: !prevState.reset
+            this.setState((prevState) => ({
+                reset: !prevState.reset,
             }));
         }
     }
@@ -73,23 +73,23 @@ class App extends Component {
     }
 
     toggleEditMode() {
-        this.setState(prevState => ({
-            isEditMode: !prevState.isEditMode
+        this.setState((prevState) => ({
+            isEditMode: !prevState.isEditMode,
         }));
     }
 
     toggleChartVisible() {
         if (!this.state.isEditMode) {
-            this.setState(prevState => ({
-                isChartVisible: !prevState.isChartVisible
+            this.setState((prevState) => ({
+                isChartVisible: !prevState.isChartVisible,
             }));
         }
     }
 
     toggleSignInPage() {
         if (!this.state.isEditMode) {
-            this.setState(prevState => ({
-                isSignInVisible: !prevState.isSignInVisible
+            this.setState((prevState) => ({
+                isSignInVisible: !prevState.isSignInVisible,
             }));
         }
     }

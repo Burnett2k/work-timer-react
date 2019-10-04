@@ -6,7 +6,7 @@ class Controls extends React.Component {
         onStart: PropTypes.func,
         playPauseText: PropTypes.string,
         onReset: PropTypes.func,
-        onStop: PropTypes.func
+        onStop: PropTypes.func,
     };
 
     render() {

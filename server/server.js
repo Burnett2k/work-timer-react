@@ -85,9 +85,7 @@ app.get(
     function(req, res) {
         // Successful authentication, redirect home.
         console.log('successful authentication');
-        res.write(`hello ${req.user.displayName}`);
-        // res.redirect('/');
-        res.end();
+        res.redirect('localhost:3000/');
     }
 );
 
