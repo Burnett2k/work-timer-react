@@ -14,8 +14,8 @@ const customStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         padding: '0px',
-        width: '350px'
-    }
+        width: '350px',
+    },
 };
 
 class Preferences extends React.Component {
@@ -31,7 +31,7 @@ class Preferences extends React.Component {
         onPreferencesSaved: PropTypes.func,
         minutes: PropTypes.number,
         isMuted: PropTypes.bool,
-        theme: PropTypes.string
+        theme: PropTypes.string,
     };
 
     toggleModal() {

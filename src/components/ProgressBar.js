@@ -3,7 +3,7 @@ const React = require('react');
 
 class ProgressBar extends React.Component {
     static propTypes = {
-        percent: PropTypes.number
+        percent: PropTypes.number,
     };
 
     render() {

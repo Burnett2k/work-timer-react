@@ -8,14 +8,14 @@ class SaveGoals extends React.Component {
         isEditMode: PropTypes.bool,
         toggleEditMode: PropTypes.func,
         onGoalEdit: PropTypes.func,
-        reset: PropTypes.bool
+        reset: PropTypes.bool,
     };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            goalText: ''
+            goalText: '',
         };
 
         this.onGoalTyping = this.onGoalTyping.bind(this);
@@ -34,7 +34,7 @@ class SaveGoals extends React.Component {
 
     onGoalTyping(e) {
         this.setState({
-            goalText: e.target.value
+            goalText: e.target.value,
         });
     }
 

@@ -5,18 +5,18 @@ const goalStyles = {
     display: 'inline-block',
     verticalAlign: 'baseline',
     textAlign: 'center',
-    paddingRight: '40px'
+    paddingRight: '40px',
 };
 
 const pointerStyle = {
     cursor: 'pointer',
-    fontSize: '20px'
+    fontSize: '20px',
 };
 
 class GoalLink extends React.Component {
     static propTypes = {
         goalText: PropTypes.string,
-        toggleEditMode: PropTypes.func
+        toggleEditMode: PropTypes.func,
     };
 
     componentDidMount() {
@@ -41,7 +41,7 @@ class GoalLink extends React.Component {
                                 className="fa fa-lg fa-pencil-square-o"
                                 title="edit"
                                 onClick={this.props.toggleEditMode}
-                                onKeyDown={e => this.keyPressed(e)}
+                                onKeyDown={(e) => this.keyPressed(e)}
                                 style={pointerStyle}
                                 role="button"
                                 tabIndex={0}

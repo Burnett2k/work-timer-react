@@ -3,7 +3,7 @@ const React = require('react');
 
 class SessionCounter extends React.Component {
     static propTypes = {
-        completed: PropTypes.number
+        completed: PropTypes.number,
     };
 
     render() {

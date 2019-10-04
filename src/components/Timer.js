@@ -3,7 +3,7 @@ const React = require('react');
 
 class Timer extends React.Component {
     static propTypes = {
-        formattedTime: PropTypes.string
+        formattedTime: PropTypes.string,
     };
     render() {
         return (

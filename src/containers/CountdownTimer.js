@@ -33,7 +33,7 @@ class CountdownTimer extends React.Component {
             formattedTime: '00:00',
             playPauseText: 'start',
             sessionComplete: false,
-            percentComplete: 0
+            percentComplete: 0,
         };
     }
 
@@ -45,7 +45,7 @@ class CountdownTimer extends React.Component {
         reset: PropTypes.bool,
         stop: PropTypes.bool,
         status: PropTypes.string,
-        isMuted: PropTypes.bool
+        isMuted: PropTypes.bool,
     };
 
     componentDidMount() {
@@ -160,8 +160,8 @@ class CountdownTimer extends React.Component {
     }
 
     onCompletion() {
-        this.setState(prevState => ({
-            sessionComplete: !prevState.sessionComplete
+        this.setState((prevState) => ({
+            sessionComplete: !prevState.sessionComplete,
         }));
         this.flashTimesUp();
         this.playSound();
@@ -238,7 +238,7 @@ function mapStateToProps(state) {
         secondsRemaining: state.timer.secondsRemaining,
         status: state.timer.status,
         minutes: state.preferences.minutes,
-        isMuted: state.preferences.isMuted
+        isMuted: state.preferences.isMuted,
     };
 }
 

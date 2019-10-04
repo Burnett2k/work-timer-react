@@ -17,10 +17,10 @@ class SavePreferences extends React.Component {
         onPreferencesSaved: PropTypes.func,
         onRequestClose: PropTypes.func,
         showModal: PropTypes.bool,
-        toggleModalShown: PropTypes.func
+        toggleModalShown: PropTypes.func,
     };
 
-    onPreferencesSaved = payload => {
+    onPreferencesSaved = (payload) => {
         this.props.dispatch(saveMinutes(payload.minutes));
         this.props.dispatch(saveMute(payload.isMuted));
         this.props.dispatch(saveTheme(payload.theme));
@@ -44,7 +44,7 @@ class SavePreferences extends React.Component {
         this.onPreferencesSaved({
             minutes: parseInt(minutes, 10),
             isMuted: muted,
-            theme: theme
+            theme: theme,
         });
     }
 
@@ -114,7 +114,7 @@ function mapStateToProps(state) {
     return {
         minutes: state.preferences.minutes,
         isMuted: state.preferences.isMuted,
-        theme: state.preferences.theme
+        theme: state.preferences.theme,
     };
 }
 
