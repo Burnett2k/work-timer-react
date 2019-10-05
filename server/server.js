@@ -1,8 +1,25 @@
 require('dotenv').config();
 const express = require('express');
 const passport = require('passport');
-const authRoutes = require('./auth-routes');
+const authRoutes = require('./routes/auth-routes');
 require('./passport-setup');
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = process.env.MONGO_URI;
+const client = new MongoClient(uri, { useNewUrlParser: true });
+
+try {
+    client.connect((err) => {
+        if (err) {
+            throw err;
+        }
+        const collection = client.db('work-timer-text').collection('users');
+        // perform actions on the collection object
+        collection.insertOne({ name: 'sawyer' });
+    });
+} catch (error) {
+    console.log(error);
+}
 
 // Configure Passport authenticated session persistence.
 //
