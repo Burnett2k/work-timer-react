@@ -1,26 +1,8 @@
 require('dotenv').config();
-
 const express = require('express');
 const passport = require('passport');
-const Strategy = require('passport-google-oauth20').Strategy;
-
-passport.use(
-    new Strategy(
-        {
-            clientID: process.env.CLIENT_ID,
-            clientSecret: process.env.CLIENT_SECRET,
-            callbackURL: process.env.REDIRECT_URL,
-        },
-        function(accessToken, refreshToken, profile, cb) {
-            // In this example, the user's Facebook profile is supplied as the user
-            // record.  In a production-quality application, the Facebook profile should
-            // be associated with a user record in the application's database, which
-            // allows for account linking and authentication with other identity
-            // providers.
-            return cb(null, profile);
-        }
-    )
-);
+const authRoutes = require('./auth-routes');
+require('./passport-setup');
 
 // Configure Passport authenticated session persistence.
 //
@@ -65,39 +47,14 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Define routes.
-// app.get('/', function(req, res) {
-//     res.render('home', { user: req.user });
-// });
+app.use('/auth', authRoutes);
 
-// app.get('/login', function(req, res) {
-//     res.render('login');
-// });
+const authCheck = (req, res, next) => {
+    next();
+};
 
-app.get(
-    '/auth/google',
-    passport.authenticate('google', { scope: ['profile', 'email'] })
-);
-
-app.get(
-    '/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login' }),
-    function(req, res) {
-        // Successful authentication, redirect home.
-        console.log('successful authentication');
-        res.redirect('localhost:3000/');
-    }
-);
-
-app.get('/logout', function(req, res) {
-    req.logOut();
-});
-
-app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), function(
-    req,
-    res
-) {
-    res.render('profile', { user: req.user });
+app.get('/', authCheck, (req, res) => {
+    res.status(200);
 });
 
 app.listen(app.get('port'), () => {
