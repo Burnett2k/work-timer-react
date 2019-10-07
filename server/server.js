@@ -4,47 +4,18 @@ const passport = require('passport');
 const authRoutes = require('./routes/auth-routes');
 require('./passport-setup');
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = process.env.MONGO_URI;
-const client = new MongoClient(uri, { useNewUrlParser: true });
-
-try {
-    client.connect((err) => {
-        if (err) {
-            throw err;
-        }
-        const collection = client.db('work-timer-text').collection('users');
-        // perform actions on the collection object
-        collection.insertOne({ name: 'sawyer' });
-    });
-} catch (error) {
-    console.log(error);
-}
-
-// Configure Passport authenticated session persistence.
-//
-// In order to restore authentication state across HTTP requests, Passport needs
-// to serialize users into and deserialize users out of the session.  In a
-// production-quality application, this would typically be as simple as
-// supplying the user ID when serializing, and querying the user record by ID
-// from the database when deserializing.  However, due to the fact that this
-// example does not have a database, the complete Facebook profile is serialized
-// and deserialized.
-passport.serializeUser(function(user, cb) {
-    cb(null, user);
-});
-
-passport.deserializeUser(function(obj, cb) {
-    null, obj;
-});
+const mongoose = require('mongoose');
+mongoose.connect(
+    process.env.MONGO_URI,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    () => {
+        console.log('connected to mongo db');
+    }
+);
 
 // Create a new Express application.
 var app = express();
 app.set('port', process.env.PORT || 8080);
-
-// Configure view engine to render EJS templates.
-// app.set('views', __dirname + '/views');
-// app.set('view engine', 'ejs');
 
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
