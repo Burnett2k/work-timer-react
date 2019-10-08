@@ -17,6 +17,7 @@ mongoose.connect(
 
 // Create a new Express application.
 var app = express();
+
 app.set('port', process.env.PORT || 8080);
 
 // Use application-level middleware for common functionality, including
@@ -44,7 +45,12 @@ const authCheck = (req, res, next) => {
 };
 
 app.get('/', authCheck, (req, res) => {
-    res.status(200);
+    res.status(200).json({
+        authenticated: true,
+        message: 'user successfully authenticated',
+        user: req.user,
+        cookies: req.cookies,
+    });
 });
 
 app.listen(app.get('port'), () => {
