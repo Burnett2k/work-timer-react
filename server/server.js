@@ -2,9 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const passport = require('passport');
 const authRoutes = require('./routes/auth-routes');
+const mongoose = require('mongoose');
+
 require('./passport-setup');
 
-const mongoose = require('mongoose');
+// connect to mongo
 mongoose.connect(
     process.env.MONGO_URI,
     { useNewUrlParser: true, useUnifiedTopology: true },
