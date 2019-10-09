@@ -2,9 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const passport = require('passport');
 const authRoutes = require('./routes/auth-routes');
+const mongoose = require('mongoose');
+
 require('./passport-setup');
 
-const mongoose = require('mongoose');
+// connect to mongo
 mongoose.connect(
     process.env.MONGO_URI,
     { useNewUrlParser: true, useUnifiedTopology: true },
@@ -15,6 +17,7 @@ mongoose.connect(
 
 // Create a new Express application.
 var app = express();
+
 app.set('port', process.env.PORT || 8080);
 
 // Use application-level middleware for common functionality, including
@@ -27,6 +30,7 @@ app.use(
         secret: 'hellotheremydarling',
         resave: true,
         saveUninitialized: true,
+        maxAge: 24 * 60 * 60 * 1000,
     })
 );
 
@@ -42,7 +46,12 @@ const authCheck = (req, res, next) => {
 };
 
 app.get('/', authCheck, (req, res) => {
-    res.status(200);
+    res.status(200).json({
+        authenticated: true,
+        message: 'user successfully authenticated',
+        user: req.user,
+        cookies: req.cookies,
+    });
 });
 
 app.listen(app.get('port'), () => {

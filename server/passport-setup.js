@@ -20,6 +20,7 @@ passport.use(
                     lastName: profile.name.familyName,
                     screenName: profile.displayName,
                     googleId: profile.id,
+                    emailAddress: profile.emails[0].value,
                 }).save();
                 if (newUser) {
                     done(null, newUser);

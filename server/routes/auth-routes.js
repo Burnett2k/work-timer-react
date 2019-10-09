@@ -30,7 +30,8 @@ router.get('/login/failed', (req, res) => {
 });
 
 router.get('/logout', function(req, res) {
-    req.logOut();
+    req.logout();
+    res.redirect(CLIENT_HOME_PAGE_URL);
 });
 
 router.get(
