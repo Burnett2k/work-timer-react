@@ -30,6 +30,7 @@ app.use(
         secret: 'hellotheremydarling',
         resave: true,
         saveUninitialized: true,
+        maxAge: 24 * 60 * 60 * 1000,
     })
 );
 
