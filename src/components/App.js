@@ -20,6 +20,8 @@ class App extends Component {
             isEditMode: false,
             isChartVisible: false,
             isSignInVisible: false,
+            authenticated: false,
+            user: {},
         };
 
         this.toggleModalShown = this.toggleModalShown.bind(this);
@@ -28,10 +30,30 @@ class App extends Component {
         this.toggleSignInPage = this.toggleSignInPage.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         document.addEventListener('keyup', this.handleKeyUp.bind(this));
         ReactGA.initialize('UA-116653106-1');
         ReactGA.pageview(window.location.pathname + window.location.search);
+
+        const response = await fetch(
+            'http://localhost:8080/auth/login/success',
+            {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true,
+                },
+            }
+        );
+
+        if (response.status === 200) {
+            const { user } = await response.json();
+            this.setState({ authenticated: true, user: user });
+        } else {
+            this.setState({ authenticated: false, user: {} });
+        }
     }
 
     toggleModalShown() {
