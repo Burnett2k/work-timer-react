@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class SignInButton extends React.Component {
     static propTypes = {
-        toggleSignInPage: PropTypes.func,
+        handleNotAuthenticated: PropTypes.func,
         authenticated: PropTypes.bool,
     };
 
@@ -12,13 +12,22 @@ class SignInButton extends React.Component {
         return (
             <div>
                 {authenticated ? (
-                    <a href="http://localhost:8080/auth/logout">Logout</a>
+                    <a
+                        href="http://localhost:8080/auth/logout"
+                        onClick={this.handleLogoutClick}
+                    >
+                        Logout
+                    </a>
                 ) : (
                     <a href="http://localhost:8080/auth/google">Login</a>
                 )}
             </div>
         );
     }
+
+    handleLogoutClick = () => {
+        this.props.handleNotAuthenticated();
+    };
 }
 
 export default SignInButton;

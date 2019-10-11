@@ -38,6 +38,8 @@ router.get('/login/success', (req, res) => {
             user: req.user,
             cookies: req.cookies,
         });
+    } else {
+        res.status(401).json({ success: false });
     }
 });
 

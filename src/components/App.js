@@ -28,6 +28,7 @@ class App extends Component {
         this.toggleEditMode = this.toggleEditMode.bind(this);
         this.toggleChartVisible = this.toggleChartVisible.bind(this);
         this.toggleSignInPage = this.toggleSignInPage.bind(this);
+        this.handleNotAuthenticated = this.handleNotAuthenticated.bind(this);
     }
 
     async componentDidMount() {
@@ -52,7 +53,7 @@ class App extends Component {
             const { user } = await response.json();
             this.setState({ authenticated: true, user: user });
         } else {
-            this.setState({ authenticated: false, user: {} });
+            this.handleNotAuthenticated();
         }
     }
 
@@ -114,6 +115,10 @@ class App extends Component {
                 isSignInVisible: !prevState.isSignInVisible,
             }));
         }
+    }
+
+    handleNotAuthenticated() {
+        this.setState({ authenticated: false, user: {} });
     }
 
     handleKeyUp(event) {
@@ -179,7 +184,8 @@ class App extends Component {
                             isChartVisible={this.state.isChartVisible}
                         />
                         <SignInButton
-                            toggleSignInPage={this.toggleSignInPage}
+                            authenticated={this.state.authenticated}
+                            handleNotAuthenticated={this.handleNotAuthenticated}
                             isSignInVisible={this.state.isSignInVisible}
                         ></SignInButton>
                     </div>
