@@ -3,6 +3,7 @@ const express = require('express');
 const passport = require('passport');
 const authRoutes = require('./routes/auth-routes');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 require('./passport-setup');
 
@@ -34,6 +35,15 @@ app.use(
     })
 );
 
+// set up cors to allow us to accept requests from our client
+app.use(
+    cors({
+        origin: 'http://localhost:3000', // allow to server to accept request from different origin
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true, // allow session cookie from browser to pass through
+    })
+);
+
 // Initialize Passport and restore authentication state, if any, from the
 // session.
 app.use(passport.initialize());
@@ -42,7 +52,14 @@ app.use(passport.session());
 app.use('/auth', authRoutes);
 
 const authCheck = (req, res, next) => {
-    next();
+    if (!req.user) {
+        res.status(401).json({
+            authenticated: false,
+            message: 'user has not been authenticated',
+        });
+    } else {
+        next();
+    }
 };
 
 app.get('/', authCheck, (req, res) => {

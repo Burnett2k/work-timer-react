@@ -20,18 +20,45 @@ class App extends Component {
             isEditMode: false,
             isChartVisible: false,
             isSignInVisible: false,
+            authenticated: false,
+            user: {},
         };
 
         this.toggleModalShown = this.toggleModalShown.bind(this);
         this.toggleEditMode = this.toggleEditMode.bind(this);
         this.toggleChartVisible = this.toggleChartVisible.bind(this);
         this.toggleSignInPage = this.toggleSignInPage.bind(this);
+        this.handleNotAuthenticated = this.handleNotAuthenticated.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         document.addEventListener('keyup', this.handleKeyUp.bind(this));
         ReactGA.initialize('UA-116653106-1');
         ReactGA.pageview(window.location.pathname + window.location.search);
+
+        try {
+            const response = await fetch(
+                'http://localhost:8080/auth/login/success',
+                {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Credentials': true,
+                    },
+                }
+            );
+
+            if (response.status === 200) {
+                const { user } = await response.json();
+                this.setState({ authenticated: true, user: user });
+            } else {
+                this.handleNotAuthenticated();
+            }
+        } catch (error) {
+            this.handleNotAuthenticated();
+        }
     }
 
     toggleModalShown() {
@@ -94,6 +121,10 @@ class App extends Component {
         }
     }
 
+    handleNotAuthenticated() {
+        this.setState({ authenticated: false, user: {} });
+    }
+
     handleKeyUp(event) {
         switch (event.key) {
             case 'f':
@@ -147,6 +178,9 @@ class App extends Component {
             <React.Fragment>
                 <div className="container q-top-buffer">
                     <div className="container d-flex flex-row-reverse">
+                        {!this.state.authenticated
+                            ? 'welcome!'
+                            : this.state.user.firstName}
                         <SavePreferences
                             toggleModalShown={this.toggleModalShown}
                             showModal={this.state.showModal}
@@ -157,8 +191,8 @@ class App extends Component {
                             isChartVisible={this.state.isChartVisible}
                         />
                         <SignInButton
-                            toggleSignInPage={this.toggleSignInPage}
-                            isSignInVisible={this.state.isSignInVisible}
+                            authenticated={this.state.authenticated}
+                            handleNotAuthenticated={this.handleNotAuthenticated}
                         ></SignInButton>
                     </div>
                     {this.displayComponent(this.state)}

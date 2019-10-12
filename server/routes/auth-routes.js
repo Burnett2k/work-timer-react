@@ -8,18 +8,19 @@ router.use((req, res, next) => {
     next();
 });
 
-router.get(
-    '/google',
-    passport.authenticate(GOOGLE_STRATEGY, { scope: ['profile', 'email'] })
-);
-
-router.get(
-    '/google/callback',
-    passport.authenticate(GOOGLE_STRATEGY, {
-        failureRedirect: '/login/failed',
-        successRedirect: CLIENT_HOME_PAGE_URL,
-    })
-);
+// when login is successful, retrieve user info
+router.get('/login/success', (req, res) => {
+    if (req.user) {
+        res.json({
+            success: true,
+            message: 'user has successfully authenticated',
+            user: req.user,
+            cookies: req.cookies,
+        });
+    } else {
+        res.status(401).json({ success: false });
+    }
+});
 
 // when login failed, send failed msg
 router.get('/login/failed', (req, res) => {
@@ -29,17 +30,25 @@ router.get('/login/failed', (req, res) => {
     });
 });
 
+// when user logs out, redirect to client
 router.get('/logout', function(req, res) {
     req.logout();
     res.redirect(CLIENT_HOME_PAGE_URL);
 });
 
+// call authenticate for google strategy
 router.get(
-    '/profile',
-    require('connect-ensure-login').ensureLoggedIn(),
-    function(req, res) {
-        res.render('profile', { user: req.user });
-    }
+    '/google',
+    passport.authenticate(GOOGLE_STRATEGY, { scope: ['profile', 'email'] })
+);
+
+// redirect after auth completes successfully
+router.get(
+    '/google/redirect',
+    passport.authenticate(GOOGLE_STRATEGY, {
+        failureRedirect: '/login/failed',
+        successRedirect: CLIENT_HOME_PAGE_URL,
+    })
 );
 
 module.exports = router;

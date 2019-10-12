@@ -7,7 +7,7 @@ passport.use(
         {
             clientID: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
-            callbackURL: process.env.REDIRECT_URL,
+            callbackURL: '/auth/google/redirect',
         },
         async (accessToken, refreshToken, profile, done) => {
             const currentUser = await User.findOne({
