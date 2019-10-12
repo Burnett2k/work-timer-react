@@ -36,23 +36,27 @@ class App extends Component {
         ReactGA.initialize('UA-116653106-1');
         ReactGA.pageview(window.location.pathname + window.location.search);
 
-        const response = await fetch(
-            'http://localhost:8080/auth/login/success',
-            {
-                method: 'GET',
-                credentials: 'include',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true,
-                },
-            }
-        );
+        try {
+            const response = await fetch(
+                'http://localhost:8080/auth/login/success',
+                {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Credentials': true,
+                    },
+                }
+            );
 
-        if (response.status === 200) {
-            const { user } = await response.json();
-            this.setState({ authenticated: true, user: user });
-        } else {
+            if (response.status === 200) {
+                const { user } = await response.json();
+                this.setState({ authenticated: true, user: user });
+            } else {
+                this.handleNotAuthenticated();
+            }
+        } catch (error) {
             this.handleNotAuthenticated();
         }
     }
@@ -174,6 +178,9 @@ class App extends Component {
             <React.Fragment>
                 <div className="container q-top-buffer">
                     <div className="container d-flex flex-row-reverse">
+                        {!this.state.authenticated
+                            ? 'welcome!'
+                            : this.state.user.firstName}
                         <SavePreferences
                             toggleModalShown={this.toggleModalShown}
                             showModal={this.state.showModal}
@@ -186,7 +193,6 @@ class App extends Component {
                         <SignInButton
                             authenticated={this.state.authenticated}
                             handleNotAuthenticated={this.handleNotAuthenticated}
-                            isSignInVisible={this.state.isSignInVisible}
                         ></SignInButton>
                     </div>
                     {this.displayComponent(this.state)}

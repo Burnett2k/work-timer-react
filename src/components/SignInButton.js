@@ -12,20 +12,25 @@ class SignInButton extends React.Component {
         return (
             <div>
                 {authenticated ? (
-                    <a
+                    <button
                         href="http://localhost:8080/auth/logout"
                         onClick={this.handleLogoutClick}
                     >
                         Logout
-                    </a>
+                    </button>
                 ) : (
-                    <a href="http://localhost:8080/auth/google">Login</a>
+                    <button onClick={this.handleSignInClick}>Login</button>
                 )}
             </div>
         );
     }
 
+    handleSignInClick = () => {
+        window.open('http://localhost:8080/auth/google', '_self');
+    };
+
     handleLogoutClick = () => {
+        window.open('http://localhost:8080/auth/logout', '_self');
         this.props.handleNotAuthenticated();
     };
 }
