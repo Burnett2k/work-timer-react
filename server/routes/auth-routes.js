@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
-const CLIENT_HOME_PAGE_URL = 'localhost:3000';
+const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL;
 const GOOGLE_STRATEGY = 'google';
 
 router.use((req, res, next) => {

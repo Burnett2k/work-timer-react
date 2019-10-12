@@ -7,6 +7,8 @@ const cors = require('cors');
 const offline = Boolean(process.env.OFFLINE) || false;
 require('./passport-setup');
 
+const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL;
+
 // connect to mongo
 if (!offline) {
     mongoose
@@ -47,7 +49,7 @@ app.use(
 // set up cors to allow us to accept requests from our client
 app.use(
     cors({
-        origin: 'http://localhost:3000', // allow to server to accept request from different origin
+        origin: CLIENT_HOME_PAGE_URL, // allow to server to accept request from different origin
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true, // allow session cookie from browser to pass through
     })

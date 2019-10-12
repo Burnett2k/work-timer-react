@@ -7,7 +7,6 @@ import SaveGoals from '../containers/SaveGoals';
 import ProgressChart from '../components/ProgressChart';
 import HistoryButton from './HistoryButton';
 import SignInButton from './SignInButton';
-import SignInPage from './SignInPage';
 
 class App extends Component {
     constructor(props) {
@@ -27,7 +26,6 @@ class App extends Component {
         this.toggleModalShown = this.toggleModalShown.bind(this);
         this.toggleEditMode = this.toggleEditMode.bind(this);
         this.toggleChartVisible = this.toggleChartVisible.bind(this);
-        this.toggleSignInPage = this.toggleSignInPage.bind(this);
         this.handleNotAuthenticated = this.handleNotAuthenticated.bind(this);
     }
 
@@ -113,14 +111,6 @@ class App extends Component {
         }
     }
 
-    toggleSignInPage() {
-        if (!this.state.isEditMode) {
-            this.setState((prevState) => ({
-                isSignInVisible: !prevState.isSignInVisible,
-            }));
-        }
-    }
-
     handleNotAuthenticated() {
         this.setState({ authenticated: false, user: {} });
     }
@@ -153,8 +143,6 @@ class App extends Component {
     displayComponent(state) {
         if (state.isChartVisible) {
             return <ProgressChart />;
-        } else if (state.isSignInVisible) {
-            return <SignInPage />;
         } else {
             return (
                 <React.Fragment>
