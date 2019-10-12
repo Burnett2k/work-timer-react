@@ -4,22 +4,26 @@ const passport = require('passport');
 const authRoutes = require('./routes/auth-routes');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
+const offline = Boolean(process.env.OFFLINE) || false;
 require('./passport-setup');
 
 // connect to mongo
-mongoose
-    .connect(process.env.MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .then(() => {
-        console.log('connected to mongo db');
-    })
-    .catch((err) => {
-        console.log(`cannot connect to mongo: ${err}`);
-        process.exit(1);
-    });
+if (!offline) {
+    mongoose
+        .connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
+        .then(() => {
+            console.log('connected to mongo db');
+        })
+        .catch((err) => {
+            console.log(`cannot connect to mongo: ${err}`);
+            process.exit(1);
+        });
+} else {
+    console.log('did not connect to mongo due to being in offline mode');
+}
 
 // Create a new Express application.
 var app = express();
