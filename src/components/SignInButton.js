@@ -12,12 +12,7 @@ class SignInButton extends React.Component {
         return (
             <div>
                 {authenticated ? (
-                    <button
-                        href="http://localhost:8080/auth/logout"
-                        onClick={this.handleLogoutClick}
-                    >
-                        Logout
-                    </button>
+                    <button onClick={this.handleLogoutClick}>Logout</button>
                 ) : (
                     <button onClick={this.handleSignInClick}>Login</button>
                 )}
