@@ -4,17 +4,28 @@ const passport = require('passport');
 const authRoutes = require('./routes/auth-routes');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
+const offline = process.env.OFFLINE === 'true' ? true : false;
 require('./passport-setup');
 
+const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL;
+
 // connect to mongo
-mongoose.connect(
-    process.env.MONGO_URI,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    () => {
-        console.log('connected to mongo db');
-    }
-);
+if (!offline) {
+    mongoose
+        .connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
+        .then(() => {
+            console.log('connected to mongo db');
+        })
+        .catch((err) => {
+            console.log(`cannot connect to mongo: ${err}`);
+            process.exit(1);
+        });
+} else {
+    console.log('offline mode: will not connect to mongodb');
+}
 
 // Create a new Express application.
 var app = express();
@@ -38,7 +49,7 @@ app.use(
 // set up cors to allow us to accept requests from our client
 app.use(
     cors({
-        origin: 'http://localhost:3000', // allow to server to accept request from different origin
+        origin: CLIENT_HOME_PAGE_URL, // allow to server to accept request from different origin
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true, // allow session cookie from browser to pass through
     })
