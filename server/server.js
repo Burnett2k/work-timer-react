@@ -4,7 +4,7 @@ const passport = require('passport');
 const authRoutes = require('./routes/auth-routes');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const offline = Boolean(process.env.OFFLINE) || false;
+const offline = process.env.OFFLINE === 'true' ? true : false;
 require('./passport-setup');
 
 const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL;
@@ -24,7 +24,7 @@ if (!offline) {
             process.exit(1);
         });
 } else {
-    console.log('did not connect to mongo due to being in offline mode');
+    console.log('offline mode: will not connect to mongodb');
 }
 
 // Create a new Express application.
