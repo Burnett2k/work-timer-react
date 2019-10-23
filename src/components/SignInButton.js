@@ -12,9 +12,21 @@ class SignInButton extends React.Component {
         return (
             <div>
                 {authenticated ? (
-                    <button onClick={this.handleLogoutClick}>Logout</button>
+                    <button
+                        type="button"
+                        className="btn btn-outline-primary"
+                        onClick={this.handleLogoutClick}
+                    >
+                        Logout
+                    </button>
                 ) : (
-                    <button onClick={this.handleSignInClick}>Login</button>
+                    <button
+                        type="button"
+                        className="btn btn-outline-primary"
+                        onClick={this.handleSignInClick}
+                    >
+                        Login
+                    </button>
                 )}
             </div>
         );
