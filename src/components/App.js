@@ -166,9 +166,6 @@ class App extends Component {
             <React.Fragment>
                 <div className="container q-top-buffer">
                     <div className="container d-flex flex-row-reverse">
-                        {!this.state.authenticated
-                            ? 'welcome!'
-                            : this.state.user.firstName}
                         <SavePreferences
                             toggleModalShown={this.toggleModalShown}
                             showModal={this.state.showModal}
@@ -178,6 +175,7 @@ class App extends Component {
                             toggleChartVisible={this.toggleChartVisible}
                             isChartVisible={this.state.isChartVisible}
                         />
+                        &nbsp;
                         <SignInButton
                             authenticated={this.state.authenticated}
                             handleNotAuthenticated={this.handleNotAuthenticated}
