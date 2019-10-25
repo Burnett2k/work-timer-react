@@ -7,7 +7,7 @@ import { saveSecondsRemaining } from '../actions';
 import { saveStatus } from '../actions';
 import PropTypes from 'prop-types';
 import timesUp from '../sounds/harp-strumming.mp3';
-import ProgressBar from '../components/ProgressBar.js';
+// import ProgressBar from '../components/ProgressBar.js';
 import Worker from '../utils/timer.worker.js';
 
 const STARTED = 'running';
@@ -225,7 +225,7 @@ class CountdownTimer extends React.Component {
                     onReset={this.onReset}
                     playPauseText={this.state.playPauseText}
                 />
-                <ProgressBar percent={this.state.percentComplete} />
+                {/* <ProgressBar percent={this.state.percentComplete} /> */}
                 <SaveSessions sessionComplete={this.state.sessionComplete} />
             </div>
         );
