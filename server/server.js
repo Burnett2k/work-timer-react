@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const passport = require('passport');
 const authRoutes = require('./routes/auth-routes');
+const sessionRoutes = require('./routes/session-routes');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const offline = process.env.OFFLINE === 'true' ? true : false;
@@ -32,11 +33,8 @@ var app = express();
 
 app.set('port', process.env.PORT || 8080);
 
-// Use application-level middleware for common functionality, including
-// logging, parsing, and session handling.
-app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
-app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(express.json());
 app.use(
     require('express-session')({
         secret: 'hellotheremydarling',
@@ -61,6 +59,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/auth', authRoutes);
+app.use('/session', sessionRoutes);
 
 const authCheck = (req, res, next) => {
     if (!req.user) {
