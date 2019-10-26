@@ -7,6 +7,7 @@ import SaveGoals from '../containers/SaveGoals';
 import ProgressChart from '../components/ProgressChart';
 import HistoryButton from './HistoryButton';
 import SignInButton from './SignInButton';
+import { checkAuth } from '../services/checkAuth';
 
 class App extends Component {
     constructor(props) {
@@ -34,20 +35,9 @@ class App extends Component {
         ReactGA.initialize('UA-116653106-1');
         ReactGA.pageview(window.location.pathname + window.location.search);
 
-        try {
-            const response = await fetch(
-                'http://localhost:8080/auth/login/success',
-                {
-                    method: 'GET',
-                    credentials: 'include',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Credentials': true,
-                    },
-                }
-            );
+        const response = await checkAuth();
 
+        try {
             if (response.status === 200) {
                 const { user } = await response.json();
                 this.setState({ authenticated: true, user: user });
