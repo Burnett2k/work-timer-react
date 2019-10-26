@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import timesUp from '../sounds/harp-strumming.mp3';
 // import ProgressBar from '../components/ProgressBar.js';
 import Worker from '../utils/timer.worker.js';
+import { saveSession } from '../services/timerSession';
 
 const STARTED = 'running';
 const PAUSED = 'paused';
@@ -163,6 +164,8 @@ class CountdownTimer extends React.Component {
         this.setState((prevState) => ({
             sessionComplete: !prevState.sessionComplete,
         }));
+        // todo add goal text once it is stored in redux
+        saveSession({ secondsElapsed: this.props.minutes * 60 });
         this.flashTimesUp();
         this.playSound();
     }
