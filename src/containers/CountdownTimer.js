@@ -47,6 +47,7 @@ class CountdownTimer extends React.Component {
         stop: PropTypes.bool,
         status: PropTypes.string,
         isMuted: PropTypes.bool,
+        notes: PropTypes.string,
     };
 
     componentDidMount() {
@@ -92,6 +93,15 @@ class CountdownTimer extends React.Component {
     }
 
     onStart() {
+        // todo ** figure out the right place to put this if you
+        // also want to save data on incomplete sessions which would
+        // be useful
+        saveSession({
+            secondsElapsed: this.props.minutes * 60,
+            notes: {
+                text: this.props.notes,
+            },
+        });
         switch (this.props.status) {
             case STARTED:
                 this.props.dispatch(saveStatus(PAUSED));
@@ -164,8 +174,6 @@ class CountdownTimer extends React.Component {
         this.setState((prevState) => ({
             sessionComplete: !prevState.sessionComplete,
         }));
-        // todo add goal text once it is stored in redux
-        saveSession({ secondsElapsed: this.props.minutes * 60 });
         this.flashTimesUp();
         this.playSound();
     }
@@ -242,6 +250,7 @@ function mapStateToProps(state) {
         status: state.timer.status,
         minutes: state.preferences.minutes,
         isMuted: state.preferences.isMuted,
+        notes: state.timer.notes,
     };
 }
 
