@@ -27,3 +27,8 @@ export const saveSessionsCompleted = (completed) => ({
     type: 'SAVE_SESSION',
     payload: completed,
 });
+
+export const saveNotes = (notes) => ({
+    type: 'SAVE_NOTES',
+    payload: notes,
+});
