@@ -118,6 +118,4 @@ function mapStateToProps(state) {
     };
 }
 
-//use connect method to make application aware of the redux store
-//doing so makes this a 'smart' component. i.e. a container
 export default connect(mapStateToProps)(SavePreferences);

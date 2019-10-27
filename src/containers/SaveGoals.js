@@ -2,6 +2,8 @@ import React from 'react';
 import GoalLink from '../components/GoalLink';
 import GoalInput from '../components/GoalInput';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { saveNotes } from '../actions';
 
 class SaveGoals extends React.Component {
     static propTypes = {
@@ -9,6 +11,7 @@ class SaveGoals extends React.Component {
         toggleEditMode: PropTypes.func,
         onGoalEdit: PropTypes.func,
         reset: PropTypes.bool,
+        dispatch: PropTypes.func,
     };
 
     constructor(props) {
@@ -25,6 +28,9 @@ class SaveGoals extends React.Component {
     componentDidUpdate(prevProps) {
         if (prevProps.reset !== this.props.reset) {
             this.onReset();
+        }
+        if (prevProps.isEditMode !== this.props.isEditMode) {
+            this.props.dispatch(saveNotes(this.state.goalText));
         }
     }
 
@@ -59,4 +65,10 @@ class SaveGoals extends React.Component {
     }
 }
 
-export default SaveGoals;
+function mapStateToProps(state) {
+    return {
+        notes: state.goalText,
+    };
+}
+
+export default connect(mapStateToProps)(SaveGoals);
