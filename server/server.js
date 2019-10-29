@@ -37,7 +37,7 @@ app.use(require('cookie-parser')());
 app.use(express.json());
 app.use(
     require('express-session')({
-        secret: 'hellotheremydarling',
+        secret: process.env.SESSION_SECRET,
         resave: true,
         saveUninitialized: true,
         maxAge: 24 * 60 * 60 * 1000,
@@ -53,33 +53,12 @@ app.use(
     })
 );
 
-// Initialize Passport and restore authentication state, if any, from the
-// session.
 app.use(passport.initialize());
 app.use(passport.session());
 
+// add routes
 app.use('/auth', authRoutes);
 app.use('/session', sessionRoutes);
-
-const authCheck = (req, res, next) => {
-    if (!req.user) {
-        res.status(401).json({
-            authenticated: false,
-            message: 'user has not been authenticated',
-        });
-    } else {
-        next();
-    }
-};
-
-app.get('/', authCheck, (req, res) => {
-    res.status(200).json({
-        authenticated: true,
-        message: 'user successfully authenticated',
-        user: req.user,
-        cookies: req.cookies,
-    });
-});
 
 app.listen(app.get('port'), () => {
     console.log(`listening on ${app.get('port')}`);
