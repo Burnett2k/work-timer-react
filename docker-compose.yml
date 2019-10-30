@@ -11,4 +11,4 @@ services:
         image: work-timer-api
         ports:
             - 5002:5002
-        command: cd server; yarn start;
+        command: yarn start
