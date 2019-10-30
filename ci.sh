@@ -34,7 +34,7 @@ ssh root@167.99.106.189 << 'EOSSH'
     docker rm $(docker ps -a -q)
 
     # build a new docker container based upon updated repository
-    docker build -t work-timer-api .
+    docker build -t work-timer-api ./server
 
     # start the docker container
     docker-compose up -d
