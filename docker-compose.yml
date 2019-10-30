@@ -1,8 +1,14 @@
 version: '3'
 services:
-    server:
+    ui:
         container_name: work-timer-react
         image: work-timer-react
         ports:
             - 5000:5000
         command: serve -s ./build
+    server:
+        container_name: work-timer-api
+        image: work-timer-api
+        ports:
+            - 5002:5002
+        command: cd server; yarn start;
