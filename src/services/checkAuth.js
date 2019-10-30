@@ -1,5 +1,5 @@
 export const checkAuth = async () => {
-    const response = await fetch('http://localhost:8080/auth/login/success', {
+    const response = await fetch('https://worktimer.xyz/auth/login/success', {
         method: 'GET',
         credentials: 'include',
         headers: {

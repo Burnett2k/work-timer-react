@@ -1,7 +1,7 @@
 export const saveSession = async (saveSession) => {
     // todo modify URL once new endpoint exists
     // use env variables for base url
-    const response = await fetch('http://localhost:8080/session/save', {
+    const response = await fetch('https://worktimer.xyz/session/save', {
         method: 'POST',
         credentials: 'include',
         headers: {
