@@ -9,7 +9,7 @@ COPY package.json yarn.lock ./
 # Install dependencies
 RUN yarn
 
-COPY passport-setup.js server.js ./
+COPY passport-setup.js server.js .env ./
 # Copy rest of files
 COPY models/ ./src
 COPY routes/ ./routes
