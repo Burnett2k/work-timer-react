@@ -11,7 +11,7 @@ RUN yarn
 
 COPY passport-setup.js server.js .env ./
 # Copy rest of files
-COPY models/ ./src
+COPY models/ ./models
 COPY routes/ ./routes
 
 EXPOSE 80
