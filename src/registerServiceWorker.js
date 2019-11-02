@@ -45,11 +45,19 @@ export default function register() {
                     // );
                 });
             } else {
-                // Is not local host. Just register service worker
-                registerValidSW(swUrl);
+                if (isApiRoute()) {
+                    unregister();
+                } else {
+                    // Is not local host. Just register service worker
+                    registerValidSW(swUrl);
+                }
             }
         });
     }
+}
+
+function isApiRoute() {
+    return window.location.pathname.startsWith('/api');
 }
 
 function registerValidSW(swUrl) {
