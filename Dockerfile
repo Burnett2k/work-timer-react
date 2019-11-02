@@ -5,7 +5,7 @@ FROM node:10-alpine
 MAINTAINER Sawyer Blue Burnett
 
 # Copy dependencies
-COPY package.json yarn.lock ./
+COPY package.json yarn.lock .eslintrc ./
 # Install dependencies
 RUN yarn
 
