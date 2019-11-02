@@ -7,7 +7,7 @@ passport.use(
         {
             clientID: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
-            callbackURL: '/api/auth/google/redirect',
+            callbackURL: 'https://worktimer.xyz/api/auth/google/redirect',
         },
         async (accessToken, refreshToken, profile, done) => {
             const currentUser = await User.findOne({
