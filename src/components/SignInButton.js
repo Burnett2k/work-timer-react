@@ -33,11 +33,11 @@ class SignInButton extends React.Component {
     }
 
     handleSignInClick = () => {
-        window.open('https://worktimer.xyz/auth/google', '_self');
+        window.open('https://worktimer.xyz/api/auth/google', '_self');
     };
 
     handleLogoutClick = () => {
-        window.open('https://worktimer.xyz/auth/logout', '_self');
+        window.open('https://worktimer.xyz/api/auth/logout', '_self');
         this.props.handleNotAuthenticated();
     };
 }
