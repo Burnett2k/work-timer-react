@@ -93,15 +93,6 @@ class CountdownTimer extends React.Component {
     }
 
     onStart() {
-        // todo ** figure out the right place to put this if you
-        // also want to save data on incomplete sessions which would
-        // be useful
-        saveSession({
-            secondsElapsed: this.props.minutes * 60,
-            notes: {
-                text: this.props.notes,
-            },
-        });
         switch (this.props.status) {
             case STARTED:
                 this.props.dispatch(saveStatus(PAUSED));
@@ -171,6 +162,15 @@ class CountdownTimer extends React.Component {
     }
 
     onCompletion() {
+        // todo ** figure out the right place to put this if you
+        // also want to save data on incomplete sessions which would
+        // be useful
+        saveSession({
+            secondsElapsed: this.props.minutes * 60,
+            notes: {
+                text: this.props.notes,
+            },
+        });
         this.setState((prevState) => ({
             sessionComplete: !prevState.sessionComplete,
         }));
