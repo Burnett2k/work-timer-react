@@ -5,7 +5,7 @@ FROM node:12-alpine
 LABEL maintainer="Sawyer Blue Burnett"
 
 # Copy dependencies
-COPY package.json yarn.lock .eslintrc ./
+COPY package.json yarn.lock ./
 # Install dependencies
 RUN yarn
 
