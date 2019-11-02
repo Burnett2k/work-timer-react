@@ -1,8 +1,8 @@
-# Set the base image to Node 8.7
-FROM node:10-alpine
+# Set the base image to Node 12
+FROM node:12-alpine
 
 # File Author / Maintainer
-MAINTAINER Sawyer Blue Burnett
+LABEL maintainer="Sawyer Blue Burnett"
 
 # Copy dependencies
 COPY package.json yarn.lock .eslintrc ./
