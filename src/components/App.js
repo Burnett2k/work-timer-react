@@ -4,10 +4,10 @@ import './App.css';
 import CountdownTimer from '../containers/CountdownTimer.js';
 import SavePreferences from '../containers/SavePreferences.js';
 import SaveGoals from '../containers/SaveGoals';
-import ProgressChart from '../components/ProgressChart';
 import HistoryButton from './HistoryButton';
 import SignInButton from './SignInButton';
 import { checkAuth } from '../services/checkAuth';
+import HistoryGroup from './HistoryGroup';
 
 class App extends Component {
     constructor(props) {
@@ -132,7 +132,11 @@ class App extends Component {
 
     displayComponent(state) {
         if (state.isChartVisible) {
-            return <ProgressChart />;
+            return (
+                <React.Fragment>
+                    <HistoryGroup></HistoryGroup>
+                </React.Fragment>
+            );
         } else {
             return (
                 <React.Fragment>
