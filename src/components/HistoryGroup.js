@@ -23,37 +23,43 @@ class HistoryGroup extends React.Component {
         if (error) {
             return <div> ERROR</div>;
         } else if (!isLoaded) {
-            return <div>Loading</div>;
+            return (
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
+            );
         } else {
             return (
-                <div className="list-group">
-                    <ul className="list-group">
-                        {isLoaded === true &&
-                            items &&
-                            items.map((item, key) => (
-                                <div
-                                    key={key}
-                                    className="list-group-item list-group-item-action"
-                                >
-                                    <div className="d-flex w-100 justify-content-between">
-                                        <h5 className="mb-1">
-                                            Pomodoro {key}{' '}
-                                        </h5>
-                                        <small>{item.date}</small>
-                                    </div>
-                                    {item.notes.text &&
-                                        item.notes.text.length > 0 && (
-                                            <p className="mb-1">
-                                                Notes: {item.notes.text}
-                                            </p>
-                                        )}
+                <ul className="list-group q-top-buffer">
+                    {isLoaded === true &&
+                        items &&
+                        items.map((item, key) => (
+                            <div
+                                key={key}
+                                className="list-group-item list-group-item-action"
+                            >
+                                <div className="d-flex w-100 justify-content-between">
+                                    <h5 className="mb-1">
+                                        Pomodoro {items.length - key}{' '}
+                                    </h5>
                                     <small>
-                                        Total Time: {item.notes.secondsElapsed}
+                                        {new Date(item.date).toLocaleString()}
                                     </small>
                                 </div>
-                            ))}
-                    </ul>
-                </div>
+                                {item.notes.text &&
+                                    item.notes.text.length > 0 && (
+                                        <p className="mb-1">
+                                            Notes: {item.notes.text}
+                                        </p>
+                                    )}
+                                <small>
+                                    Total Time:{' '}
+                                    {(item.secondsElapsed / 60).toFixed(1)}{' '}
+                                    minute(s)
+                                </small>
+                            </div>
+                        ))}
+                </ul>
             );
         }
     }
