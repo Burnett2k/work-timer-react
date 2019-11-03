@@ -73,14 +73,24 @@ class SavePreferences extends React.Component {
                 '--footer-text-color',
                 '#ffffff'
             );
+            document.documentElement.style.setProperty(
+                '--neon-text-color',
+                '#000'
+            );
+            document.documentElement.style.setProperty(
+                '--neon-text-shadow',
+                'none'
+            );
         } else {
+            const mainTextColor = '#ffffff';
+            const neonTextColor = '#08f';
             document.documentElement.style.setProperty(
                 '--main-bg-color',
                 '#343a40'
             );
             document.documentElement.style.setProperty(
                 '--main-text-color',
-                '#ffffff'
+                mainTextColor
             );
             document.documentElement.style.setProperty(
                 '--footer-bg-color',
@@ -89,6 +99,14 @@ class SavePreferences extends React.Component {
             document.documentElement.style.setProperty(
                 '--footer-text-color',
                 '#ffffff'
+            );
+            document.documentElement.style.setProperty(
+                '--neon-text-color',
+                neonTextColor
+            );
+            document.documentElement.style.setProperty(
+                '--neon-text-shadow',
+                `-0.2rem -0.2rem 1rem ${mainTextColor}, 0.2rem 0.2rem 1rem ${mainTextColor}, 0 0 2rem ${neonTextColor}, 0 0 4rem ${neonTextColor}, 0 0 6rem ${neonTextColor}, 0 0 8rem ${neonTextColor}, 0 0 10rem ${neonTextColor}`
             );
         }
     }

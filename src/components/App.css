@@ -6,6 +6,9 @@
     --footer-bg-color: #343a40;
     --footer-text-color: #ffffff;
     --main-text-color: #212529;
+    --neon-text-color: #f40;
+    --neon-border-color: #08f;
+    --neon-text-shadow: none;
 }
 .App {
     text-align: center;
@@ -40,6 +43,12 @@ body {
 .modal-theme {
     color: var(--main-text-color);
     background: var(--main-bg-color);
+}
+.neon-text {
+    font-weight: 200;
+    color: var(--main-text-color);
+    text-transform: uppercase;
+    text-shadow: var(--neon-text-shadow);
 }
 hr {
     border-top-width: 1px;

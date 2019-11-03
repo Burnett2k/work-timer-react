@@ -228,7 +228,7 @@ class CountdownTimer extends React.Component {
     render() {
         return (
             <div className="container text-center q-top-buffer">
-                <h4>POMODORO TIMER</h4>
+                <h4 className="neon-text">POMODORO TIMER</h4>
                 <Timer formattedTime={this.state.formattedTime} />
                 <Controls
                     onStart={this.onStart}
