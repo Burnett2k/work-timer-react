@@ -58,7 +58,7 @@ app.use(passport.session());
 
 // add routes
 app.use('/auth', authRoutes);
-app.use('/session', sessionRoutes);
+app.use('/sessions', sessionRoutes);
 
 app.listen(app.get('port'), () => {
     console.log(`listening on ${app.get('port')}`);
