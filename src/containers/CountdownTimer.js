@@ -43,6 +43,7 @@ class CountdownTimer extends React.Component {
         minutes: PropTypes.number,
         secondsRemaining: PropTypes.number,
         playPause: PropTypes.bool,
+        hide: PropTypes.bool,
         reset: PropTypes.bool,
         stop: PropTypes.bool,
         status: PropTypes.string,
@@ -52,6 +53,7 @@ class CountdownTimer extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
+        this.convertSecondsToTimer();
         if (window.Worker) {
             this.worker = new Worker();
             this.worker.addEventListener(
@@ -227,7 +229,11 @@ class CountdownTimer extends React.Component {
 
     render() {
         return (
-            <div className="container text-center q-top-buffer">
+            <div
+                className={`container text-center q-top-buffer ${
+                    this.props.hide ? 'd-none' : ''
+                }`}
+            >
                 <h4 className="neon-text">POMODORO TIMER</h4>
                 <Timer formattedTime={this.state.formattedTime} />
                 <Controls
