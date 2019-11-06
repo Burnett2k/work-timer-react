@@ -131,30 +131,27 @@ class App extends Component {
     }
 
     displayComponent(state) {
-        if (state.isChartVisible) {
-            return (
-                <React.Fragment>
+        return (
+            <React.Fragment>
+                {state.isChartVisible && (
                     <HistoryGroup
                         authenticated={this.state.authenticated}
                     ></HistoryGroup>
-                </React.Fragment>
-            );
-        } else {
-            return (
-                <React.Fragment>
-                    <CountdownTimer
-                        playPause={this.state.playPause}
-                        stop={this.state.stop}
-                        reset={this.state.reset}
-                    />
-                    <SaveGoals
-                        isEditMode={this.state.isEditMode}
-                        toggleEditMode={this.toggleEditMode}
-                        reset={this.state.reset}
-                    />
-                </React.Fragment>
-            );
-        }
+                )}
+                <CountdownTimer
+                    playPause={this.state.playPause}
+                    stop={this.state.stop}
+                    reset={this.state.reset}
+                    hide={state.isChartVisible}
+                />
+                <SaveGoals
+                    isEditMode={this.state.isEditMode}
+                    toggleEditMode={this.toggleEditMode}
+                    reset={this.state.reset}
+                    hide={state.isChartVisible}
+                />
+            </React.Fragment>
+        );
     }
 
     render() {
