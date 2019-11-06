@@ -134,7 +134,9 @@ class App extends Component {
         if (state.isChartVisible) {
             return (
                 <React.Fragment>
-                    <HistoryGroup></HistoryGroup>
+                    <HistoryGroup
+                        authenticated={this.state.authenticated}
+                    ></HistoryGroup>
                 </React.Fragment>
             );
         } else {

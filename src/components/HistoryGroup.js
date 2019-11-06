@@ -1,9 +1,13 @@
 import { getSessions } from '../services/getSessions';
+import PropTypes from 'prop-types';
 
 import './App.css';
 const React = require('react');
 
 class HistoryGroup extends React.Component {
+    static propTypes = {
+        authenticated: PropTypes.bool,
+    };
     constructor(props) {
         super(props);
         this.state = {
@@ -14,13 +18,18 @@ class HistoryGroup extends React.Component {
     }
 
     async componentDidMount() {
-        const json = await getSessions();
-        console.log(JSON.stringify(json));
-        this.setState({ isLoaded: true, items: json.sessions });
+        if (this.props.authenticated) {
+            const json = await getSessions();
+            this.setState({ isLoaded: true, items: json.sessions });
+        }
     }
+
     render() {
         const { error, isLoaded, items } = this.state;
-        if (error) {
+        const { authenticated } = this.props;
+        if (!authenticated) {
+            return <h5>Please sign in to see history</h5>;
+        } else if (error) {
             return <div> ERROR</div>;
         } else if (!isLoaded) {
             return (
