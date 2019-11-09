@@ -1,6 +1,6 @@
 export const checkAuth = async () => {
     const response = await fetch(
-        'https://worktimer.xyz/api/auth/login/success',
+        `${process.env.REACT_APP_SERVER_BASE_URL}/auth/login/success`,
         {
             method: 'GET',
             credentials: 'include',
