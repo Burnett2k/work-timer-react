@@ -13,5 +13,6 @@ COPY passport-setup.js server.js .env ./
 # Copy rest of files
 COPY models/ ./models
 COPY routes/ ./routes
+COPY controllers/ ./controllers
 
 EXPOSE 80
