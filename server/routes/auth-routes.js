@@ -1,54 +1,25 @@
 const router = require('express').Router();
-const passport = require('passport');
-const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL;
-const GOOGLE_STRATEGY = 'google';
+
+const authController = require('../controllers/authController');
 
 router.use((req, res, next) => {
-    console.log('Time: ', new Date());
+    console.log('request to auth endpoint at Time: ', new Date());
     next();
 });
 
 // when login is successful, retrieve user info
-router.get('/login/success', (req, res) => {
-    if (req.user) {
-        res.json({
-            success: true,
-            message: 'user has successfully authenticated',
-            user: req.user,
-            cookies: req.cookies,
-        });
-    } else {
-        res.status(401).json({ success: false });
-    }
-});
+router.get('/login/success', authController.loginSuccess);
 
 // when login failed, send failed msg
-router.get('/login/failed', (req, res) => {
-    res.status(401).json({
-        success: false,
-        message: 'user failed to authenticate.',
-    });
-});
+router.get('/login/failed', authController.loginFailed);
 
 // when user logs out, redirect to client
-router.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect(CLIENT_HOME_PAGE_URL);
-});
+router.get('/logout', authController.logout);
 
 // call authenticate for google strategy
-router.get(
-    '/google',
-    passport.authenticate(GOOGLE_STRATEGY, { scope: ['profile', 'email'] })
-);
+router.get('/google', authController.authenticate);
 
 // redirect after auth completes successfully
-router.get(
-    '/google/redirect',
-    passport.authenticate(GOOGLE_STRATEGY, {
-        failureRedirect: '/login/failed',
-        successRedirect: CLIENT_HOME_PAGE_URL,
-    })
-);
+router.get('/google/redirect', authController.redirect);
 
 module.exports = router;
