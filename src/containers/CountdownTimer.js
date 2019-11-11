@@ -52,7 +52,6 @@ class CountdownTimer extends React.Component {
     };
 
     componentDidMount() {
-        this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
         this.convertSecondsToTimer();
         if (window.Worker) {
             this.worker = new Worker();
