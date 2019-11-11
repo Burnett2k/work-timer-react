@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 class SavePreferences extends React.Component {
     constructor(props) {
         super(props);
-        this.getPreferences();
+        this.setTheme();
     }
     static propTypes = {
         dispatch: PropTypes.func,
@@ -25,28 +25,6 @@ class SavePreferences extends React.Component {
         this.props.dispatch(saveMute(payload.isMuted));
         this.props.dispatch(saveTheme(payload.theme));
     };
-
-    getPreferences() {
-        let muted, minutes, theme;
-        minutes =
-            localStorage.getItem('minutes') != null
-                ? localStorage.getItem('minutes')
-                : 25;
-        muted =
-            localStorage.getItem('isMuted') != null
-                ? localStorage.getItem('isMuted')
-                : 'true';
-        muted = muted === 'true';
-        theme =
-            localStorage.getItem('theme') != null
-                ? localStorage.getItem('theme')
-                : 'light';
-        this.onPreferencesSaved({
-            minutes: parseInt(minutes, 10),
-            isMuted: muted,
-            theme: theme,
-        });
-    }
 
     componentDidUpdate(oldProps) {
         const newProps = this.props;

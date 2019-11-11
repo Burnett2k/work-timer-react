@@ -36,12 +36,6 @@ class PreferencesModal extends React.Component {
         document.removeEventListener('keyup', this.enterPressed, false);
     }
 
-    setPreferences() {
-        localStorage.setItem('isMuted', this.state.isMuted);
-        localStorage.setItem('minutes', this.state.minutes);
-        localStorage.setItem('theme', this.state.theme);
-    }
-
     handleMinutesChange(numMinutes) {
         let value = parseInt(numMinutes.target.value, 10) || 0;
         this.setState({ minutes: parseInt(value, 10) });
@@ -58,7 +52,6 @@ class PreferencesModal extends React.Component {
     }
 
     onClick() {
-        this.setPreferences();
         this.props.onPreferencesSaved({
             minutes: this.state.minutes,
             isMuted: this.state.isMuted,
