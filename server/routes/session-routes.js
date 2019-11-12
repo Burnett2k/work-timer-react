@@ -7,6 +7,6 @@ router.use((req, res, next) => {
 
 router.get('/', sessionController.retrieveSessions);
 
-router.post('/save', sessionController.retrieveSessions);
+router.post('/save', sessionController.saveSessions);
 
 module.exports = router;
