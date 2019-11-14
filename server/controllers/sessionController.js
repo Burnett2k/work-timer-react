@@ -45,3 +45,25 @@ exports.saveSessions = async function(req, res) {
         res.status(401).json({ success: false });
     }
 };
+
+exports.getSessionSummary = async function(req, res) {
+    if (req.user) {
+        const aggregate = await Session.aggregate([
+            { $match: { userId: req.user.id } },
+            {
+                $group: {
+                    _id: { $week: '$date' },
+                    documentCount: { $sum: 1 },
+                    totalSeconds: { $sum: '$secondsElapsed' },
+                },
+            },
+        ]);
+
+        res.json({
+            aggregate,
+            success: true,
+        });
+    } else {
+        res.status(401).json({ success: false });
+    }
+};

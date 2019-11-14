@@ -9,4 +9,6 @@ router.get('/', sessionController.retrieveSessions);
 
 router.post('/save', sessionController.saveSessions);
 
+router.get('/summary', sessionController.getSessionSummary);
+
 module.exports = router;
