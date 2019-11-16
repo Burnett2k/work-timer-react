@@ -53,8 +53,10 @@ exports.getSessionSummary = async function(req, res) {
             {
                 $group: {
                     _id: { $week: '$date' },
-                    documentCount: { $sum: 1 },
+                    totalSessions: { $sum: 1 },
                     totalSeconds: { $sum: '$secondsElapsed' },
+                    minDate: { $min: '$date' },
+                    maxDate: { $max: '$date' },
                 },
             },
         ]);
