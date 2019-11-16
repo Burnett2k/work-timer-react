@@ -1,7 +1,10 @@
 import { getSessions } from '../services/getSessions';
+import { getSessionSummary } from '../services/getSessionSummary';
+import SessionList from '../components/SessionList';
 import PropTypes from 'prop-types';
 
 import './App.css';
+import SessionSummary from './SessionSummary';
 const React = require('react');
 
 class HistoryGroup extends React.Component {
@@ -19,13 +22,19 @@ class HistoryGroup extends React.Component {
 
     async componentDidMount() {
         if (this.props.authenticated) {
-            const json = await getSessions();
-            this.setState({ isLoaded: true, items: json.sessions });
+            const indivdualSessions = await getSessions();
+            const sessionSummary = await getSessionSummary();
+
+            this.setState({
+                isLoaded: true,
+                items: indivdualSessions.sessions,
+                summary: sessionSummary,
+            });
         }
     }
 
     render() {
-        const { error, isLoaded, items } = this.state;
+        const { error, isLoaded, items, summary } = this.state;
         const { authenticated } = this.props;
         if (!authenticated) {
             return <h5>Please sign in to see history</h5>;
@@ -39,36 +48,10 @@ class HistoryGroup extends React.Component {
             );
         } else {
             return (
-                <ul className="list-group q-top-buffer">
-                    {isLoaded === true &&
-                        items &&
-                        items.map((item, key) => (
-                            <div
-                                key={key}
-                                className="list-group-item list-group-item-action"
-                            >
-                                <div className="d-flex w-100 justify-content-between">
-                                    <h5 className="mb-1">
-                                        Pomodoro {items.length - key}{' '}
-                                    </h5>
-                                    <small>
-                                        {new Date(item.date).toLocaleString()}
-                                    </small>
-                                </div>
-                                {item.notes.text &&
-                                    item.notes.text.length > 0 && (
-                                        <p className="mb-1">
-                                            Notes: {item.notes.text}
-                                        </p>
-                                    )}
-                                <small>
-                                    Total Time:{' '}
-                                    {(item.secondsElapsed / 60).toFixed(1)}{' '}
-                                    minute(s)
-                                </small>
-                            </div>
-                        ))}
-                </ul>
+                <React.Fragment>
+                    <SessionSummary summary={summary} isLoaded={isLoaded} />
+                    <SessionList items={items} isLoaded={isLoaded} />
+                </React.Fragment>
             );
         }
     }

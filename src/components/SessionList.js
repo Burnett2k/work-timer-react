@@ -17,6 +17,7 @@ class SessionList extends React.Component {
 
         return (
             <ul className="list-group q-top-buffer">
+                Pomodoros completed:
                 {isLoaded === true &&
                     items &&
                     items.map((item, key) => (
