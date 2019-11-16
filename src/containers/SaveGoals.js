@@ -12,14 +12,11 @@ class SaveGoals extends React.Component {
         onGoalEdit: PropTypes.func,
         reset: PropTypes.bool,
         dispatch: PropTypes.func,
+        notes: PropTypes.string,
     };
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            goalText: '',
-        };
 
         this.onGoalTyping = this.onGoalTyping.bind(this);
         this.onReset = this.onReset.bind(this);
@@ -35,7 +32,7 @@ class SaveGoals extends React.Component {
     }
 
     onReset() {
-        this.setState({ goalText: '' });
+        this.props.dispatch(saveNotes(''));
     }
 
     onGoalTyping(e) {
@@ -51,13 +48,13 @@ class SaveGoals extends React.Component {
                     <GoalInput
                         toggleEditMode={this.props.toggleEditMode}
                         onGoalTyping={this.onGoalTyping}
-                        goalText={this.state.goalText}
+                        goalText={this.props.notes}
                     />
                 ) : (
                     <GoalLink
                         toggleEditMode={this.props.toggleEditMode}
                         onGoalEdit={this.props.onGoalEdit}
-                        goalText={this.state.goalText}
+                        goalText={this.props.notes}
                     />
                 )}
             </div>
@@ -67,7 +64,7 @@ class SaveGoals extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        notes: state.goalText,
+        notes: state.timer.notes,
     };
 }
 
