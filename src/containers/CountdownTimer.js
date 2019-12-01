@@ -252,7 +252,6 @@ class CountdownTimer extends React.Component {
     }
 }
 
-//only passing in data needed by the children
 function mapStateToProps(state) {
     return {
         secondsRemaining: state.timer.secondsRemaining,
