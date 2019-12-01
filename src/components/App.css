@@ -1,6 +1,3 @@
-/* document.documentElement.style.setProperty('--footer-bg-color', "green") */
-/* getComputedStyle(document.documentElement).getPropertyValue('--footer-bg-color'); */
-
 :root {
     --main-bg-color: #ffffff;
     --footer-bg-color: #343a40;
