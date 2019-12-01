@@ -167,9 +167,7 @@ class App extends Component {
                         &nbsp;
                         <HistoryButton
                             toggleChartVisible={this.toggleHistoryView}
-                            isChartVisible={
-                                this.state.currentView === 'history'
-                            }
+                            currentView={this.state.currentView}
                         />
                         &nbsp;
                         <SignInButton

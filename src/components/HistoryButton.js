@@ -4,7 +4,7 @@ const React = require('react');
 class HistoryButton extends React.Component {
     static propTypes = {
         toggleChartVisible: PropTypes.func,
-        isChartVisible: PropTypes.bool,
+        currentView: PropTypes.string,
     };
 
     render() {
@@ -19,7 +19,7 @@ class HistoryButton extends React.Component {
                     aria-hidden="true"
                 />
                 <span className="d-none d-md-block d-lg-block d-xl-block">
-                    {this.props.isChartVisible ? 'Timer' : 'History'}
+                    {this.props.currentView === 'timer' ? 'Timer' : 'History'}
                 </span>
             </button>
         );
