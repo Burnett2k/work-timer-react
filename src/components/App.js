@@ -18,15 +18,15 @@ class App extends Component {
             stop: false,
             reset: false,
             isEditMode: false,
-            isChartVisible: false,
             isSignInVisible: false,
             authenticated: false,
             user: {},
+            currentView: 'timer',
         };
 
         this.toggleModalShown = this.toggleModalShown.bind(this);
         this.toggleEditMode = this.toggleEditMode.bind(this);
-        this.toggleChartVisible = this.toggleChartVisible.bind(this);
+        this.toggleHistoryView = this.toggleHistoryView.bind(this);
         this.handleNotAuthenticated = this.handleNotAuthenticated.bind(this);
     }
 
@@ -93,10 +93,11 @@ class App extends Component {
         }));
     }
 
-    toggleChartVisible() {
+    toggleHistoryView() {
         if (!this.state.isEditMode) {
             this.setState((prevState) => ({
-                isChartVisible: !prevState.isChartVisible,
+                currentView:
+                    prevState.currentView === 'timer' ? 'history' : 'timer',
             }));
         }
     }
@@ -111,7 +112,7 @@ class App extends Component {
                 this.togglePlayPause();
                 break;
             case 'h':
-                this.toggleChartVisible();
+                this.toggleHistoryView();
                 break;
             case 'p':
                 this.toggleModalShown();
@@ -133,7 +134,7 @@ class App extends Component {
     displayComponent(state) {
         return (
             <React.Fragment>
-                {state.isChartVisible && (
+                {state.currentView === 'history' && (
                     <HistoryGroup
                         authenticated={this.state.authenticated}
                     ></HistoryGroup>
@@ -142,13 +143,13 @@ class App extends Component {
                     playPause={this.state.playPause}
                     stop={this.state.stop}
                     reset={this.state.reset}
-                    hide={state.isChartVisible}
+                    hide={state.currentView === 'history'}
                 />
                 <SaveGoals
                     isEditMode={this.state.isEditMode}
                     toggleEditMode={this.toggleEditMode}
                     reset={this.state.reset}
-                    hide={state.isChartVisible}
+                    hide={state.currentView === 'history'}
                 />
             </React.Fragment>
         );
@@ -165,8 +166,10 @@ class App extends Component {
                         />
                         &nbsp;
                         <HistoryButton
-                            toggleChartVisible={this.toggleChartVisible}
-                            isChartVisible={this.state.isChartVisible}
+                            toggleChartVisible={this.toggleHistoryView}
+                            isChartVisible={
+                                this.state.currentView === 'history'
+                            }
                         />
                         &nbsp;
                         <SignInButton
