@@ -19,7 +19,7 @@ class HistoryButton extends React.Component {
                     aria-hidden="true"
                 />
                 <span className="d-none d-md-block d-lg-block d-xl-block">
-                    {this.props.currentView === 'timer' ? 'Timer' : 'History'}
+                    {this.props.currentView === 'timer' ? 'History' : 'Timer'}
                 </span>
             </button>
         );
