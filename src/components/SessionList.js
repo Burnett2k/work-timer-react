@@ -33,9 +33,13 @@ class SessionList extends React.Component {
                                     {new Date(item.date).toLocaleString()}
                                 </small>
                             </div>
-                            {item.notes.text && item.notes.text.length > 0 && (
-                                <p className="mb-1">Notes: {item.notes.text}</p>
-                            )}
+                            <p className="mb-1">
+                                Notes:{' '}
+                                {item.notes.text && item.notes.text.length > 0
+                                    ? item.notes.text
+                                    : 'N/A'}
+                            </p>
+
                             <small>
                                 Total Time:{' '}
                                 {(item.secondsElapsed / 60).toFixed(1)}{' '}
