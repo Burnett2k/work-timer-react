@@ -6,7 +6,7 @@ exports.retrieveSessions = async function(req, res) {
         Session.find(
             { userId: req.user.id },
             null,
-            { sort: { date: -1 } },
+            { sort: { date: -1 }, limit: 20 },
             (err, sessions) => {
                 if (err) {
                     throw err;
@@ -52,11 +52,21 @@ exports.getSessionSummary = async function(req, res) {
             { $match: { userId: req.user.id } },
             {
                 $group: {
-                    _id: { $week: '$date' },
+                    _id: {
+                        $dateToString: {
+                            format: 'Year %Y Week %V',
+                            date: '$date',
+                        },
+                    },
                     totalSessions: { $sum: 1 },
                     totalSeconds: { $sum: '$secondsElapsed' },
                     minDate: { $min: '$date' },
                     maxDate: { $max: '$date' },
+                },
+            },
+            {
+                $sort: {
+                    _id: -1,
                 },
             },
         ]);

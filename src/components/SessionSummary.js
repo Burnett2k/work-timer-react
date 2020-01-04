@@ -25,7 +25,7 @@ class SessionSummary extends React.Component {
                             className="list-group-item list-group-item-action"
                         >
                             <div className="d-flex w-100 justify-content-between">
-                                <h5 className="mb-1">Week {item._id} </h5>
+                                <h5 className="mb-1">{item._id} </h5>
                                 <small>
                                     {new Date(
                                         item.minDate
