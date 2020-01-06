@@ -52,12 +52,7 @@ exports.getSessionSummary = async function(req, res) {
             { $match: { userId: req.user.id } },
             {
                 $group: {
-                    _id: {
-                        $dateToString: {
-                            format: 'Year %Y Week %V',
-                            date: '$date',
-                        },
-                    },
+                    _id: { week: { $week: '$date' }, year: { $year: '$date' } },
                     totalSessions: { $sum: 1 },
                     totalSeconds: { $sum: '$secondsElapsed' },
                     minDate: { $min: '$date' },
@@ -66,7 +61,8 @@ exports.getSessionSummary = async function(req, res) {
             },
             {
                 $sort: {
-                    _id: -1,
+                    '_id.year': -1,
+                    '_id.week': -1,
                 },
             },
         ]);
