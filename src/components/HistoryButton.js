@@ -11,7 +11,7 @@ class HistoryButton extends React.Component {
         return (
             <button
                 type="button"
-                className="btn btn-outline-primary"
+                className="btn btn-outline-primary m-1"
                 onClick={this.props.toggleChartVisible}
             >
                 <i

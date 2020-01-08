@@ -43,7 +43,7 @@ class Preferences extends React.Component {
             <React.Fragment>
                 <button
                     type="button"
-                    className="btn btn-outline-primary"
+                    className="btn btn-outline-primary m-1"
                     onClick={this.toggleModal}
                 >
                     <i

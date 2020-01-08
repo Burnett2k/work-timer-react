@@ -164,12 +164,10 @@ class App extends Component {
                             toggleModalShown={this.toggleModalShown}
                             showModal={this.state.showModal}
                         />
-                        &nbsp;
                         <HistoryButton
                             toggleChartVisible={this.toggleHistoryView}
                             currentView={this.state.currentView}
                         />
-                        &nbsp;
                         <SignInButton
                             authenticated={this.state.authenticated}
                             handleNotAuthenticated={this.handleNotAuthenticated}

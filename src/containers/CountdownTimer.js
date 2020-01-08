@@ -49,6 +49,7 @@ class CountdownTimer extends React.Component {
         status: PropTypes.string,
         isMuted: PropTypes.bool,
         notes: PropTypes.string,
+        theme: PropTypes.string,
     };
 
     componentDidMount() {
@@ -244,6 +245,7 @@ class CountdownTimer extends React.Component {
                     onStop={this.onStop}
                     onReset={this.onReset}
                     playPauseText={this.state.playPauseText}
+                    theme={this.props.theme}
                 />
                 {/* <ProgressBar percent={this.state.percentComplete} /> */}
                 <SaveSessions sessionComplete={this.state.sessionComplete} />
@@ -259,6 +261,7 @@ function mapStateToProps(state) {
         minutes: state.preferences.minutes,
         isMuted: state.preferences.isMuted,
         notes: state.timer.notes,
+        theme: state.preferences.theme,
     };
 }
 

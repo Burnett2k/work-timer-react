@@ -14,7 +14,7 @@ class SignInButton extends React.Component {
                 {authenticated ? (
                     <button
                         type="button"
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-primary m-1"
                         onClick={this.handleLogoutClick}
                     >
                         Logout
@@ -22,7 +22,7 @@ class SignInButton extends React.Component {
                 ) : (
                     <button
                         type="button"
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-primary m-1"
                         onClick={this.handleSignInClick}
                     >
                         Login

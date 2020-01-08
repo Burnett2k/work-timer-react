@@ -7,29 +7,40 @@ class Controls extends React.Component {
         playPauseText: PropTypes.string,
         onReset: PropTypes.func,
         onStop: PropTypes.func,
+        theme: PropTypes.string,
     };
 
     render() {
         return (
             <div>
                 <button
-                    className="btn btn-lg btn-outline-success"
+                    className={`btn m-1 ${
+                        this.props.theme === 'light'
+                            ? 'btn-success'
+                            : 'btn-outline-success'
+                    }`}
                     type="button"
                     onClick={this.props.onStart}
                 >
                     {this.props.playPauseText}
                 </button>
-                &nbsp;
                 <button
-                    className="btn btn-lg btn-outline-danger"
+                    className={`btn m-1 ${
+                        this.props.theme === 'light'
+                            ? 'btn-danger'
+                            : 'btn-outline-danger'
+                    }`}
                     type="button"
                     onClick={this.props.onStop}
                 >
                     stop
                 </button>
-                &nbsp;
                 <button
-                    className="btn btn-lg btn-outline-primary"
+                    className={`btn m-1 ${
+                        this.props.theme === 'light'
+                            ? 'btn-primary'
+                            : 'btn-outline-primary'
+                    }`}
                     type="button"
                     onClick={this.props.onReset}
                 >
