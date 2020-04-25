@@ -16,6 +16,7 @@ if (!offline) {
         .connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            reconnectTries: 3000,
         })
         .then(() => {
             console.log('connected to mongo db');
