@@ -12,19 +12,23 @@ const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL;
 
 // connect to mongo
 if (!offline) {
-    mongoose
-        .connect(process.env.MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            reconnectTries: 3000,
-        })
-        .then(() => {
-            console.log('connected to mongo db');
-        })
-        .catch((err) => {
-            console.log(`cannot connect to mongo: ${err}`);
-            process.exit(1);
-        });
+    mongoose.connect(process.env.MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        reconnectTries: 3000,
+    });
+
+    var db = mongoose.connection;
+
+    db.on('connected', () => {
+        console.log('connected!');
+    });
+    db.on('disconnected', () => {
+        console.log('connected!');
+    });
+    db.on('error', (error) => {
+        console.log(`error occurrect: ${error}`);
+    });
 } else {
     console.log('offline mode: will not connect to mongodb');
 }
