@@ -131,7 +131,7 @@ class App extends Component {
         }
     }
 
-    displayComponent(state) {
+    displayHistoryOrTimer(state) {
         return (
             <React.Fragment>
                 {state.currentView === 'history' && (
@@ -142,12 +142,6 @@ class App extends Component {
                 <CountdownTimer
                     playPause={this.state.playPause}
                     stop={this.state.stop}
-                    reset={this.state.reset}
-                    hide={state.currentView === 'history'}
-                />
-                <SaveGoals
-                    isEditMode={this.state.isEditMode}
-                    toggleEditMode={this.toggleEditMode}
                     reset={this.state.reset}
                     hide={state.currentView === 'history'}
                 />
@@ -173,8 +167,14 @@ class App extends Component {
                             handleNotAuthenticated={this.handleNotAuthenticated}
                         ></SignInButton>
                     </div>
-                    {this.displayComponent(this.state)}
+                    {this.displayHistoryOrTimer(this.state)}
                 </div>
+                <SaveGoals
+                    isEditMode={this.state.isEditMode}
+                    toggleEditMode={this.toggleEditMode}
+                    reset={this.state.reset}
+                    hide={this.state.currentView === 'history'}
+                />
             </React.Fragment>
         );
     }
