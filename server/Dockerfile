@@ -1,4 +1,4 @@
-# Set the base image to Node 8.7
+# Set the base image to Node 12
 FROM node:12-alpine
 
 # File Author / Maintainer
