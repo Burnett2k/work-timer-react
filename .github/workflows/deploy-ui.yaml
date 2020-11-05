@@ -11,4 +11,6 @@ jobs:
                   host: ${{ secrets.HOST }}
                   username: ${{ secrets.USERNAME }}
                   password: ${{ secrets.PASSWORD }}
-                  script: whoami
+                  script: |
+                      cd work-timer-react/
+                      ls
