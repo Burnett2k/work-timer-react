@@ -23,4 +23,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/work-timer-react:latest
+          tags: ghcr.io/burnett2k/work-timer-react:latest
