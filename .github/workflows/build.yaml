@@ -14,5 +14,5 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
           repository: burnett2k/work-timer-react/work-timer-ui
-          file: /.Dockerfile
+          file: ./Dockerfile
           tag_with_ref: true
