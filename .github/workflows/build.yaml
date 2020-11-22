@@ -30,7 +30,7 @@ jobs:
       - name: Build and push api
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./server
           file: ./server/Dockerfile
           push: true
           tags: ghcr.io/burnett2k/work-timer-api:latest
