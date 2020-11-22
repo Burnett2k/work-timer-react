@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 jobs:
   deploy:
     name: Deploy
@@ -10,25 +11,31 @@ jobs:
     steps:
       - name: run bash script
         uses: appleboy/ssh-action@master
+        env:
+          CR_PAT: ${{ secrets.CR_PAT }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
+          envs: CR_PAT
           script: |
             # move to work timer app directory
             cd work-timer-react/
             # pull the latest code
             git pull
-            # WORK TIMER UI START
+            ##### WORK TIMER UI START #####
+
             # get id of currently running work timer docker container
             container=$(docker ps -a -q --filter ancestor=work-timer-react --format="{{.ID}}")
             # stop the docker container
             docker stop $container
             # delete old container to save space
             docker rm $(docker ps -a -q)
-            # build a new docker container based upon updated repository
-            docker build -t work-timer-react .
-            # WORK TIMER UI END
+
+            docker login https://ghcr.io/burnett2k/work-timer-react -u burnett2k -p $CR_PAT
+            docker pull ghcr.io/burnett2k/work-timer-react:latest
+
+            ###### WORK TIMER UI END #####
             # WORK TIMER API START
             # get id of currently running work timer docker container
             container=$(docker ps -a -q --filter ancestor=work-timer-api --format="{{.ID}}")
