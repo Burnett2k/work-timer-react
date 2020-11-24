@@ -5,7 +5,8 @@ FROM node:12-alpine
 LABEL maintainer="Sawyer Blue Burnett"
 
 # Copy dependencies
-COPY package.json yarn.lock .env ./
+COPY package.json yarn.lock ./
+
 # Install dependencies
 RUN yarn
 

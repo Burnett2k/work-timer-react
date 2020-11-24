@@ -13,11 +13,17 @@ jobs:
         uses: appleboy/ssh-action@master
         env:
           CR_PAT: ${{ secrets.CR_PAT }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET}}
+          CLIENT_ID: ${{ secrets.CLIENT_ID}}
+          CLIENT_HOME_PAGE_URL: ${{ secrets.CLIENT_HOME_PAGE_URL}}
+          BASE_URL: ${{ secrets.BASE_URL}}
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET}}
+          MONGO_URI: ${{ secrets.MONGO_URI}}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          envs: CR_PAT
+          envs: CR_PAT,CLIENT_SECRET,CLIENT_ID,CLIENT_HOME_PAGE_URL,BASE_URL,SESSION_SECRET,MONGO_URI
           script: |
             # move to work timer app directory
             cd work-timer-react/
@@ -48,6 +54,14 @@ jobs:
 
             docker login https://ghcr.io/burnett2k/work-timer-api -u burnett2k -p $CR_PAT
             docker pull ghcr.io/burnett2k/work-timer-api:latest
+
+            export CR_PAT=$CR_PAT
+            export CLIENT_SECRET=$CLIENT_SECRET
+            export CLIENT_ID=$CLIENT_ID
+            export CLIENT_HOME_PAGE_URL=$CLIENT_HOME_PAGE_URL
+            export BASE_URL=$BASE_URL
+            export SESSION_SECRET=$SESSION_SECRET
+            export MONGO_URI=$MONGO_URI
 
             # WORK TIMER API END
 
