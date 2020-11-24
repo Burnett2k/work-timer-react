@@ -1,14 +1,22 @@
 version: '3'
 services:
-    ui:
-        container_name: work-timer-react
-        image: work-timer-react
-        ports:
-            - 5000:5000
-        command: serve -s ./build
-    server:
-        container_name: work-timer-api
-        image: work-timer-api
-        ports:
-            - 5002:5002
-        command: yarn start
+  ui:
+    container_name: work-timer-react
+    image: work-timer-react
+    ports:
+      - 5000:5000
+    command: serve -s ./build
+  server:
+    container_name: work-timer-api
+    image: work-timer-api
+    ports:
+      - 5002:5002
+    command: yarn start
+    environment:
+      - CR_PAT
+      - CLIENT_SECRET
+      - CLIENT_ID
+      - CLIENT_HOME_PAGE_URL
+      - BASE_URL
+      - SESSION_SECRET
+      - MONGO_URI
