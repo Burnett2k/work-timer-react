@@ -3,7 +3,12 @@ on:
   push:
     branches:
       - master
+    paths:
+      - '**.js'
+      - '**.css'
+      - '**.json'
   workflow_dispatch:
+
 jobs:
   deploy:
     name: Deploy

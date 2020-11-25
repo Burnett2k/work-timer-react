@@ -3,6 +3,12 @@ on:
   pull_request:
     branches:
       - master
+    paths:
+      - '**.js'
+      - '**.css'
+      - '**.json'
+  workflow_dispatch:
+
 jobs:
   build:
     name: Build
