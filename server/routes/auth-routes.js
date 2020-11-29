@@ -3,8 +3,8 @@ const router = require('express').Router();
 const authController = require('../controllers/authController');
 
 router.use((req, res, next) => {
-    console.log('request to auth endpoint at Time: ', new Date());
-    next();
+  console.log('request to auth endpoint at Time: ', new Date());
+  next();
 });
 
 // when login is successful, retrieve user info

@@ -2,7 +2,7 @@ const router = require('express').Router();
 const sessionController = require('../controllers/sessionController');
 
 router.use((req, res, next) => {
-    next();
+  next();
 });
 
 router.get('/', sessionController.retrieveSessions);

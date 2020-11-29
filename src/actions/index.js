@@ -1,34 +1,34 @@
 export const saveMinutes = (minutes) => ({
-    type: 'SAVE_MINUTES',
-    payload: minutes,
+  type: 'SAVE_MINUTES',
+  payload: minutes,
 });
 
 export const saveMute = (isMuted) => ({
-    type: 'SAVE_MUTE',
-    payload: isMuted,
+  type: 'SAVE_MUTE',
+  payload: isMuted,
 });
 
 export const saveTheme = (theme) => ({
-    type: 'SAVE_THEME',
-    payload: theme,
+  type: 'SAVE_THEME',
+  payload: theme,
 });
 
 export const saveSecondsRemaining = (secondsRemaining) => ({
-    type: 'SAVE_SECONDS_REMAINING',
-    payload: secondsRemaining,
+  type: 'SAVE_SECONDS_REMAINING',
+  payload: secondsRemaining,
 });
 
 export const saveStatus = (status) => ({
-    type: 'SAVE_STATUS',
-    payload: status,
+  type: 'SAVE_STATUS',
+  payload: status,
 });
 
 export const saveSessionsCompleted = (completed) => ({
-    type: 'SAVE_SESSION',
-    payload: completed,
+  type: 'SAVE_SESSION',
+  payload: completed,
 });
 
 export const saveNotes = (notes) => ({
-    type: 'SAVE_NOTES',
-    payload: notes,
+  type: 'SAVE_NOTES',
+  payload: notes,
 });

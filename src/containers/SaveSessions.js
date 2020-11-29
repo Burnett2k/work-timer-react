@@ -6,54 +6,54 @@ import utils from '../utils/utils';
 import PropTypes from 'prop-types';
 
 class SaveSessions extends React.Component {
-    componentDidUpdate(prevProps) {
-        if (prevProps.sessionComplete !== this.props.sessionComplete) {
-            this.saveSessionsCompleted(true);
-        }
+  componentDidUpdate(prevProps) {
+    if (prevProps.sessionComplete !== this.props.sessionComplete) {
+      this.saveSessionsCompleted(true);
     }
+  }
 
-    static propTypes = {
-        sessionComplete: PropTypes.bool,
-        dispatch: PropTypes.func,
-        completed: PropTypes.number,
-    };
+  static propTypes = {
+    sessionComplete: PropTypes.bool,
+    dispatch: PropTypes.func,
+    completed: PropTypes.number,
+  };
 
-    componentDidMount() {
-        this.saveSessionsCompleted(false);
-    }
+  componentDidMount() {
+    this.saveSessionsCompleted(false);
+  }
 
-    saveSessionsCompleted(increment) {
-        const today = utils.getFormattedDate();
-        let completed =
-            localStorage.getItem(today) != null
-                ? parseInt(localStorage.getItem(today), 10)
-                : 0;
-        completed = increment ? completed + 1 : completed;
-        this.props.dispatch(saveSessionsCompleted(completed));
-        localStorage.setItem(today, completed);
-    }
+  saveSessionsCompleted(increment) {
+    const today = utils.getFormattedDate();
+    let completed =
+      localStorage.getItem(today) != null
+        ? parseInt(localStorage.getItem(today), 10)
+        : 0;
+    completed = increment ? completed + 1 : completed;
+    this.props.dispatch(saveSessionsCompleted(completed));
+    localStorage.setItem(today, completed);
+  }
 
-    getSessionsCompleted() {
-        const today = utils.getFormattedDate();
-        return localStorage.getItem(today) != null
-            ? parseInt(localStorage.getItem(today), 10)
-            : 0;
-    }
+  getSessionsCompleted() {
+    const today = utils.getFormattedDate();
+    return localStorage.getItem(today) != null
+      ? parseInt(localStorage.getItem(today), 10)
+      : 0;
+  }
 
-    render() {
-        return (
-            <div>
-                <SessionCounter completed={this.props.completed} />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <SessionCounter completed={this.props.completed} />
+      </div>
+    );
+  }
 }
 
 //only passing in data needed by the children
 function mapStateToProps(state) {
-    return {
-        completed: state.sessions.completed,
-    };
+  return {
+    completed: state.sessions.completed,
+  };
 }
 
 //use connect method to make application aware of the redux store
