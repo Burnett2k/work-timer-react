@@ -4,17 +4,17 @@ To aid in focusing on completion of tasks (without interruption), I employ the p
 
 ## Features
 
--   Start, Pause, Stop, & Reset Timer
--   Set a custom timer Length
--   Set a goal to complete during each timer
--   See the number of pomodoros completed today
+- Start, Pause, Stop, & Reset Timer
+- Set a custom timer Length
+- Set a goal to complete during each timer
+- See the number of pomodoros completed today
 
 ## Premium Features
 
--   Sign in with Google
--   When logged in, completed sessions are stored to your account
--   History page details all completed sessions
--   Summary page shows weekly aggregate metrics
+- Sign in with Google
+- When logged in, completed sessions are stored to your account
+- History page details all completed sessions
+- Summary page shows weekly aggregate metrics
 
 ## Architecture
 
@@ -28,8 +28,8 @@ The server is optional and is what allows the sign-on capabilities. The server u
 
 **Prerequisites**
 
--   NodeJS / npm
--   Git
+- NodeJS / npm
+- Git
 
 Installing is easy. Simply clone the project and run
 `npm install` in the root of the project. If you use yarn, replace npm with yarn

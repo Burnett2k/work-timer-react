@@ -4,7 +4,7 @@ import timer from './timer';
 import sessions from './sessions';
 
 export default combineReducers({
-    preferences,
-    timer,
-    sessions,
+  preferences,
+  timer,
+  sessions,
 });

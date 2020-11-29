@@ -15,20 +15,20 @@ import { loadState, saveState } from './utils/localStorage';
 const persistedState = loadState();
 
 const store = createStore(
-    rootReducer,
-    persistedState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  rootReducer,
+  persistedState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 store.subscribe(() => {
-    saveState(store.getState());
+  saveState(store.getState());
 });
 
 //pass in redux store so entire App has access
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );
 // registerServiceWorker();
