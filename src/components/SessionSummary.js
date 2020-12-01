@@ -14,13 +14,17 @@ class SessionSummary extends React.Component {
 
   render() {
     const { summary, isLoaded } = this.props;
+    const totalTimeMinutes = (item) => {
+      return (item.totalSeconds / 60).toFixed(0);
+    };
     return (
       <React.Fragment>
         Weekly Summary:
         <ul
           className="list-group q-top-buffer"
           style={{
-            overflow: 'scroll',
+            overflowX: 'hidden',
+            overflowY: 'scroll',
             maxHeight: '300px',
             marginTop: '5px',
           }}
@@ -38,7 +42,8 @@ class SessionSummary extends React.Component {
                 </div>
                 <div className="d-flex w-100 justify-content-between">
                   <small>
-                    Total Time: {(item.totalSeconds / 60).toFixed(1)} minute(s)
+                    Total Time: {totalTimeMinutes(item)}{' '}
+                    {totalTimeMinutes(item) === '1' ? 'minute' : 'minutes'}
                   </small>
                   <small>Total Sessions: {item.totalSessions}</small>
                 </div>

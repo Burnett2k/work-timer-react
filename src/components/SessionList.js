@@ -14,14 +14,17 @@ class SessionList extends React.Component {
 
   render() {
     const { isLoaded, items } = this.props;
-
+    const totalTimeMinutes = (item) => {
+      return (item.secondsElapsed / 60).toFixed(0);
+    };
     return (
       <React.Fragment>
         Pomodoros completed:
         <ul
           className="list-group q-top-buffer"
           style={{
-            overflow: 'scroll',
+            overflowX: 'hidden',
+            overflowY: 'scroll',
             maxHeight: '500px',
             marginTop: '5px',
           }}
@@ -42,7 +45,8 @@ class SessionList extends React.Component {
                 </p>
 
                 <small>
-                  Total Time: {(item.secondsElapsed / 60).toFixed(1)} minute(s)
+                  Total Time: {totalTimeMinutes(item)}{' '}
+                  {totalTimeMinutes(item) === '1' ? 'minute' : 'minutes'}
                 </small>
               </div>
             ))}
