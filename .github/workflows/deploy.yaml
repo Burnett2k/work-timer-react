@@ -30,10 +30,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           envs: CR_PAT,CLIENT_SECRET,CLIENT_ID,CLIENT_HOME_PAGE_URL,BASE_URL,SESSION_SECRET,MONGO_URI
           script: |
-            # move to work timer app directory
-            cd work-timer-react/
-            # pull the latest code
-            git pull
             ##### WORK TIMER UI START #####
 
             # get id of currently running work timer docker container
