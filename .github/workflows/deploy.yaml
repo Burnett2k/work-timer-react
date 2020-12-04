@@ -23,7 +23,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           source: 'docker-compose.yml'
-          target: 'work-timer-react/docker-compose.yml'
+          target: 'work-timer-react'
           rm: true
       - name: run bash script
         uses: appleboy/ssh-action@v0.1.4
