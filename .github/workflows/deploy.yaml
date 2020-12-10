@@ -60,7 +60,7 @@ jobs:
             # get id of currently running work timer docker container
             container=$(docker ps -a -q --filter ancestor=work-timer-api --format="{{.ID}}")
             # stop the docker container
-            docker stop $container -t 1
+            docker stop "$container" -t 1
             sleep 5
             # delete old container to save space
             docker rm $(docker ps -a -q)
