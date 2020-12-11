@@ -43,6 +43,9 @@ jobs:
           script_stop: true
           script: |
             ##### WORK TIMER UI START #####
+
+            /bin/bash 
+
             cd work-timer-react/
 
             # get id of currently running work timer docker container
