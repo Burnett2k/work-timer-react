@@ -49,10 +49,10 @@ jobs:
             container=$(docker ps -a -q --filter ancestor=work-timer-react)
 
             # stop the docker container
-            docker stop $container -t 1
+            docker stop "$container" -t 1
 
             # delete old container to save space
-            docker rm $container
+            docker rm "$container"
 
             docker login https://ghcr.io/burnett2k/work-timer-react -u burnett2k -p $CR_PAT
             docker pull ghcr.io/burnett2k/work-timer-react:latest
@@ -63,10 +63,10 @@ jobs:
             container=$(docker ps -a -q --filter ancestor=work-timer-api)
 
             # stop the docker container
-            docker stop $container
+            docker stop "$container"
 
             # delete old container to save space
-            docker rm $container
+            docker rm "$container"
 
             docker login https://ghcr.io/burnett2k/work-timer-api -u burnett2k -p $CR_PAT
             docker pull ghcr.io/burnett2k/work-timer-api:latest
