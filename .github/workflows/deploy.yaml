@@ -40,6 +40,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           envs: CR_PAT,CLIENT_SECRET,CLIENT_ID,CLIENT_HOME_PAGE_URL,BASE_URL,SESSION_SECRET,MONGO_URI
+          script_stop: true
           script: |
             ##### WORK TIMER UI START #####
             cd work-timer-react/
