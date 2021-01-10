@@ -2,7 +2,7 @@ version: '3'
 services:
   ui:
     container_name: work-timer-react
-    image: work-timer-react
+    image: ghcr.io/burnett2k/work-timer-react
     ports:
       - 5000:5000
     command: serve -s ./build
@@ -10,7 +10,7 @@ services:
       - REACT_APP_SERVER_BASE_URL=https://worktimer.xyz/api
   server:
     container_name: work-timer-api
-    image: work-timer-api
+    image: ghcr.io/burnett2k/work-timer-api
     ports:
       - 5002:5002
     command: yarn start
