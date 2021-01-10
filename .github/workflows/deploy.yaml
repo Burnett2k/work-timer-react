@@ -50,10 +50,6 @@ jobs:
 
             # get id of currently running work timer docker container
             container=$(docker ps -a -q --filter ancestor=work-timer-react)
-            echo $container
-            echo \$container
-            echo \\$container
-            echo "$container"
 
             # stop the docker container
             docker stop "$container" -t 1
