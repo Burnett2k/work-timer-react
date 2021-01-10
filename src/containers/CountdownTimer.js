@@ -57,6 +57,7 @@ class CountdownTimer extends React.Component {
     if (this.props.secondsRemaining === 0) {
       this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
     }
+
     this.convertSecondsToTimer();
     if (window.Worker) {
       this.worker = new Worker();
@@ -64,6 +65,10 @@ class CountdownTimer extends React.Component {
         'message',
         this.onMessageReceived.bind(this)
       );
+    }
+    // if our last status was running, then we want to resume the timer
+    if (this.props.status === STARTED) {
+      this.onStart(true);
     }
   }
 
@@ -98,27 +103,33 @@ class CountdownTimer extends React.Component {
     }
   }
 
-  onStart() {
-    switch (this.props.status) {
-      case STARTED:
-        this.props.dispatch(saveStatus(PAUSED));
-        this.setState({ playPauseText: RESUME });
-        this.worker.postMessage('clearAll');
-        break;
-      case PAUSED:
-        this.worker.postMessage('start');
-        this.props.dispatch(saveStatus(STARTED));
-        this.setState({ playPauseText: PAUSE });
-        break;
-      case STOPPED:
-        this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
-        this.worker.postMessage('start');
-        this.props.dispatch(saveStatus(STARTED));
-        this.setState({ playPauseText: PAUSE });
-        this.worker.postMessage('clearFlash');
-        break;
-      default:
-        break;
+  onStart(forceStart = false) {
+    if (forceStart) {
+      this.worker.postMessage('start');
+      this.props.dispatch(saveStatus(STARTED));
+      this.setState({ playPauseText: PAUSE });
+    } else {
+      switch (this.props.status) {
+        case STARTED:
+          this.props.dispatch(saveStatus(PAUSED));
+          this.setState({ playPauseText: RESUME });
+          this.worker.postMessage('clearAll');
+          break;
+        case PAUSED:
+          this.worker.postMessage('start');
+          this.props.dispatch(saveStatus(STARTED));
+          this.setState({ playPauseText: PAUSE });
+          break;
+        case STOPPED:
+          this.props.dispatch(saveSecondsRemaining(this.props.minutes * 60));
+          this.worker.postMessage('start');
+          this.props.dispatch(saveStatus(STARTED));
+          this.setState({ playPauseText: PAUSE });
+          this.worker.postMessage('clearFlash');
+          break;
+        default:
+          break;
+      }
     }
   }
 
