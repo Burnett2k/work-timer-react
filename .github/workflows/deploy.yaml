@@ -43,9 +43,16 @@ jobs:
           script_stop: true
           script: |
             # AUTH TO DOCKER CONTAINER REGISTRY AND PULL #
+
+            /bin/bash 
+
+            cd work-timer-react/
+
             docker login https://ghcr.io/burnett2k -u burnett2k -p $CR_PAT
             docker pull ghcr.io/burnett2k/work-timer-react:latest
             docker pull ghcr.io/burnett2k/work-timer-api:latest
+
+            echo $CLIENT_ID
 
             # ENV VARIABLE MGMT #
             export CR_PAT=$CR_PAT
