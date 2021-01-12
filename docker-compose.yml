@@ -5,7 +5,9 @@ services:
     image: ghcr.io/burnett2k/work-timer-react
     ports:
       - 5000:5000
-    command: REACT_APP_SERVER_BASE_URL=https://worktimer.xyz/api serve -s ./build
+    command: serve -s ./build
+    environment:
+      - REACT_APP_SERVER_BASE_URL=https://worktimer.xyz/api
   server:
     container_name: work-timer-api
     image: ghcr.io/burnett2k/work-timer-api
