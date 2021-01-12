@@ -15,6 +15,7 @@ COPY src/ ./src
 COPY public/ ./public
 COPY scripts/ ./scripts
 COPY config/ ./config
+COPY .env ./.env
 
 RUN yarn build
 RUN yarn global add serve
