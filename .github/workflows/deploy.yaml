@@ -48,11 +48,9 @@ jobs:
 
             cd work-timer-react/
 
-            #docker login https://ghcr.io/burnett2k -u burnett2k -p $CR_PAT
-            #docker pull ghcr.io/burnett2k/work-timer-react:latest
-            #docker pull ghcr.io/burnett2k/work-timer-api:latest
-
-            echo before CLIENT_ID is $CLIENT_ID
+            docker login https://ghcr.io/burnett2k -u burnett2k -p $CR_PAT
+            docker pull ghcr.io/burnett2k/work-timer-react:latest
+            docker pull ghcr.io/burnett2k/work-timer-api:latest
 
             # ENV VARIABLE MGMT #
             export CR_PAT=$CR_PAT
@@ -62,8 +60,6 @@ jobs:
             export BASE_URL=$BASE_URL
             export SESSION_SECRET=$SESSION_SECRET
             export MONGO_URI=$MONGO_URI
-
-            echo after CLIENT_ID is $CLIENT_ID
 
             echo "composing our symphony of containers"
             docker-compose up -d
