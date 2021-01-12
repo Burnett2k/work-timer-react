@@ -48,9 +48,9 @@ jobs:
 
             cd work-timer-react/
 
-            docker login https://ghcr.io/burnett2k -u burnett2k -p $CR_PAT
-            docker pull ghcr.io/burnett2k/work-timer-react:latest
-            docker pull ghcr.io/burnett2k/work-timer-api:latest
+            #docker login https://ghcr.io/burnett2k -u burnett2k -p $CR_PAT
+            #docker pull ghcr.io/burnett2k/work-timer-react:latest
+            #docker pull ghcr.io/burnett2k/work-timer-api:latest
 
             echo before CLIENT_ID is $CLIENT_ID
 
