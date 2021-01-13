@@ -15,6 +15,7 @@ services:
       - 5002:5002
     command: yarn start
     environment:
+      - PORT=5002
       - CR_PAT
       - CLIENT_SECRET
       - CLIENT_ID
