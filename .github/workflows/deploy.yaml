@@ -43,9 +43,6 @@ jobs:
           script_stop: true
           script: |
             # AUTH TO DOCKER CONTAINER REGISTRY AND PULL #
-
-            /bin/bash 
-
             cd work-timer-react/
 
             docker login https://ghcr.io/burnett2k -u burnett2k -p $CR_PAT
@@ -69,4 +66,3 @@ jobs:
 
             echo "currently running containers"
             docker ps
-            echo "looks like it worked!!!"
