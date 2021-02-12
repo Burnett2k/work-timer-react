@@ -60,11 +60,12 @@ class CountdownTimer extends React.Component {
 
     this.convertSecondsToTimer();
     if (window.Worker) {
+      if (this.worker) {
+        this.worker.terminate();
+      }
       this.worker = new Worker();
-      this.worker.addEventListener(
-        'message',
-        this.onMessageReceived.bind(this)
-      );
+
+      this.worker.addEventListener('message', (e) => this.onMessageReceived(e));
     }
     // if our last status was running, then we want to resume the timer
     if (this.props.status === STARTED) {
