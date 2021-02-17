@@ -94,7 +94,7 @@ class CountdownTimer extends React.Component {
       this.onReset();
     }
     if (prevProps.playPause !== this.props.playPause) {
-      this.onStart();
+      this.onStart(false);
     }
     if (prevProps.reset !== this.props.reset) {
       this.onReset();
@@ -105,7 +105,7 @@ class CountdownTimer extends React.Component {
   }
 
   onStart(forceStart = false) {
-    if (forceStart) {
+    if (forceStart === false) {
       this.worker.postMessage('start');
       this.props.dispatch(saveStatus(STARTED));
       this.setState({ playPauseText: PAUSE });
