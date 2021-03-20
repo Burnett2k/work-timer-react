@@ -60,11 +60,12 @@ class CountdownTimer extends React.Component {
 
     this.convertSecondsToTimer();
     if (window.Worker) {
+      if (this.worker) {
+        this.worker.terminate();
+      }
       this.worker = new Worker();
-      this.worker.addEventListener(
-        'message',
-        this.onMessageReceived.bind(this)
-      );
+
+      this.worker.addEventListener('message', (e) => this.onMessageReceived(e));
     }
     // if our last status was running, then we want to resume the timer
     if (this.props.status === STARTED) {
@@ -93,7 +94,7 @@ class CountdownTimer extends React.Component {
       this.onReset();
     }
     if (prevProps.playPause !== this.props.playPause) {
-      this.onStart();
+      this.onStart(false);
     }
     if (prevProps.reset !== this.props.reset) {
       this.onReset();
@@ -104,7 +105,7 @@ class CountdownTimer extends React.Component {
   }
 
   onStart(forceStart = false) {
-    if (forceStart) {
+    if (forceStart === false) {
       this.worker.postMessage('start');
       this.props.dispatch(saveStatus(STARTED));
       this.setState({ playPauseText: PAUSE });
