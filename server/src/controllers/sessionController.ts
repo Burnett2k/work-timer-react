@@ -1,8 +1,9 @@
-const Session = require('../models/session');
+import { Session } from '../models/session';
+import { Request, Response } from 'express';
 
-exports.retrieveSessions = async function(req, res) {
-  // move auth checks into a helper function
+export const retrieveSessions = async function(req: Request, res: Response) {
   if (req.user) {
+    console.log('retrieving sessions for user');
     Session.find(
       { userId: req.user.id },
       null,
@@ -22,7 +23,8 @@ exports.retrieveSessions = async function(req, res) {
   }
 };
 
-exports.saveSessions = async function(req, res) {
+export const saveSessions = async function(req: Request, res: Response) {
+  console.log('saving a user session');
   const body = req.body;
 
   if (!body.notes || !body.notes.text) {
@@ -46,8 +48,9 @@ exports.saveSessions = async function(req, res) {
   }
 };
 
-exports.getSessionSummary = async function(req, res) {
+export const getSessionSummary = async function(req: Request, res: Response) {
   if (req.user) {
+    console.log('retrieving session summary for user');
     const aggregate = await Session.aggregate([
       { $match: { userId: req.user.id } },
       {

@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { Schema, model } from 'mongoose';
 
 const sessionSchema = new Schema({
   userId: String,
@@ -10,6 +9,4 @@ const sessionSchema = new Schema({
   },
 });
 
-const Session = mongoose.model('session', sessionSchema);
-
-module.exports = Session;
+export const Session = model('session', sessionSchema);
