@@ -1,6 +1,5 @@
 import passport from 'passport';
 import { Strategy } from 'passport-google-oauth20';
-// const GoogleStrategy = require('passport-google-oauth20').Strategy;
 import { User } from './models/user';
 
 passport.use(
@@ -33,11 +32,11 @@ passport.use(
   )
 );
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser((id, done) => {
   User.findById(id)
     .then((user) => {
       done(null, user);
