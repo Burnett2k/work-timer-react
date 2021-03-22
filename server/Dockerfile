@@ -5,14 +5,10 @@ FROM node:12-alpine
 LABEL maintainer="Sawyer Blue Burnett"
 
 # Copy dependencies
-COPY package.json yarn.lock ./
+COPY package.json yarn.lock tsconfig.json ./
 # Install dependencies
 RUN yarn
-
-COPY passport-setup.js server.js ./
-# Copy rest of files
-COPY models/ ./models
-COPY routes/ ./routes
-COPY controllers/ ./controllers
+COPY src/ ./src
+RUN yarn build
 
 EXPOSE 80

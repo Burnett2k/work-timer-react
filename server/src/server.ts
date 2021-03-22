@@ -1,10 +1,10 @@
 require('dotenv').config();
-const express = require('express');
-const passport = require('passport');
-const authRoutes = require('./routes/auth-routes');
-const sessionRoutes = require('./routes/session-routes');
-const mongoose = require('mongoose');
-const cors = require('cors');
+import express from 'express';
+import mongoose from 'mongoose';
+import passport from 'passport';
+import { router as authRoutes } from './routes/auth-routes';
+import { router as sessionRoutes } from './routes/session-routes';
+import cors from 'cors';
 const offline = process.env.OFFLINE === 'true' ? true : false;
 require('./passport-setup');
 
@@ -33,7 +33,6 @@ if (!offline) {
   console.log('offline mode: will not connect to mongodb');
 }
 
-// Create a new Express application.
 var app = express();
 
 app.set('port', process.env.PORT || 8080);
