@@ -4,9 +4,10 @@ on:
     branches:
       - master
     paths:
-      - '**.js'
       - '**.css'
+      - '**.js'
       - '**.json'
+      - '**.ts'
   workflow_dispatch:
 
 jobs:
