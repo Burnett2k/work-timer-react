@@ -38,15 +38,13 @@ The server is NodeJS and recently re-written in Typescript. The server uses Pass
 - Npm
 - Git
 
-
-
 ## Setting up the Frontend
 
 ### Clone project & Install dependencies
 
-* Clone the project
-* `cd` into the project directory. i.e. `cd work-timer-react/`
-* Run `npm install` or `yarn` in the root of the project to install all of the UI dependencies.
+- Clone the project
+- `cd` into the project directory. i.e. `cd work-timer-react/`
+- Run `npm install` or `yarn` in the root of the project to install all of the UI dependencies.
 
 ### Run the Frontend
 
@@ -66,8 +64,8 @@ Setting up the server is much more complicated because it requires configuring a
 
 ### Install dependencies
 
-* cd into the server folder `cd server/`
-* Run `npm install` or `yarn` to install dependencies
+- cd into the server folder `cd server/`
+- Run `npm install` or `yarn` to install dependencies
 
 ### Set up application in the Google developer portal
 
