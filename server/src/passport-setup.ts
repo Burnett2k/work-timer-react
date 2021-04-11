@@ -14,19 +14,21 @@ passport.use(
         googleId: profile.id,
       });
 
-      if (!currentUser) {
-        const newUser = await new User({
-          firstName: profile.name.givenName,
-          lastName: profile.name.familyName,
-          screenName: profile.displayName,
-          googleId: profile.id,
-          emailAddress: profile.emails[0].value,
-        }).save();
-        if (newUser) {
-          done(null, newUser);
-        }
-      } else {
+      if (currentUser) {
         done(null, currentUser);
+        return;
+      }
+
+      const newUser = new User({
+        firstName: profile.name.givenName,
+        lastName: profile.name.familyName,
+        screenName: profile.displayName,
+        googleId: profile.id,
+        emailAddress: profile.emails[0].value,
+      });
+      newUser.save();
+      if (newUser) {
+        done(null, newUser);
       }
     }
   )
