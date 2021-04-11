@@ -1,5 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 
+// create typescript type for model
 export type UserDocument = Document & {
   firstName: string;
   lastName: string;
@@ -8,6 +9,7 @@ export type UserDocument = Document & {
   emailAddress: string;
 };
 
+// create mongoose schema from UserDocument type
 const userSchema = new Schema<UserDocument>({
   firstName: String,
   lastName: String,
