@@ -5,9 +5,11 @@ import {
   getSessionSummary,
   saveSessions,
 } from '../controllers/sessionController';
+
 export const router = Router();
 
 router.use((req: Request, res: Response, next: NextFunction) => {
+  console.log('request to session endpoint');
   next();
 });
 

@@ -1,5 +1,6 @@
 import passport from 'passport';
 import { NextFunction, Request, Response } from 'express';
+
 const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL;
 const GOOGLE_STRATEGY = 'google';
 

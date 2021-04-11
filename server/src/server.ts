@@ -4,8 +4,27 @@ import passport from 'passport';
 import { router as authRoutes } from './routes/auth';
 import { router as sessionRoutes } from './routes/session';
 import cors from 'cors';
+import mongoose from 'mongoose';
 require('./passport-setup');
-require('./mongo-setup');
+
+// connect to mongo
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  reconnectTries: 30,
+});
+
+var db = mongoose.connection;
+
+db.on('connected', () => {
+  console.log('connected!');
+});
+db.on('disconnected', () => {
+  console.log('connected!');
+});
+db.on('error', (error) => {
+  console.log(`error occurrect: ${error}`);
+});
 
 const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL;
 
