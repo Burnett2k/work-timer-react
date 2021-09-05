@@ -7,15 +7,18 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 require('./passport-setup');
 
-// connect to mongo
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  reconnectTries: 30,
-});
+try {
+  mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    reconnectTries: 300,
+    serverSelectionTimeoutMS: 60000
+  });
+} catch (error) {
+  console.log(error);
+}
 
-var db = mongoose.connection;
-
+const db = mongoose.connection;
 db.on('connected', () => {
   console.log('connected!');
 });
@@ -23,19 +26,24 @@ db.on('disconnected', () => {
   console.log('connected!');
 });
 db.on('error', (error) => {
-  console.log(`error occurrect: ${error}`);
+  console.log(`error occurred: ${error}`);
 });
 
-const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL;
+process.on('unhandledRejection', (error: any) => {
+  console.log('unhandled rejection: houston, we had a major problem!')
+  console.log(error.message);
+});
+
+const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL ?? 'http://localhost:3000';
+const SESSION_SECRET = process.env.SESSION_SECRET ?? '';
 
 const app = express();
 
 app.set('port', process.env.PORT || 8080);
-
 app.use(require('cookie-parser')());
 app.use(express.json());
 const expressSessionOptions = {
-  secret: process.env.SESSION_SECRET,
+  secret: SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
   maxAge: 24 * 60 * 60 * 1000,
@@ -51,7 +59,6 @@ const corsOptions = {
 
 // set up cors to allow us to accept requests from our client
 app.use(cors(corsOptions));
-
 app.use(passport.initialize());
 app.use(passport.session());
 
