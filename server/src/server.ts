@@ -26,7 +26,7 @@ db.on('disconnected', () => {
   console.log('connected!');
 });
 db.on('error', (error) => {
-  console.log(`error occurred: ${error}`);
+  console.log(`mongoose error occurred: ${error}`);
 });
 
 process.on('unhandledRejection', (error: any) => {
