@@ -20,17 +20,18 @@ try {
 
 const db = mongoose.connection;
 db.on('connected', () => {
-  console.log('connected!');
+  console.log('connected to database');
 });
 db.on('disconnected', () => {
-  console.log('connected!');
+  console.log('disconnected from database');
 });
 db.on('error', (error) => {
-  console.log(`mongoose error occurred: ${error}`);
+  console.log(`database error occurred: ${error}`);
 });
 
 process.on('unhandledRejection', (error: any) => {
   console.log('unhandled rejection: houston, we had a major problem!')
+  console.log(error);
   console.log(error.message);
 });
 
@@ -53,7 +54,7 @@ app.use(require('express-session')(expressSessionOptions));
 
 const corsOptions = {
   origin: CLIENT_HOME_PAGE_URL, // allow to server to accept request from different origin
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  methods: ['GET', 'POST'],
   credentials: true, // allow session cookie from browser to pass through
 };
 
