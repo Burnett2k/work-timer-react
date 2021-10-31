@@ -1,9 +1,10 @@
 import { Session } from '../models/session';
 import { Request, Response } from 'express';
+import { logger } from '../logger';
 
 export const retrieveSessions = async function(req: Request, res: Response) {
   if (req.user) {
-    console.log('retrieving sessions for user');
+    logger.info('retrieving sessions for user');
     Session.find(
       { userId: req.user.id },
       null,
@@ -24,7 +25,7 @@ export const retrieveSessions = async function(req: Request, res: Response) {
 };
 
 export const saveSessions = async function(req: Request, res: Response) {
-  console.log('saving a user session');
+  logger.info('saving a user session');
   const body = req.body;
 
   if (!body.notes || !body.notes.text) {
@@ -50,7 +51,7 @@ export const saveSessions = async function(req: Request, res: Response) {
 
 export const getSessionSummary = async function(req: Request, res: Response) {
   if (req.user) {
-    console.log('retrieving session summary for user');
+    logger.info('retrieving session summary for user');
     const aggregate = await Session.aggregate([
       { $match: { userId: req.user.id } },
       {

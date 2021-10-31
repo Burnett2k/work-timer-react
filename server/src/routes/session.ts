@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response, Router } from 'express';
+import { logger } from '../logger';
 
 import {
   retrieveSessions,
@@ -9,7 +10,7 @@ import {
 export const router = Router();
 
 router.use((req: Request, res: Response, next: NextFunction) => {
-  console.log('request to session endpoint');
+  logger.info('request to session endpoint');
   next();
 });
 
