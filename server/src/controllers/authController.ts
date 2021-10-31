@@ -1,5 +1,6 @@
 import passport from 'passport';
 import { NextFunction, Request, Response } from 'express';
+import { logger } from '../logger';
 
 const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL;
 const GOOGLE_STRATEGY = 'google';
@@ -7,7 +8,7 @@ const GOOGLE_STRATEGY = 'google';
 export const loginSuccess = function(req: Request, res: Response) {
   if (req.user) {
     const message = 'user has successfully authenticated';
-    console.log(message);
+    logger.info(message);
     res.json({
       success: true,
       message: message,
@@ -20,7 +21,7 @@ export const loginSuccess = function(req: Request, res: Response) {
 };
 
 export const loginFailed = function(req: Request, res: Response) {
-  console.log('failed authentication attempt');
+  logger.info('failed authentication attempt');
   res.status(401).json({
     success: false,
     message: 'user failed to authenticate.',
@@ -28,7 +29,7 @@ export const loginFailed = function(req: Request, res: Response) {
 };
 
 export const logout = function(req: Request, res: Response) {
-  console.log('logout attempted');
+  logger.info('logout attempted');
   req.logout();
   res.redirect(CLIENT_HOME_PAGE_URL);
 };

@@ -5,6 +5,7 @@ import { router as authRoutes } from './routes/auth';
 import { router as sessionRoutes } from './routes/session';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import {logger} from "./logger"
 require('./passport-setup');
 
 try {
@@ -15,24 +16,22 @@ try {
     serverSelectionTimeoutMS: 60000
   });
 } catch (error) {
-  console.log(error);
+  logger.error(error);
 }
 
 const db = mongoose.connection;
 db.on('connected', () => {
-  console.log('connected to database');
+  logger.info('connected to database');
 });
 db.on('disconnected', () => {
-  console.log('disconnected from database');
+  logger.warn('disconnected from database');
 });
 db.on('error', (error) => {
-  console.log(`database error occurred: ${error}`);
+  logger.error(error, "database error occurred");
 });
 
 process.on('unhandledRejection', (error: any) => {
-  console.log('unhandled rejection: houston, we had a major problem!')
-  console.log(error);
-  console.log(error.message);
+  logger.error(error, 'unhandled rejection: houston, we had a major problem!')
 });
 
 const CLIENT_HOME_PAGE_URL = process.env.CLIENT_HOME_PAGE_URL ?? 'http://localhost:3000';
@@ -67,5 +66,5 @@ app.use('/auth', authRoutes);
 app.use('/sessions', sessionRoutes);
 
 app.listen(app.get('port'), () => {
-  console.log(`listening on ${app.get('port')}`);
+  logger.info(`listening on ${app.get('port')}`);
 });

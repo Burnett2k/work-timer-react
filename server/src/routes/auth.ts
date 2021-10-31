@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response, Router } from 'express';
+import { logger } from '../logger';
 
 import {
   loginFailed,
@@ -11,7 +12,7 @@ import {
 export const router = Router();
 
 router.use((req: Request, res: Response, next: NextFunction) => {
-  console.log('request to auth endpoint at Time: ', new Date().toISOString());
+  logger.info('request to auth endpoint');
   next();
 });
 
