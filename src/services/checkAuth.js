@@ -1,4 +1,3 @@
-const pino = require('pino')({ browser: { asObject: true } });
 export const checkAuth = async () => {
   try {
     const response = await fetch(
@@ -15,6 +14,7 @@ export const checkAuth = async () => {
     );
     return response;
   } catch (error) {
-    pino.error(error, 'error checking auth');
+    // eslint-disable-next-line no-console
+    console.error(error, 'error checking auth');
   }
 };
