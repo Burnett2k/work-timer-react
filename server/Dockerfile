@@ -1,5 +1,5 @@
-# Set the base image to Node 12
-FROM node:12.9.1-alpine
+# Set the base image to Node 18
+FROM node:18.19-alpine3.18
 
 # File Author / Maintainer
 LABEL maintainer="Sawyer Blue Burnett"
