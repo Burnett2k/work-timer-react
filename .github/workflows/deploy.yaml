@@ -37,18 +37,19 @@ jobs:
           BASE_URL: ${{ secrets.BASE_URL}}
           SESSION_SECRET: ${{ secrets.SESSION_SECRET}}
           MONGO_URI: ${{ secrets.MONGO_URI}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           passphrase: ${{ secrets.PASSWORD }}
           key: ${{ secrets.SSH_KEY }}
-          envs: CR_PAT,CLIENT_SECRET,CLIENT_ID,CLIENT_HOME_PAGE_URL,BASE_URL,SESSION_SECRET,MONGO_URI
+          envs: CR_PAT,CLIENT_SECRET,CLIENT_ID,CLIENT_HOME_PAGE_URL,BASE_URL,SESSION_SECRET,MONGO_URI,GITHUB_TOKEN
           script_stop: true
           script: |
             # AUTH TO DOCKER CONTAINER REGISTRY AND PULL #
             cd work-timer-react/
 
-            docker login https://ghcr.io/burnett2k -u burnett2k -p $CR_PAT
+            echo $GITHUB_TOKEN | docker login ghcr.io -u burnett2k --password-stdin
             docker pull ghcr.io/burnett2k/work-timer-react:latest
             docker pull ghcr.io/burnett2k/work-timer-api:latest
 
