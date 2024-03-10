@@ -30,6 +30,7 @@ jobs:
       - name: run bash script
         uses: appleboy/ssh-action@v0.1.4
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CR_PAT: ${{ secrets.CR_PAT }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET}}
           CLIENT_ID: ${{ secrets.CLIENT_ID}}
@@ -38,18 +39,17 @@ jobs:
           SESSION_SECRET: ${{ secrets.SESSION_SECRET}}
           MONGO_URI: ${{ secrets.MONGO_URI}}
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           passphrase: ${{ secrets.PASSWORD }}
           key: ${{ secrets.SSH_KEY }}
-          envs: CR_PAT,CLIENT_SECRET,CLIENT_ID,CLIENT_HOME_PAGE_URL,BASE_URL,SESSION_SECRET,MONGO_URI
+          envs: CR_PAT,CLIENT_SECRET,CLIENT_ID,CLIENT_HOME_PAGE_URL,BASE_URL,SESSION_SECRET,MONGO_URI,GITHUB_TOKEN
           script_stop: true
           script: |
             # AUTH TO DOCKER CONTAINER REGISTRY AND PULL #
             cd work-timer-react/
 
-            docker login https://ghcr.io/burnett2k -u burnett2k -p $github_token
+            docker login https://ghcr.io/burnett2k -u burnett2k -p $GITHUB_TOKEN
             docker pull ghcr.io/burnett2k/work-timer-react:latest
             docker pull ghcr.io/burnett2k/work-timer-api:latest
 
