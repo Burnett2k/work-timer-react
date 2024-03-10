@@ -33,11 +33,13 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          provenance: false
           tags: ghcr.io/burnett2k/work-timer-react:latest
       - name: Build and push api
         uses: docker/build-push-action@v5
         with:
           context: ./server
           file: ./server/Dockerfile
+          provenance: false
           push: true
           tags: ghcr.io/burnett2k/work-timer-api:latest
