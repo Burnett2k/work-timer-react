@@ -38,6 +38,7 @@ jobs:
           SESSION_SECRET: ${{ secrets.SESSION_SECRET}}
           MONGO_URI: ${{ secrets.MONGO_URI}}
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           passphrase: ${{ secrets.PASSWORD }}
@@ -48,7 +49,7 @@ jobs:
             # AUTH TO DOCKER CONTAINER REGISTRY AND PULL #
             cd work-timer-react/
 
-            docker login https://ghcr.io/burnett2k -u burnett2k -p $CR_PAT
+            docker login https://ghcr.io/burnett2k -u burnett2k -p $github_token
             docker pull ghcr.io/burnett2k/work-timer-react:latest
             docker pull ghcr.io/burnett2k/work-timer-api:latest
 
