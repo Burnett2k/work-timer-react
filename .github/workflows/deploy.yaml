@@ -49,7 +49,7 @@ jobs:
             # AUTH TO DOCKER CONTAINER REGISTRY AND PULL #
             cd work-timer-react/
 
-            docker login https://ghcr.io/burnett2k -u burnett2k -p $GITHUB_TOKEN
+            echo $GITHUB_TOKEN | docker login ghcr.io -u burnett2k --password-stdin
             docker pull ghcr.io/burnett2k/work-timer-react:latest
             docker pull ghcr.io/burnett2k/work-timer-api:latest
 
